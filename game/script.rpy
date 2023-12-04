@@ -1,33 +1,41 @@
-﻿# The script of the game goes in this file.
-
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
-
-define e = Character("Eileen")
-
-
-# The game starts here.
-
-label start:
-
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
-
-    scene bg room
-
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
-
-    show eileen happy
-
-    # These display lines of dialogue.
-
-    e "You've created a new Ren'Py game."
-
-    e "Once you add a story, pictures, and music, you can release it to the world!"
-
-    # This ends the game.
-
+﻿label start:
+    menu:
+        "Season 1":
+            # jump season_01
+            jump s1e1p1_01
+        "Season 2":
+            "Coming soon! Pick a Different Season"
+            jump start
+        "Season 3":
+            "Coming soon! Pick a Different Season"
+            jump start
     return
+# uncomment once done season 1, and actually making menu
+""" label season_01:
+    menu:
+        "Episode 1":
+            jump episode_01
+        "Episode 2":
+            "Coming soon! Pick a Different Episode"
+            jump season_01
+        "Episode 3":
+            "Coming soon! Pick a Different Episode"
+            jump season_01
+
+label episode_01:
+    menu:
+        "Part 1":
+            jump s1e1p1_01
+        "Part 2":
+            "Coming soon! Pick a Different Part"
+            jump episode_01
+        "Part 3":
+            "Coming soon! Pick a Different Part"
+            jump episode_01 """
+
+
+
+
+
+
+    # return
