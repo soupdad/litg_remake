@@ -290,7 +290,7 @@ screen navigation():
     vbox:
         style_prefix "navigation"
 
-        xpos gui.navigation_xpos
+        # xpos gui.navigation_xpos
         yalign 0.5
 
         spacing gui.navigation_spacing
@@ -373,6 +373,8 @@ screen main_menu():
     ## The use statement includes another screen inside this one. The actual
     ## contents of the main menu are in the navigation screen.
     use navigation
+
+    
 
     if gui.show_name:
 

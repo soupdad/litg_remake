@@ -2,6 +2,7 @@
     menu:
         "Season 1":
             # jump season_01
+            stop music fadeout 1
             jump s1e1p1_01
         "Season 2":
             "Coming soon! Pick a Different Season"
