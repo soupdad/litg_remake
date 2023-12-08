@@ -12,7 +12,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("litg_remake")
+define config.name = _("Love Island the Game: Remastered")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
@@ -48,7 +48,7 @@ define build.name = "litg_remake"
 
 define config.has_sound = True
 define config.has_music = True
-define config.has_voice = True
+define config.has_voice = False
 
 
 ## To allow the user to play a test sound on the sound or voice channel,
