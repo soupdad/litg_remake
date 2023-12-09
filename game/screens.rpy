@@ -1458,8 +1458,8 @@ style bubble_what:
     layout "subtitle"
     color "#000"
 
-define bubble.frame = Frame("gui/bubble.png", 55, 55, 55, 95)
-define bubble.thoughtframe = Frame("gui/thoughtbubble.png", 55, 55, 55, 55)
+define bubble.frame = Frame("gui/popup_bubbles/speech_bubble_left.png", 55, 55, 55, 95)
+define bubble.thoughtframe = Frame("gui/popup_bubbles/thought_bubble.png", 55, 55, 55, 55)
 
 define bubble.properties = {
     "bottom_left" : {
