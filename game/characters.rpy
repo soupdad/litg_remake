@@ -4,6 +4,8 @@
 # image s01_mc_img = "images/season_01/character_placeholders/s01_mc.png"
 default s01_mc_name = "Filler Name"
 define s01_mc = Character("[s01_mc_name]", image = "s01_mc")
+define thought = Character("Thought")
+
 
 # UNCOMMENT AND DELETE WHEN DEPLOYING CODE
 # define persistent.s01_mc_job = ""
@@ -19,8 +21,10 @@ init python:
     # amount_npcs_like_mc = {"allegra":15, "cherry":15, "erikah":15, "jake":15, "jasper":15, "jen":15, "levi":15, "lucy":15, "mason":15, "miles":15, "reese":15, "rohan":15, "sammi":15, "talia":15, "tim":15}
 
 
+
+
 # Allegra
-define allegra = Character("Allegra", image = "allegra")
+define allegra = Character("Allegra")
     #placeholders to be changed with actual outfits later
 define allegra_liked_outfits = ["blue_bathing_suit", "red_dress"]
 

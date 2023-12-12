@@ -13,15 +13,40 @@
             return False
 
 # TRANSFORMS
-transform character_bounce:
-    
+transform little_hop:
+    yalign 1.0
+    easein_bounce 0.05 yalign 0.9
+    easeout_bounce 0.05 yalign 1.0
+
+# ON SCREEN POSITIONS
+transform mc_spot:
+    # for some reason doesnt work, gahhh
+    xalign 1.5 yalign 1.0
+    easein 0.1 xalign 0.1
+
+transform npc_1:
+    xalign 1.5 yalign 1.0
+    easein 0.1 xalign 0.4
+
+transform npc_2:
+    xalign 1.5 yalign 1.0
+    easein 0.1 xalign 0.65
+
+transform npc_3:
+    xalign 1.5 yalign 1.0
+    easein 0.1 xalign 0.9
+
+transform npc_exit:
+    easeout 0.05 xalign 1.5
 
 
 label start:
     menu:
+        "Test":
+            jump testing
         "Season 1":
             # jump season_01
-            jump s1e1p1_01
+            jump s1e1p1
         "Season 2":
             "Coming soon! Pick a Different Season"
             jump start
