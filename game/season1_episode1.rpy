@@ -274,5 +274,91 @@ label s1e1p1_01:
             jen "Come on, ladies. We're all getting to know each other."
             allegra "Hmph."
 
+allegra "I should’ve realised what was going on. He was going to the gym loads but wasn’t getting any fitter."
+Talia(Angry Face):Ugh. Get rid.
+Jen:What about you {MC}? What kind of body does your ideal man have?
+MC: My ideal body-type is… 
+Choices: 
+
+-tall, dark and handsome 
+MC: Someone with dark eyes, a strong jaw, and a body like a greek statue.
+T: Ooh, yeah, I could go for a bit of that.
+
+- sun’s out, guns out
+MC: Someone totally stacked. The kind of guy who hangs out at the beach.
+J(bites lip): Yeah, I like that. Someone with big, strong arms you can wrap around yourself.
+
+-cute, small, well put-together
+MC: Someone who’s not too big. That’s my preference. 
+J: I’m not into skinny guys. I like them big.
+E: Yeah, big muscular dudes. That’s my jam.
+MC: All the more for me!
+
+-not important as long as they make me laugh
+MC: I’m all about the person underneath. If they’re funny and we get on, that’s everything.
+T: That’s cute. I’m way shallow compared to that.
+
+J: And what about personality?
+MC: My ideal partner’s personality is…
+Choices:
+
+	- intense and romantic  
+MC: I want the kind of guy who's going to treat every day like it's Valentine's day.
+J: Yeah, the kind of guy who only has eyes for me. I love that.
+E: That doesn’t sound fun at all.
+A: Yeah, I want someone with a sense of humour.
+
+	- one of the lads  
+MC:I like a real boy’s boy, you know. Someone blokey.
+E:I know what you mean.
+J:Ew, no. I want my man to have eyes for nobody but me.
+J:I don’t want him running off to the pub all the time.
+
+	- quiet and thoughtful 
+MC: I like it when a guy is sensitive and considerate, you know.
+MC: Someone who can listen well.
+J: You and me both, hun.
+E: I think that sounds kind of dull…
+
+	- not important, as long as they’re good in bed
+MC: If he knows his way around the bedroom, nothing else really matters.
+E: Ha! Yes. Right answer.
+
+T: Can I ask you guys something?
+T: Like, are you going to actually… get intimate in here? You don’t mind if it’s on TV?
+
+Choices:
+
+	- I’m into it
+E: yeah, for sure. How else will I know if I’ve found the one?
+MC: Exactly.
+
+	- Depends on the person
+A:That’s how I feel,too.
+MC:If the right man comes along, though…
+E:But the whole point is to hook up with hot guys!
+T:I think there’s a little bit more to it than that.
+
+	- No chance  (please add the text for this choice)
+
+J: So you’re not going to hook up for the whole summer, Talia?
+T: I haven’t really decided, to be honest.
+T: You know that fifty thousand people applied to be on the show this year?
+
+Before the conversation can continue, Jen’s phone beeps.
+
+J: Oh, what’s this?
+J: I get the first one. Awesome.
+She clears her throat.
+J: Guys! I got a text!
+J: I’ve been looking forward to that way too much.
+
+Text: Hello, girls, and welcome to Love Island! Please gather on the lawn. It’s time to meet the boys. #thewaitisover #boyparade
+
+T: Amazing!
+J: Finally!
+
+The girls stand on the lawn and look towards the entrance.
+The door to the Villa bursts open.
 
 
