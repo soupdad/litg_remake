@@ -1,5 +1,7 @@
 ﻿label start:
-    menu:
+    jump scene_01
+
+    """ menu:
         "Season 1":
             # jump season_01
             jump s1e1p1_01
@@ -9,7 +11,7 @@
         "Season 3":
             "Coming soon! Pick a Different Season"
             jump start
-    return
+    return """
 # uncomment once done season 1, and actually making menu
 """ label season_01:
     menu:
