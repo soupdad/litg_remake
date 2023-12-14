@@ -1623,5 +1623,3 @@ style slider_slider:
 ################################################################################
 # Season 1
 # Episode 1, Part 2
-screen e1p2_select_who_to_talk_to:
-    

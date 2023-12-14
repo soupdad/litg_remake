@@ -879,703 +879,723 @@ label s1e1p2:
 
     # villa overview shot with all options of who you can talk to
     # call (label that has this screen once made)
-    "Welcome to the Villa choice screen! Swipe to explore, and tap the Islanders you want to chat with. You might not have time to talk to everyone, so choose carefully!"
+    call screen s1e1p2_select_who_to_talk_to
 
     # Allegra, Tim, and Miles at pool
-    $ e1p2_who_have_i_talked_to.append("Allegra", "Tim", "Miles")
+    label s1e1p2_talk_to_allegra_tim_miles:
+        $ e1p2_who_have_i_talked_to.append("Allegra", "Tim", "Miles")
 
-    "Allegra, Tim, and Miles have wasted no time getting acquainted with the pool."
-    "Allegra is sitting on the poolside, her legs in the water."
-    "Tim and Miles are standing in the shallow end, the water up to their waists."
-    allegra "[s01_mc_name]! Come and join us."
-    tim "Hey. My name's Tim, you're [s01_mc_name], of course."
-    miles "Tim reckons he's your future husband. My name's Miles, by the way."
-    "Miles has a thick Scottish accent. Tim punches him on the arm."
-    tim "So, have you decided who you're going to pick yet?"
-    "Allegra splashes him."
-    allegra "You can't ask that! She probably hasn't decided."
-    tim "She might have."
+        "Allegra, Tim, and Miles have wasted no time getting acquainted with the pool."
+        "Allegra is sitting on the poolside, her legs in the water."
+        "Tim and Miles are standing in the shallow end, the water up to their waists."
+        allegra "[s01_mc_name]! Come and join us."
+        tim "Hey. My name's Tim, you're [s01_mc_name], of course."
+        miles "Tim reckons he's your future husband. My name's Miles, by the way."
+        "Miles has a thick Scottish accent. Tim punches him on the arm."
+        tim "So, have you decided who you're going to pick yet?"
+        "Allegra splashes him."
+        allegra "You can't ask that! She probably hasn't decided."
+        tim "She might have."
 
-    # IF STATEMENT
-    if "Tim" in e1p1_initial_meeting_likes:
-        # if you reacted positively to tim during introduction to boys
-        tim "Me and her definitely had a bit of a look going on when we all came in."
-    elif "Miles" in e1p1_initial_meeting_likes:
-        # if you reacted positively to miles during introduction to boys
-        miles "I thought [s01_mc_name] looked like my type straight away."
+        # IF STATEMENT
+        if "Tim" in e1p1_initial_meeting_likes:
+            # if you reacted positively to tim during introduction to boys
+            tim "Me and her definitely had a bit of a look going on when we all came in."
+        elif "Miles" in e1p1_initial_meeting_likes:
+            # if you reacted positively to miles during introduction to boys
+            miles "I thought [s01_mc_name] looked like my type straight away."
 
-    allegra "I guess some people are moving pretty fast."
-    s01_mc "I expect some of us made up our minds, like, as soon as we saw you guys come in."
-    # if you interacted with Jen and Levi first 
-    s01_mc "For sure. Jen's totally hitting it off with Levi."
-    tim "Definitely. What about you, [s01_mc_name]?"
-    tim "Anyone come onto you yet? Apart from me, obvs."
+        allegra "I guess some people are moving pretty fast."
+        s01_mc "I expect some of us made up our minds, like, as soon as we saw you guys come in."
+        # if you interacted with Jen and Levi first 
+        s01_mc "For sure. Jen's totally hitting it off with Levi."
+        tim "Definitely. What about you, [s01_mc_name]?"
+        tim "Anyone come onto you yet? Apart from me, obvs."
 
-    # IF STATEMENT
-    # CHOICE
-    if "Mason" in e1p2_who_have_i_talked_to or "Levi" in e1p2_who_have_i_talked_to:
-        if "Mason" in e1p2_who_have_i_talked_to and "Levi" in e1p2_who_have_i_talked_to:
-            menu:
-                "I'm just trying to chat to everyone.":
-                    s01_mc "I want to keep people guessing."
-                    tim "Oh, come on!"
-                    miles "Works for me. I like a challenge."
-                "Tell them about Mason and Levi":
-                    s01_mc "Yeah, Mason and Levi both seem pretty keen."
-                    s01_mc "But it's hard to know how real anyone is at this stage."
-                    tim "Wow, check you out! Miss Popular over here."
-                    miles "Well, you can see why. You're gorgeous."
-                    s01_mc "Thanks, boys."
-                "I haven't had alone time with anyone yet.":
-                    tim "You should be cracking on, then!"
-                    tim "You don't want to get left behind."
-                "None of your business.":
-                    s01_mc "I wouldn't tell you if they had! Cheeky."
+        # IF STATEMENT
+        # CHOICE
+        if "Mason" in e1p2_who_have_i_talked_to or "Levi" in e1p2_who_have_i_talked_to:
+            if "Mason" in e1p2_who_have_i_talked_to and "Levi" in e1p2_who_have_i_talked_to:
+                menu:
+                    "I'm just trying to chat to everyone.":
+                        s01_mc "I want to keep people guessing."
+                        tim "Oh, come on!"
+                        miles "Works for me. I like a challenge."
+                    "Tell them about Mason and Levi":
+                        s01_mc "Yeah, Mason and Levi both seem pretty keen."
+                        s01_mc "But it's hard to know how real anyone is at this stage."
+                        tim "Wow, check you out! Miss Popular over here."
+                        miles "Well, you can see why. You're gorgeous."
+                        s01_mc "Thanks, boys."
+                    "I haven't had alone time with anyone yet.":
+                        tim "You should be cracking on, then!"
+                        tim "You don't want to get left behind."
+                    "None of your business.":
+                        s01_mc "I wouldn't tell you if they had! Cheeky."
 
-        elif "Mason" in e1p2_who_have_i_talked_to:
-            menu:
-                "I'm just trying to chat to everyone.":
-                    s01_mc "I want to keep people guessing."
-                    tim "Oh, come on!"
-                    miles "Works for me. I like a challenge."
-                "Tell them about Mason":
-                    s01_mc "Yeah, Mason seemed pretty keen."
-                    s01_mc "But it's hard to know how real anyone is at this stage."
-                "I haven't had alone time with anyone yet.":
-                    tim "You should be cracking on, then!"
-                    tim "You don't want to get left behind."
-                "None of your business.":
-                    s01_mc "I wouldn't tell you if they had! Cheeky."
+            elif "Mason" in e1p2_who_have_i_talked_to:
+                menu:
+                    "I'm just trying to chat to everyone.":
+                        s01_mc "I want to keep people guessing."
+                        tim "Oh, come on!"
+                        miles "Works for me. I like a challenge."
+                    "Tell them about Mason":
+                        s01_mc "Yeah, Mason seemed pretty keen."
+                        s01_mc "But it's hard to know how real anyone is at this stage."
+                    "I haven't had alone time with anyone yet.":
+                        tim "You should be cracking on, then!"
+                        tim "You don't want to get left behind."
+                    "None of your business.":
+                        s01_mc "I wouldn't tell you if they had! Cheeky."
 
-        elif "Levi" in e1p2_who_have_i_talked_to:
-            menu:
-                "I'm just trying to chat to everyone.":
-                    s01_mc "I want to keep people guessing."
-                    tim "Oh, come on!"
-                    miles "Works for me. I like a challenge."
-                "Tell them about Levi":
-                    s01_mc "I reckon Levi's into me. We had a little moment. Don't tell Jen, though."
-                    allegra "Don't say 'don't tell Jen'! It's a small Villa!"
-                "I haven't had alone time with anyone yet.":
-                    tim "You should be cracking on, then!"
-                    tim "You don't want to get left behind."
-                "None of your business.":
-                    s01_mc "I wouldn't tell you if they had! Cheeky."
-        else:
-            menu:
-                "I'm just trying to chat to everyone.":
-                    s01_mc "I want to keep people guessing."
-                    tim "Oh, come on!"
-                    miles "Works for me. I like a challenge."
-                "I haven't had alone time with anyone yet.":
-                    tim "You should be cracking on, then!"
-                    tim "You don't want to get left behind."
-                "None of your business.":
-                    s01_mc "I wouldn't tell you if they had! Cheeky."
+            elif "Levi" in e1p2_who_have_i_talked_to:
+                menu:
+                    "I'm just trying to chat to everyone.":
+                        s01_mc "I want to keep people guessing."
+                        tim "Oh, come on!"
+                        miles "Works for me. I like a challenge."
+                    "Tell them about Levi":
+                        s01_mc "I reckon Levi's into me. We had a little moment. Don't tell Jen, though."
+                        allegra "Don't say 'don't tell Jen'! It's a small Villa!"
+                    "I haven't had alone time with anyone yet.":
+                        tim "You should be cracking on, then!"
+                        tim "You don't want to get left behind."
+                    "None of your business.":
+                        s01_mc "I wouldn't tell you if they had! Cheeky."
+            else:
+                menu:
+                    "I'm just trying to chat to everyone.":
+                        s01_mc "I want to keep people guessing."
+                        tim "Oh, come on!"
+                        miles "Works for me. I like a challenge."
+                    "I haven't had alone time with anyone yet.":
+                        tim "You should be cracking on, then!"
+                        tim "You don't want to get left behind."
+                    "None of your business.":
+                        s01_mc "I wouldn't tell you if they had! Cheeky."
 
-    miles "I reckon most of the girls have probably made their minds up, you know."
-    miles "I'm not going to make myself seem like a prat by desperately trying to impress everyone."
-    tim "Thing is, mate, it's Love Island, right?"
-    tim "You're used to being the only eight in a room full of sevens."
-    tim "But here, everyone's an eight. No room for complacency."
-    miles "Eight? I'm a ten, mate. Or, like, a nine point nine nine."
-    "Tim laughs. Allegra raises her eyebrows."
-    miles "Your problem, Tim, is that you're all mouth. You've got no chill."
-    tim "Bollocks!"
-    miles "Nah, it's true."
-    miles "[s01_mc_name], what's more attractive? Someone cool and collected, or someone who won't stop chattering?"
+        miles "I reckon most of the girls have probably made their minds up, you know."
+        miles "I'm not going to make myself seem like a prat by desperately trying to impress everyone."
+        tim "Thing is, mate, it's Love Island, right?"
+        tim "You're used to being the only eight in a room full of sevens."
+        tim "But here, everyone's an eight. No room for complacency."
+        miles "Eight? I'm a ten, mate. Or, like, a nine point nine nine."
+        "Tim laughs. Allegra raises her eyebrows."
+        miles "Your problem, Tim, is that you're all mouth. You've got no chill."
+        tim "Bollocks!"
+        miles "Nah, it's true."
+        miles "[s01_mc_name], what's more attractive? Someone cool and collected, or someone who won't stop chattering?"
 
-    # CHOICE
-    menu:
-        "Do I prefer someone chill, like Miles, or someone with banter, like Tim?"
-        "Someone chill.":
-            $ amount_npcs_like_mc["Miles"] += 1
-            miles "Exactly!"
-            allegra "I disagree. I don't like that 'too cool for school' attitude some guys have."
-            allegra "In my experience, it's covering up the fact that they're really dull and have no chat."
-            tim "Oh! Shots fired!"
-            miles "That's not... I'm not saying that…"
-            allegra "Don't worry, babe. I'm not talking about you."
-        "Someone with banter.":
-            $ amount_npcs_like_mc["Tim"] += 1
-            tim "Exactly! Can you imagine dating someone with no chat?"
-            miles "Can you imagine dating a man who never shuts up for five seconds, though?"
-            allegra "Sounds alright, to be honest. Good banter is everything."
-            s01_mc "I just don't want to be with a guy who acts like I'm not even there, you know?"
-        "I'm all about the looks.":
-            $ amount_npcs_like_mc["Allegra"] += 1
-            "Allegra laughs. Miles hesitates for a second, then joins in."
-            allegra "The only thing that really matters. She's so right."
-            "Miles laughs and slaps Tim on the back."
-            miles "And I think we both know that I've got the edge there, mate."
-            "He kisses his biceps."
+        # CHOICE
+        menu:
+            "Do I prefer someone chill, like Miles, or someone with banter, like Tim?"
+            "Someone chill.":
+                $ amount_npcs_like_mc["Miles"] += 1
+                miles "Exactly!"
+                allegra "I disagree. I don't like that 'too cool for school' attitude some guys have."
+                allegra "In my experience, it's covering up the fact that they're really dull and have no chat."
+                tim "Oh! Shots fired!"
+                miles "That's not... I'm not saying that…"
+                allegra "Don't worry, babe. I'm not talking about you."
+            "Someone with banter.":
+                $ amount_npcs_like_mc["Tim"] += 1
+                tim "Exactly! Can you imagine dating someone with no chat?"
+                miles "Can you imagine dating a man who never shuts up for five seconds, though?"
+                allegra "Sounds alright, to be honest. Good banter is everything."
+                s01_mc "I just don't want to be with a guy who acts like I'm not even there, you know?"
+            "I'm all about the looks.":
+                $ amount_npcs_like_mc["Allegra"] += 1
+                "Allegra laughs. Miles hesitates for a second, then joins in."
+                allegra "The only thing that really matters. She's so right."
+                "Miles laughs and slaps Tim on the back."
+                miles "And I think we both know that I've got the edge there, mate."
+                "He kisses his biceps."
 
 
-    "Miles looks at Tim."
-    miles "Look man, I'm just winding you up, yeah?"
-    "Tim laughs."
-    tim "You're winding me up? Mate, you've just declared war."
-    tim "I'll wind you up so hard you'll think you're a clock."
-    "Miles grins."
-    miles "Alright, mate. You're on."
-    "You and Allegra walk off before the bromance gets too much to bear."
+        "Miles looks at Tim."
+        miles "Look man, I'm just winding you up, yeah?"
+        "Tim laughs."
+        tim "You're winding me up? Mate, you've just declared war."
+        tim "I'll wind you up so hard you'll think you're a clock."
+        "Miles grins."
+        miles "Alright, mate. You're on."
+        "You and Allegra walk off before the bromance gets too much to bear."
+        
+        # checks to see if you have talked to everyone
+        if len(e1p2_who_have_i_talked_to) == 10:
+            jump s1e1p2_outro
 
 
     # Erikah, Jasper, and Mason on lawn
-    $ e1p2_who_have_i_talked_to.append("Erikah", "Jasper", "Mason")
-    "Erikah seems delighted to have two boys chatting her up. Let's see if [s01_mc_name] cramps her style."
+    label s1e1p2_talk_to_erikah_jasper_mason:
+        $ e1p2_who_have_i_talked_to.append("Erikah", "Jasper", "Mason")
+        "Erikah seems delighted to have two boys chatting her up. Let's see if [s01_mc_name] cramps her style."
 
-    "Jasper sees you approaching and goes to shake your hand."
-    jasper "Hi, my name's Jasper."
-    s01_mc "Hi, I'm [s01_mc_name]."
+        "Jasper sees you approaching and goes to shake your hand."
+        jasper "Hi, my name's Jasper."
+        s01_mc "Hi, I'm [s01_mc_name]."
 
-    # CHOICE
-    menu:
-        "Shake his hand.":
-            jasper "So good to meet you."
+        # CHOICE
+        menu:
+            "Shake his hand.":
+                jasper "So good to meet you."
 
-        "Hug him.":
-            $ amount_npcs_like_mc["Jasper"] += 1
-            "You look at his outstretched hand."
-            s01_mc "A bit formal, isn't it?"
-            "You give him a hug. "
-            jasper "Oh! Right. Sorry."
-            "He grins."
+            "Hug him.":
+                $ amount_npcs_like_mc["Jasper"] += 1
+                "You look at his outstretched hand."
+                s01_mc "A bit formal, isn't it?"
+                "You give him a hug. "
+                jasper "Oh! Right. Sorry."
+                "He grins."
 
-        "Ignore the handshake.":
-            "You ignore his outstretched hand. He withdraws it, pretending to fix his hair."
-            jasper "Yeah, good to meet you."
+            "Ignore the handshake.":
+                "You ignore his outstretched hand. He withdraws it, pretending to fix his hair."
+                jasper "Yeah, good to meet you."
 
-    "You turn to the other guy."
-    s01_mc "And what's your name, again?"
-    mason "I'm Mason."
+        "You turn to the other guy."
+        s01_mc "And what's your name, again?"
+        mason "I'm Mason."
 
-    # IF STATEMENT
-    if "Mason" in e1p1_initial_meeting_likes:
-        # If you reacted positively to Mason upon meeting, these lines occur)
-        "Without waiting, he gives you a massive bear hug."
-        mason "Looks like I caught your eye earlier, yeah?"
-    else:
-        "Mason gives you a peck on the cheek."
-        mason "Alright, darling?"
+        # IF STATEMENT
+        if "Mason" in e1p1_initial_meeting_likes:
+            # If you reacted positively to Mason upon meeting, these lines occur)
+            "Without waiting, he gives you a massive bear hug."
+            mason "Looks like I caught your eye earlier, yeah?"
+        else:
+            "Mason gives you a peck on the cheek."
+            mason "Alright, darling?"
 
-    mason "I can't believe we've got to wait until this evening to couple up."
-    s01_mc "Yeah, the girls have all the power!"
-    erikah "Oh my god, it's like a buffet table."
-    s01_mc "So…"
+        mason "I can't believe we've got to wait until this evening to couple up."
+        s01_mc "Yeah, the girls have all the power!"
+        erikah "Oh my god, it's like a buffet table."
+        s01_mc "So…"
 
-    # CHOICE
-    menu:
-        "Ask about Mason":
-            $ amount_npcs_like_mc["Mason"] += 1
-            s01_mc "So, what do you do in the outside world, Mason?"
-            mason "Well, I used to play drums in a band called Seventh Heaven…"
-            erikah "Oh my god, I remember you guys! You had that song... how did it go?"
-            erikah "I want to take you to the stars, find out who you really are... "
-            mason "That's the one."
-            s01_mc "Seventh Heaven broke up, right?"
-            mason "Yeah, Frankie's still going strong as a solo artist and Dan and Lizzie are producers."
-            mason "Mostly I'm a model these days. Underwear, designer stuff, that kind of thing…"
-            s01_mc "A rock star turned underwear model? Are you bantering?"
-            mason "Nah, it's true. "
-            erikah "…"
+        # CHOICE
+        menu:
+            "Ask about Mason":
+                $ amount_npcs_like_mc["Mason"] += 1
+                s01_mc "So, what do you do in the outside world, Mason?"
+                mason "Well, I used to play drums in a band called Seventh Heaven…"
+                erikah "Oh my god, I remember you guys! You had that song... how did it go?"
+                erikah "I want to take you to the stars, find out who you really are... "
+                mason "That's the one."
+                s01_mc "Seventh Heaven broke up, right?"
+                mason "Yeah, Frankie's still going strong as a solo artist and Dan and Lizzie are producers."
+                mason "Mostly I'm a model these days. Underwear, designer stuff, that kind of thing…"
+                s01_mc "A rock star turned underwear model? Are you bantering?"
+                mason "Nah, it's true. "
+                erikah "…"
 
-        "Ask about Jasper":
-            $ amount_npcs_like_mc["Jasper"] += 1
-            s01_mc "So what's your job, Jasper?"
-            jasper "Oh, I'm into finance."
-            s01_mc "That's pretty intense."
-            jasper "Well, you know what they say. Work hard, play hard."
-            erikah "Does that mean you're loaded?"
-            jasper "Um, well, I'm quite senior… I have some fairly prestigious clients…"
-            s01_mc "You can't just ask people stuff like that!"
-            erikah "Come on, you were all thinking it."
+            "Ask about Jasper":
+                $ amount_npcs_like_mc["Jasper"] += 1
+                s01_mc "So what's your job, Jasper?"
+                jasper "Oh, I'm into finance."
+                s01_mc "That's pretty intense."
+                jasper "Well, you know what they say. Work hard, play hard."
+                erikah "Does that mean you're loaded?"
+                jasper "Um, well, I'm quite senior… I have some fairly prestigious clients…"
+                s01_mc "You can't just ask people stuff like that!"
+                erikah "Come on, you were all thinking it."
 
-        "Ask about Erikah":
-            s01_mc "What do you do, Erikah?"
-            erikah "Thanks for asking!"
-            erikah "I'm an actor."
-            mason "Have you been in anything on telly?"
-            erikah "Apart from this?"
-            erikah "No, I've only just got out of drama school."
-            jasper "Do you enjoy it?"
-            erikah "God, no. I hate it. Actors are the worst."
-            mason "Really?!"
-            erikah "Nah, I'm joking. It's fun."
-            jasper "Anyway, we should probably mingle with the others a little, don't you think?"
-            mason "Yeah, you're probably right."
-            
-    erikah "Anybody want a drink?"
+            "Ask about Erikah":
+                s01_mc "What do you do, Erikah?"
+                erikah "Thanks for asking!"
+                erikah "I'm an actor."
+                mason "Have you been in anything on telly?"
+                erikah "Apart from this?"
+                erikah "No, I've only just got out of drama school."
+                jasper "Do you enjoy it?"
+                erikah "God, no. I hate it. Actors are the worst."
+                mason "Really?!"
+                erikah "Nah, I'm joking. It's fun."
+                jasper "Anyway, we should probably mingle with the others a little, don't you think?"
+                mason "Yeah, you're probably right."
+                
+        erikah "Anybody want a drink?"
 
-    # CHOICE
-    menu:
-        "Yes please.":
-            jasper "Let me get you one. "
-        "I'm OK.":
-            jasper "Well, I won't say no."
-        "I want to stay here.":
-            jasper "Suit yourself."
+        # CHOICE
+        menu:
+            "Yes please.":
+                jasper "Let me get you one. "
+            "I'm OK.":
+                jasper "Well, I won't say no."
+            "I want to stay here.":
+                jasper "Suit yourself."
 
-    jasper "Let's make a round. I'll help."
+        jasper "Let's make a round. I'll help."
 
-    "Erikah and Jasper walk off towards the Villa. You take a few steps with them."
-    "Mason hangs back on the lawn. As you look back at him, he catches your eye."
-    "This is the perfect chance to chat to him in private."
-    "He grins at you, and nods towards a more secluded corner of the garden."
+        "Erikah and Jasper walk off towards the Villa. You take a few steps with them."
+        "Mason hangs back on the lawn. As you look back at him, he catches your eye."
+        "This is the perfect chance to chat to him in private."
+        "He grins at you, and nods towards a more secluded corner of the garden."
 
-    # CHOICE
-    # choose whether to talk more with mason or not
-    menu:
-        "I should…"
+        # CHOICE
+        # choose whether to talk more with mason or not
+        menu:
+            "I should…"
 
-        "Go back and talk to Mason.":
-            "You walk back towards Mason, apologising to Erikah and Jasper."
-            mason "Hey! I'm glad you came back."
+            "Go back and talk to Mason.":
+                "You walk back towards Mason, apologising to Erikah and Jasper."
+                mason "Hey! I'm glad you came back."
 
-            # SUB-CHOICE
-            menu:
-                "I wanted to speak to you alone.":
-                    $ amount_npcs_like_mc["Mason"] += 1
-                    mason "I thought we had a little spark, actually."
+                # SUB-CHOICE
+                menu:
+                    "I wanted to speak to you alone.":
+                        $ amount_npcs_like_mc["Mason"] += 1
+                        mason "I thought we had a little spark, actually."
 
-                "I didn't want to mingle anymore.":
-                    mason "Yeah, it's nice to just chill for a second."
+                    "I didn't want to mingle anymore.":
+                        mason "Yeah, it's nice to just chill for a second."
 
-                "Jasper's a bit of a nobhead.":
-                    mason "Yeah, he's not really my type either."
-                    mason "It's cool you wanted to hang out with me for a bit, though."
+                    "Jasper's a bit of a nobhead.":
+                        mason "Yeah, he's not really my type either."
+                        mason "It's cool you wanted to hang out with me for a bit, though."
 
-            mason "There won't be much alone time today, I reckon."
-            mason "Which sucks, because I'm way better one-on-one."
-            s01_mc "Is that right?"
-            mason "Yeah, for sure!"
-            mason "And I just wanted to say, like, you seem really cool."
+                mason "There won't be much alone time today, I reckon."
+                mason "Which sucks, because I'm way better one-on-one."
+                s01_mc "Is that right?"
+                mason "Yeah, for sure!"
+                mason "And I just wanted to say, like, you seem really cool."
 
-            # SUB-CHOICE
-            menu:
-                "Mason said he thinks I'm cool, what do I say back?"
-                "I'm glad you noticed":
-                    "Mason laughs at you."
-                    mason "Even if you do know it."
-                "Even in this heat?":
-                    mason "Yeah. Ice cold."
-                "Is that the best you've got?":
-                    mason "Nah, but I'm not giving you all my best lines right now."
-                    mason "You've got to work for those."
+                # SUB-CHOICE
+                menu:
+                    "Mason said he thinks I'm cool, what do I say back?"
+                    "I'm glad you noticed":
+                        "Mason laughs at you."
+                        mason "Even if you do know it."
+                    "Even in this heat?":
+                        mason "Yeah. Ice cold."
+                    "Is that the best you've got?":
+                        mason "Nah, but I'm not giving you all my best lines right now."
+                        mason "You've got to work for those."
 
-            mason "I know it's only first impressions…"
-            mason "But if you picked me later, I'd be really happy."
+                mason "I know it's only first impressions…"
+                mason "But if you picked me later, I'd be really happy."
 
-            # CHOICE
-            menu:
-                s01_mc "Oh, I…"
-                "I'd like that too":
-                    mason "Amazing!"
-                    mason "This is getting off to a good start. I'm stoked."
+                # CHOICE
+                menu:
+                    s01_mc "Oh, I…"
+                    "I'd like that too":
+                        mason "Amazing!"
+                        mason "This is getting off to a good start. I'm stoked."
 
-                "I'll think about it":
-                    mason "Oh, no! Shot down."
-                    "He makes a heart shape with his fingers and then breaks it apart."
-                    mason "Can't blame a guy for asking, right?"
-                    s01_mc "Yeah, of course ."
+                    "I'll think about it":
+                        mason "Oh, no! Shot down."
+                        "He makes a heart shape with his fingers and then breaks it apart."
+                        mason "Can't blame a guy for asking, right?"
+                        s01_mc "Yeah, of course ."
 
-                "I don't think you're my type":
-                    mason "Oh, right, yeah. Of course. Early days."
-                    s01_mc "I think Erikah might have the hots for you, though."
-                    mason "Really? Interesting."
-                    "He rubs his chin."
-                    mason "I still reckon you're more my type on paper, though."
-            
-            "He grins, and walks off towards the Villa."    
-            s01_mc "Hmmm. I've definitely got a shot with him."
+                    "I don't think you're my type":
+                        mason "Oh, right, yeah. Of course. Early days."
+                        s01_mc "I think Erikah might have the hots for you, though."
+                        mason "Really? Interesting."
+                        "He rubs his chin."
+                        mason "I still reckon you're more my type on paper, though."
+                
+                "He grins, and walks off towards the Villa."    
+                s01_mc "Hmmm. I've definitely got a shot with him."
 
-    # choose whether to talk more with mason or not
-        "Walk off.":
-            "You look up at the Villa."
+            # choose whether to talk more with mason or not
+            "Walk off.":
+                "You look up at the Villa."
+        
+        # checks to see if you have talked to everyone
+        if len(e1p2_who_have_i_talked_to) == 10:
+            jump s1e1p2_outro
 
 
     # Jen and Levi in bedroom
-    "In the bedroom Levi and Jen are having their ups and downs. Or at least Levi is…"
-    "Levi is bouncing up and down on one of the beds. Jen is leaning against a wall watching him."
-    levi "Yeah, they're really bouncy. Love it."
-    "He notices you, and jumps off the bed."
-    levi "Alright?"
-    levi "I wasn't sure if you'd noticed me when I walked in. "
-    if "Levi" in e1p1_initial_meeting_likes:
-        # If you react positively upon meeting levi
+    label s1e1p2_talk_to_jen_levi:
+        "In the bedroom Levi and Jen are having their ups and downs. Or at least Levi is…"
+        "Levi is bouncing up and down on one of the beds. Jen is leaning against a wall watching him."
+        levi "Yeah, they're really bouncy. Love it."
+        "He notices you, and jumps off the bed."
         levi "Alright?"
-        levi "I'm glad you came over. You and Jen caught my eye as soon as I walked in."
+        levi "I wasn't sure if you'd noticed me when I walked in. "
+        if "Levi" in e1p1_initial_meeting_likes:
+            # If you react positively upon meeting levi
+            levi "Alright?"
+            levi "I'm glad you came over. You and Jen caught my eye as soon as I walked in."
 
-    # CHOICE
-    menu:
-        "Levi seems interested in me, how do I respond?"
-        
-        "I can't wait to get to know you.":
-            $ amount_npcs_like_mc["Levi"] += 1
-            levi "Yeah, likewise."
-        "Hi, I'm [s01_mc_name].":
-            levi "And I'm Levi."
-            s01_mc "Yeah, you already said that."
-            levi "Oh, yeah!"
-        "Levi's a weird name.":
-            "There's an awkward pause. Jen clears her throat."
-            jen "Um, this is [s01_mc_name]."
-
-    levi "Had a good look around yet?"
-    jen "Not really, it's such a big house, though! I wonder who lives here normally? Probably, like, Kim Kardashian."
-    levi "I have a couple of mates with holiday places out here. The houses are just ridiculous."
-
-    # CHOICE
-    menu:
-        "What do you do?":
-            pass
-        "So, you clearly work out a lot.":
-            jen "He does. Just wait until he tells you why."
-            s01_mc "Why?"
-        "Have you seen the pool yet?":
-            levi "Can't exactly miss it, can you?"
-            levi "Actually, I wouldn't be able to come here if there wasn't a pool."
-            s01_mc "Oh yeah? Why not?"
-
-
-    levi "I play waterpolo"
-    s01_mc "What, like, professionally?"
-    levi "Yeah."
-    jen "He was in the Olympics."
-    levi "I was."
-    jen "You must be, like, amazingly fit."
-    "He smiles and looks off to one side."
-    levi "Uh, yeah, I guess I am."
-    jen "I'm definitely going to pick you this evening."
-
-    # CHOICE
-    menu:
-        "Jen said she's going to couple up with Levi tonight, what should I say?"
-        "Not if I pick him first.":
-            jen "All's fair in love and war, I guess..."
-            "Levi looks awkwardly down at his feet."
-            levi "So, um… What do you do, [s01_mc_name]?"
-        "We don't know the order yet.":
-            jen "But, like, if I get the chance…"
-            jen "It sounds way less romantic when you say it like that."
-            "Levi looks awkwardly down at his feet."
-            levi "So, um… What do you do, [s01_mc_name]?"
-        "Wink at Levi.":
-            "He raises his eyebrows."
-            levi "Sounds good, I've never dated anyone posh."
-            jen "I'm not that posh... Not compared to Jasper!"
-            levi "Well, where I come from, people would say you were posh."
-            levi "What about you, [s01_mc_name]?"
-            s01_mc "Well, I can't pick you if Jen already has!"
-            levi "Oh no, I didn't mean. I meant like, what do you do?"
-
-    # IF STATEMENT
-    if s01_mc_job == "Runway Model":
-        # If your profession is a runway model
-        s01_mc "Oh, I'm a runway model."
-        levi "What? That's amazing. Is that, like, one big party the whole time?"
-        s01_mc "Yeah, there's a lot of that. And a lot of really dull photoshoots."
-
-    elif s01_mc_job == "Social Media Influencer":
-        # if you're a social media influencer
-        s01_mc "Oh, I'm a social media influencer."
-        levi "Mate, I don't even know what that is. Does that mean you've got like, a million Snapchat followers?"
-        s01_mc "Pretty much."
-    
-    elif s01_mc_job == "Trainee Heart Surgeon":
-        # if you're a trainee heart surgeon
-        s01_mc "Oh, I'm a trainee heart surgeon."
-        levi "Whoa! For real? That's so impressive."
-        jen "Wow, that's amazing! I didn't know that about you. "
-        levi "At least if you break someone's heart, you'll know how to fix it."
-
-        # SUB-CHOICE FOR TRAINEE HEART SURGEON JOB
+        # CHOICE
         menu:
-            "People have been making this joke about you all year."
+            "Levi seems interested in me, how do I respond?"
+            
+            "I can't wait to get to know you.":
+                $ amount_npcs_like_mc["Levi"] += 1
+                levi "Yeah, likewise."
+            "Hi, I'm [s01_mc_name].":
+                levi "And I'm Levi."
+                s01_mc "Yeah, you already said that."
+                levi "Oh, yeah!"
+            "Levi's a weird name.":
+                "There's an awkward pause. Jen clears her throat."
+                jen "Um, this is [s01_mc_name]."
 
-            "Pretend to laugh":
-                s01_mc "That's so funny!"
-            "Are you a heartbreaker, Levi?"
-                levi "Guess so, yeah."
-            "I'm only a trainee so let's hope it's not yours.":
-                levi "Yeah, me too!"
+        levi "Had a good look around yet?"
+        jen "Not really, it's such a big house, though! I wonder who lives here normally? Probably, like, Kim Kardashian."
+        levi "I have a couple of mates with holiday places out here. The houses are just ridiculous."
 
-    elif s01_mc_job == "Conceptual Artist":
-        # If your profession is a conceptual artist
-        s01_mc "Oh, I'm a conceptual artist."
-        levi "That's wild. I love conceptual art."
-        levi "People think it's just unmade beds and cows cut in half."
-        levi "But there's so much good stuff out there from unknown artists."
-        s01_mc "Wow, this isn't a conversation I was expecting to have in here."
-        levi "Nah, love it. Checking out some modern art is like my ideal Sunday, man."
-        levi "Galleries, then down the pub. Mint."
+        # CHOICE
+        menu:
+            "What do you do?":
+                pass
+            "So, you clearly work out a lot.":
+                jen "He does. Just wait until he tells you why."
+                s01_mc "Why?"
+            "Have you seen the pool yet?":
+                levi "Can't exactly miss it, can you?"
+                levi "Actually, I wouldn't be able to come here if there wasn't a pool."
+                s01_mc "Oh yeah? Why not?"
 
-    "Jen looks a bit left out."
-    jen "Want some champagne? I need a top up too."
-    levi "Yeah, thanks love."
-    "She grabs Levi's glass and leaves."
-    levi "I'm glad she's gone, actually."
-    "Levi inches closer and looks you directly in the eye."
-    levi "There's something I wanted to ask you…"
 
-    # CHOICE
-    # talk more with levi option
-    menu:
-        "This could be a valuable chance to get some alone time with Levi…"
-        "Graft on Levi.":
-            s01_mc "What is it?"
-            levi "So, you know Jen?"
+        levi "I play waterpolo"
+        s01_mc "What, like, professionally?"
+        levi "Yeah."
+        jen "He was in the Olympics."
+        levi "I was."
+        jen "You must be, like, amazingly fit."
+        "He smiles and looks off to one side."
+        levi "Uh, yeah, I guess I am."
+        jen "I'm definitely going to pick you this evening."
 
-            # SUB-CHOICE
+        # CHOICE
+        menu:
+            "Jen said she's going to couple up with Levi tonight, what should I say?"
+            "Not if I pick him first.":
+                jen "All's fair in love and war, I guess..."
+                "Levi looks awkwardly down at his feet."
+                levi "So, um… What do you do, [s01_mc_name]?"
+            "We don't know the order yet.":
+                jen "But, like, if I get the chance…"
+                jen "It sounds way less romantic when you say it like that."
+                "Levi looks awkwardly down at his feet."
+                levi "So, um… What do you do, [s01_mc_name]?"
+            "Wink at Levi.":
+                "He raises his eyebrows."
+                levi "Sounds good, I've never dated anyone posh."
+                jen "I'm not that posh... Not compared to Jasper!"
+                levi "Well, where I come from, people would say you were posh."
+                levi "What about you, [s01_mc_name]?"
+                s01_mc "Well, I can't pick you if Jen already has!"
+                levi "Oh no, I didn't mean. I meant like, what do you do?"
+
+        # IF STATEMENT
+        if s01_mc_job == "Runway Model":
+            # If your profession is a runway model
+            s01_mc "Oh, I'm a runway model."
+            levi "What? That's amazing. Is that, like, one big party the whole time?"
+            s01_mc "Yeah, there's a lot of that. And a lot of really dull photoshoots."
+
+        elif s01_mc_job == "Social Media Influencer":
+            # if you're a social media influencer
+            s01_mc "Oh, I'm a social media influencer."
+            levi "Mate, I don't even know what that is. Does that mean you've got like, a million Snapchat followers?"
+            s01_mc "Pretty much."
+        
+        elif s01_mc_job == "Trainee Heart Surgeon":
+            # if you're a trainee heart surgeon
+            s01_mc "Oh, I'm a trainee heart surgeon."
+            levi "Whoa! For real? That's so impressive."
+            jen "Wow, that's amazing! I didn't know that about you. "
+            levi "At least if you break someone's heart, you'll know how to fix it."
+
+            # SUB-CHOICE FOR TRAINEE HEART SURGEON JOB
             menu:
-                "She seems really into you.":
-                    levi "Yeah, yeah. She seems like a really nice girl."
-                    levi "But I don't want to get into something too quick, you know?"
-                    s01_mc "Yeah, of course. It's all just first impressions right now."
+                "People have been making this joke about you all year."
 
-                "She's out of your league.":
-                    levi "Are you joking?"
-                    levi "If she's out of my league, I dunno why I'm even bothering talking to you."
-                    s01_mc "Nice line."
+                "Pretend to laugh":
+                    s01_mc "That's so funny!"
+                "Are you a heartbreaker, Levi?":
+                    levi "Guess so, yeah."
+                "I'm only a trainee so let's hope it's not yours.":
+                    levi "Yeah, me too!"
 
-                "I'm more your type.":
-                    levi "You don't hold back, that's decent."
-                    s01_mc "I just want you to know where I stand."
+        elif s01_mc_job == "Conceptual Artist":
+            # If your profession is a conceptual artist
+            s01_mc "Oh, I'm a conceptual artist."
+            levi "That's wild. I love conceptual art."
+            levi "People think it's just unmade beds and cows cut in half."
+            levi "But there's so much good stuff out there from unknown artists."
+            s01_mc "Wow, this isn't a conversation I was expecting to have in here."
+            levi "Nah, love it. Checking out some modern art is like my ideal Sunday, man."
+            levi "Galleries, then down the pub. Mint."
+
+        "Jen looks a bit left out."
+        jen "Want some champagne? I need a top up too."
+        levi "Yeah, thanks love."
+        "She grabs Levi's glass and leaves."
+        levi "I'm glad she's gone, actually."
+        "Levi inches closer and looks you directly in the eye."
+        levi "There's something I wanted to ask you…"
+
+        # CHOICE
+        # talk more with levi option
+        menu:
+            "This could be a valuable chance to get some alone time with Levi…"
+            "Graft on Levi.":
+                s01_mc "What is it?"
+                levi "So, you know Jen?"
+
+                # SUB-CHOICE
+                menu:
+                    "She seems really into you.":
+                        levi "Yeah, yeah. She seems like a really nice girl."
+                        levi "But I don't want to get into something too quick, you know?"
+                        s01_mc "Yeah, of course. It's all just first impressions right now."
+
+                    "She's out of your league.":
+                        levi "Are you joking?"
+                        levi "If she's out of my league, I dunno why I'm even bothering talking to you."
+                        s01_mc "Nice line."
+
+                    "I'm more your type.":
+                        levi "You don't hold back, that's decent."
+                        s01_mc "I just want you to know where I stand."
 
 
-            levi "So, what I'm thinking is, you and me should like, get to know each other a bit."
-
-            # SUB-CHOICE
-            menu:
                 levi "So, what I'm thinking is, you and me should like, get to know each other a bit."
 
-                "I like the sound of that":
-                    $ amount_npcs_like_mc["Levi"] += 1
-                    levi "Sick."
-                    levi "I don't know what's going to happen this evening, but, like, that's a plan."
-                    s01_mc "You work quickly, huh?"
-                    levi "Well, that's the game, isn't it?"
-                    levi "Listen, I…"
-                "I bet you're saying that to all the girls":
-                    levi "Ha! I don't know. Haven't really met everyone else yet."
-                    levi "Probably not, though. "
-                    levi "You're definitely my type on paper. I thought that as soon as I saw you."
-                "I think Jen's got her eye on you":
-                    levi "Well, yeah. "
-                    levi "Guess that means I won't get sent home this evening, anyway."
-                    levi "But I get a say in the matter, too."
-                    s01_mc "So you're not into her?"
-                    levi "I don't know... We've only just met."
-                    levi "But…"
+                # SUB-CHOICE
+                menu:
+                    levi "So, what I'm thinking is, you and me should like, get to know each other a bit."
 
-            "It seems like he's got something on the tip of his tongue, but before he can say anything, Jen comes back in."
+                    "I like the sound of that":
+                        $ amount_npcs_like_mc["Levi"] += 1
+                        levi "Sick."
+                        levi "I don't know what's going to happen this evening, but, like, that's a plan."
+                        s01_mc "You work quickly, huh?"
+                        levi "Well, that's the game, isn't it?"
+                        levi "Listen, I…"
+                    "I bet you're saying that to all the girls":
+                        levi "Ha! I don't know. Haven't really met everyone else yet."
+                        levi "Probably not, though. "
+                        levi "You're definitely my type on paper. I thought that as soon as I saw you."
+                    "I think Jen's got her eye on you":
+                        levi "Well, yeah. "
+                        levi "Guess that means I won't get sent home this evening, anyway."
+                        levi "But I get a say in the matter, too."
+                        s01_mc "So you're not into her?"
+                        levi "I don't know... We've only just met."
+                        levi "But…"
 
-            jen "More bubbly!"
-            s01_mc "So, he clearly fancies me."
-            s01_mc "Good to know!"
+                "It seems like he's got something on the tip of his tongue, but before he can say anything, Jen comes back in."
 
-    # talk to levi more option
-        "Go and get a refill too."
-            s01_mc "Sorry, babes."
-            "You smile at Levi as you follow Jen outside."
+                jen "More bubbly!"
+                s01_mc "So, he clearly fancies me."
+                s01_mc "Good to know!"
+
+            # talk to levi more option
+            "Go and get a refill too.":
+                s01_mc "Sorry, babes."
+                "You smile at Levi as you follow Jen outside."
+
+        # checks to see if you have talked to everyone
+        if len(e1p2_who_have_i_talked_to) == 10:
+            jump s1e1p2_outro
 
     # Talia and Jake on roof
-    $ e1p2_who_have_i_talked_to.append("Talia", "Jake")
-    "Talia seems to have vanished off somewhere, leaving Jake alone on the roof."
-    "Little tip, Jake - to win this game you actually have to talk to the girls!"
-    "As you walk out onto the roof terrace, you practically walk straight into Jake."
-    jake "Oh, hey. Sorry, my fault."
-    s01_mc "No, it's all good."
-    jake"I was hoping you would come up and talk to me."
+    label s1e1p2_talk_to_talia_jake:
+        $ e1p2_who_have_i_talked_to.append("Talia", "Jake")
+        "Talia seems to have vanished off somewhere, leaving Jake alone on the roof."
+        "Little tip, Jake - to win this game you actually have to talk to the girls!"
+        "As you walk out onto the roof terrace, you practically walk straight into Jake."
+        jake "Oh, hey. Sorry, my fault."
+        s01_mc "No, it's all good."
+        jake"I was hoping you would come up and talk to me."
 
-    # IF STATEMENT
-    if "Jake" in e1p1_initial_meeting_likes:
-        # if you reacted positively to jake upon meeting him
-        jake"I noticed you looking at me when we all came in."
+        # IF STATEMENT
+        if "Jake" in e1p1_initial_meeting_likes:
+            # if you reacted positively to jake upon meeting him
+            jake"I noticed you looking at me when we all came in."
 
-    # CHOICE
-    menu:
-        "You look around for something to talk about."
+        # CHOICE
+        menu:
+            "You look around for something to talk about."
 
-        "The view's amazing, huh?":
-            jake "Yeah, it's beautiful. I just came up here to check it out."
-        "Aren't you handsome?":
-            jake "Hah... Well, my mother always said so..."
-        "I'm [s01_mc_name]."
-            jake "I know."
+            "The view's amazing, huh?":
+                jake "Yeah, it's beautiful. I just came up here to check it out."
+            "Aren't you handsome?":
+                jake "Hah... Well, my mother always said so..."
+            "I'm [s01_mc_name].":
+                jake "I know."
 
-    "There's a pause, Jake glances uncomfortably at a camera."
-    s01_mc "Seven weeks in this place, huh?"
-    "Jake laughs."
-    jake "Well, for most of us. Someone only gets one day."
+        "There's a pause, Jake glances uncomfortably at a camera."
+        s01_mc "Seven weeks in this place, huh?"
+        "Jake laughs."
+        jake "Well, for most of us. Someone only gets one day."
 
-    # CHOICE
-    menu:
-        "You'll be fine.":
-            jake "Oh, don't say that. Overconfidence is a killer."
-        "I'd be worried.":
-            jake "Well, they never said it was going to be easy."
-        "Love don't come easy.":
-            jake "If it did, it wouldn't be so valuable."
+        # CHOICE
+        menu:
+            "You'll be fine.":
+                jake "Oh, don't say that. Overconfidence is a killer."
+            "I'd be worried.":
+                jake "Well, they never said it was going to be easy."
+            "Love don't come easy.":
+                jake "If it did, it wouldn't be so valuable."
 
-    jake "To be honest, it would be amazing to be chosen by any of you girls. You're all incredible."
-    s01_mc "Oh, yeah. But the boys are all like superhuman levels of handsome, too."
-    jake "Yeah, there's some fierce competition."
-    "You're both quiet for a moment."
-    "Jake doesn't really bring the chat. His eyes are intense, though."
-    "Talia steals the moment by walking out onto the terrace."
-    talia "Oh, hi guys. I'm not interrupting anything, am I?"
+        jake "To be honest, it would be amazing to be chosen by any of you girls. You're all incredible."
+        s01_mc "Oh, yeah. But the boys are all like superhuman levels of handsome, too."
+        jake "Yeah, there's some fierce competition."
+        "You're both quiet for a moment."
+        "Jake doesn't really bring the chat. His eyes are intense, though."
+        "Talia steals the moment by walking out onto the terrace."
+        talia "Oh, hi guys. I'm not interrupting anything, am I?"
 
-    # CHOICE
-    menu:
-        "Is Talia interrupting?"
+        # CHOICE
+        menu:
+            "Is Talia interrupting?"
 
-        "Hah, a little, but it's OK.":
-            talia "Sorry! Don't worry, you'll have other chances."
-        "Not at all.":
-            talia "Haha, awkward!"
-        "Wait for Jake to reply.":
-            "Jake catches your eye for a moment."
-            jake "No, we were just chatting."
+            "Hah, a little, but it's OK.":
+                talia "Sorry! Don't worry, you'll have other chances."
+            "Not at all.":
+                talia "Haha, awkward!"
+            "Wait for Jake to reply.":
+                "Jake catches your eye for a moment."
+                jake "No, we were just chatting."
 
-    talia "I just wanted to check out this view. It's amazing!"
-    talia "Hey, Jake. Would you be a sweetheart and fetch me some champagne?"
-    jake "Sure thing. Would you like some too, [s01_mc_name]?"
-    s01_mc "Um, sure. Thanks!"
-    "Jake takes your glass and walks off down to the garden."
+        talia "I just wanted to check out this view. It's amazing!"
+        talia "Hey, Jake. Would you be a sweetheart and fetch me some champagne?"
+        jake "Sure thing. Would you like some too, [s01_mc_name]?"
+        s01_mc "Um, sure. Thanks!"
+        "Jake takes your glass and walks off down to the garden."
 
-    # CHOICE
-    menu:
-        "Isn't it mean to make him fetch your drink?":
-            talia "Nah. Do you think?"
-            talia "I reckon they're all anxious to get a chance to show off."
-        "Get the men to work for you. I like it.":
-            talia "Here's someone who gets it."
-        "Wanted to get me by myself, did you?":
-            talia "Maybe I did."
-            talia "Nah, not really. Just making Jake work for it."
+        # CHOICE
+        menu:
+            "Isn't it mean to make him fetch your drink?":
+                talia "Nah. Do you think?"
+                talia "I reckon they're all anxious to get a chance to show off."
+            "Get the men to work for you. I like it.":
+                talia "Here's someone who gets it."
+            "Wanted to get me by myself, did you?":
+                talia "Maybe I did."
+                talia "Nah, not really. Just making Jake work for it."
 
-    talia "They've got to impress us today. Might as well enjoy it while it lasts."
-    talia "By the way, we didn't really get to meet earlier. I'm Talia."
-    "She gives you a kiss on both cheeks."
-    s01_mc "I'm [s01_mc_name]."
-    "Talia nods her head towards the door, the way Jake just went."
-    talia "He seems cute."
+        talia "They've got to impress us today. Might as well enjoy it while it lasts."
+        talia "By the way, we didn't really get to meet earlier. I'm Talia."
+        "She gives you a kiss on both cheeks."
+        s01_mc "I'm [s01_mc_name]."
+        "Talia nods her head towards the door, the way Jake just went."
+        talia "He seems cute."
 
-    # CHOICE
-    menu:
-        s01_mc "Jake's got the looks, but personality-wise…"    
+        # CHOICE
+        menu:
+            s01_mc "Jake's got the looks, but personality-wise…"    
 
-        "He's too quiet.":
-            talia "I don't know. Maybe that means he's, like, a good listener or something?"
-        "I like how eager to please he is.":
-            talia "Yeah, that's completely necessary in a man."
-        "It's going to take some effort to get to know him.":
-            talia "Oh, I don't know. You just have to be direct. You'll see."
-            talia "I'll get him talking about himself when he gets back."
+            "He's too quiet.":
+                talia "I don't know. Maybe that means he's, like, a good listener or something?"
+            "I like how eager to please he is.":
+                talia "Yeah, that's completely necessary in a man."
+            "It's going to take some effort to get to know him.":
+                talia "Oh, I don't know. You just have to be direct. You'll see."
+                talia "I'll get him talking about himself when he gets back."
 
-    s01_mc "And he's certainly handsome. That heavy brow and those dark eyes."
-    talia "Sounds ideal. I like someone a bit thoughtful, you know?"
-    talia "Reckon you'll pick him this evening?"
+        s01_mc "And he's certainly handsome. That heavy brow and those dark eyes."
+        talia "Sounds ideal. I like someone a bit thoughtful, you know?"
+        talia "Reckon you'll pick him this evening?"
 
-    # CHOICE
-    menu:
-        "Am I going to pick Jake this evening?"
+        # CHOICE
+        menu:
+            "Am I going to pick Jake this evening?"
 
-        "Yeah, maybe":
-            talia "Hmm. Maybe we'll be rivals."
-            "She smiles."
-        "No, probably not.":
-            talia "Cool. I might snap him up, in that case."
-        "I don't know at this point.":
-            talia "Cool. I might snap him up, in that case."
-        "I've got my eye on someone else.":
-            talia "Cool. I might snap him up, in that case."
+            "Yeah, maybe":
+                talia "Hmm. Maybe we'll be rivals."
+                "She smiles."
+            "No, probably not.":
+                talia "Cool. I might snap him up, in that case."
+            "I don't know at this point.":
+                talia "Cool. I might snap him up, in that case."
+            "I've got my eye on someone else.":
+                talia "Cool. I might snap him up, in that case."
 
-    talia "I feel really bad for whoever gets sent home, anyway."
-    "As if on cue, Jake reappears in the doorway with three champagne flutes."
-    talia "So, Jake. Tell us about yourself."
-    jake "Feels like an interview!"
-    talia "Who said it wasn't?"
-    "Talia winks at you. Jake shrugs and settles down onto a bench."
-    jake "Well, I work in a restaurant…"
-    talia "Waiter or chef?"
-    jake "Chef. Actually, I'm head chef. It's not as big of a deal as it sounds."
+        talia "I feel really bad for whoever gets sent home, anyway."
+        "As if on cue, Jake reappears in the doorway with three champagne flutes."
+        talia "So, Jake. Tell us about yourself."
+        jake "Feels like an interview!"
+        talia "Who said it wasn't?"
+        "Talia winks at you. Jake shrugs and settles down onto a bench."
+        jake "Well, I work in a restaurant…"
+        talia "Waiter or chef?"
+        jake "Chef. Actually, I'm head chef. It's not as big of a deal as it sounds."
 
-    # CHOICE
-    menu:
-        "Jake's a head chef…"
+        # CHOICE
+        menu:
+            "Jake's a head chef…"
 
-        "That sounds impressive.":
-            jake "I'm glad you think so, but I don't want to make a whole thing of it."
-            jake "Being head chef basically just means I set the menu, and get in trouble when something goes wrong."
-        "I love a man that can cook.":
-            jake "Maybe I can show you something if I get the chance."
-        "You must work all the time.":
-            s01_mc "Sounds like you don't have too much time for relationships."
-            jake "There's long nights, but I'm always up for a lunch date."
+            "That sounds impressive.":
+                jake "I'm glad you think so, but I don't want to make a whole thing of it."
+                jake "Being head chef basically just means I set the menu, and get in trouble when something goes wrong."
+            "I love a man that can cook.":
+                jake "Maybe I can show you something if I get the chance."
+            "You must work all the time.":
+                s01_mc "Sounds like you don't have too much time for relationships."
+                jake "There's long nights, but I'm always up for a lunch date."
 
-    jake "I love to get busy in the kitchen."
-    jake "Being head chef basically just means I set the menu, and get in trouble when something goes wrong."
-    talia "Oh my god, humblebrag."
-    s01_mc "Don't they mind you missing the whole summer?"
-    jake "Well, I might get sent back tonight, so I'm not that worried."
-    talia "Boom!"
-    jake "What about you? What do you do?"
-    talia "Me? I'm a music journalist."
-    talia "I get paid to hang around backstage at gigs and go to festivals all summer."
-    talia "It's way cooler than being a chef."
-    "Jake grins."
-    thought "He's definitely shy. Can I be bothered to deal with that?"
-    "Eventually, the three of you decide to mingle."
-    "As you walk back down to the Villa, Jake catches your eye and nervously looks away, then looks back again to see if you're still looking."
-    "This time, he winks."
+        jake "I love to get busy in the kitchen."
+        jake "Being head chef basically just means I set the menu, and get in trouble when something goes wrong."
+        talia "Oh my god, humblebrag."
+        s01_mc "Don't they mind you missing the whole summer?"
+        jake "Well, I might get sent back tonight, so I'm not that worried."
+        talia "Boom!"
+        jake "What about you? What do you do?"
+        talia "Me? I'm a music journalist."
+        talia "I get paid to hang around backstage at gigs and go to festivals all summer."
+        talia "It's way cooler than being a chef."
+        "Jake grins."
+        thought "He's definitely shy. Can I be bothered to deal with that?"
+        "Eventually, the three of you decide to mingle."
+        "As you walk back down to the Villa, Jake catches your eye and nervously looks away, then looks back again to see if you're still looking."
+        "This time, he winks."
+        # checks to see if you have talked to everyone
+        if len(e1p2_who_have_i_talked_to) == 10:
+            jump s1e1p2_outro
 
-    "Someone's been grafting hard."
-    "You've chatted to everyone! Time to see what happens next…"
+    label s1e1p2_outro:
+        "Someone's been grafting hard."
+        "You've chatted to everyone! Time to see what happens next…"
 
-    "You're checking out the kitchen bar when Talia wanders over to refill her glass."
-    talia "Hey babes! Enjoying yourself so far?"
+        "You're checking out the kitchen bar when Talia wanders over to refill her glass."
+        talia "Hey babes! Enjoying yourself so far?"
 
-    # CHOICE
-    menu:
-        "Am I enjoying myself?"
+        # CHOICE
+        menu:
+            "Am I enjoying myself?"
 
-        "I'm loving it!":
-            talia "Oh my god, me too."
-        "The Villa is amazing"
-            talia "I know! I saw you taking a look around."
-        "I'm still getting used to this."
-            talia "It's so different, isn't it?"
-   
-    talia "Sun, sea, and all these boys. What more do you want?"
-    s01_mc "Sea?"
-    talia "Well, there's a pool. That's close enough, I reckon."
-    "Her phone beeps."
-    talia "Guys! I got a text!"
-    "Jasper jogs over."
-    jasper "Is it a challenge?"
-    talia "Looks like it!"
-    jasper "Guys, get over here! It's a text!"
-    "Everyone gathers around."
-    miles "What does it say?"
+            "I'm loving it!":
+                talia "Oh my god, me too."
+            "The Villa is amazing":
+                talia "I know! I saw you taking a look around."
+            "I'm still getting used to this.":
+                talia "It's so different, isn't it?"
+    
+        talia "Sun, sea, and all these boys. What more do you want?"
+        s01_mc "Sea?"
+        talia "Well, there's a pool. That's close enough, I reckon."
+        "Her phone beeps."
+        talia "Guys! I got a text!"
+        "Jasper jogs over."
+        jasper "Is it a challenge?"
+        talia "Looks like it!"
+        jasper "Guys, get over here! It's a text!"
+        "Everyone gathers around."
+        miles "What does it say?"
 
-    # Text Message
-    "The girls only have a few hours left to size up the talent.\n 
-    What better way to get to know each other than with a game of Never Have I Ever?\n
-    Let's find out who your fellow Islanders really are…\n
-    #firstimpressions #gotnosecrets #timetobereal"
+        # Text Message
+        "The girls only have a few hours left to size up the talent.\n 
+        What better way to get to know each other than with a game of Never Have I Ever?\n
+        Let's find out who your fellow Islanders really are…\n
+        #firstimpressions #gotnosecrets #timetobereal"
 
-    talia "Amazing. This will be so much fun!"
+        talia "Amazing. This will be so much fun!"
 
-    # verify this is correct in all cases
-    levi "I already know who's made a good impression on me…"
-    "Levi winks at you."
+        # verify this is correct in all cases
+        levi "I already know who's made a good impression on me…"
+        "Levi winks at you."
 
-    "Coming up next on Love Island…"
-    "A game of Never Have I Ever gives our Islanders more than they bargained for…"
-    "And our first coupling up leads to tears of joy, and tears of misery."
-    "You wouldn't want to miss it"
+        "Coming up next on Love Island…"
+        "A game of Never Have I Ever gives our Islanders more than they bargained for…"
+        "And our first coupling up leads to tears of joy, and tears of misery."
+        "You wouldn't want to miss it"
 
 
 

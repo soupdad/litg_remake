@@ -46,7 +46,7 @@ label start:
             jump testing
         "Season 1":
             # jump season_01
-            jump s1e1p1
+            jump s1e1p2
         "Season 2":
             "Coming soon! Pick a Different Season"
             jump start
