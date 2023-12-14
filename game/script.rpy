@@ -1,5 +1,7 @@
 ﻿label start:
-    jump scene_01
+    call screen start_screen
+
+    return
 
     """ menu:
         "Season 1":
