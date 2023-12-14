@@ -1,80 +1,60 @@
 ## MC
-# define s01_mc_image = "s01_mc_placeholder"
-# DELETE WHEN DEPLOYING CODE
-# image s01_mc_img = "images/season_01/character_placeholders/s01_mc.png"
-default s01_mc_name = "Filler Name"
-define s01_mc = Character("[s01_mc_name]", image = "s01_mc")
+define s01_mc = Character("s01_mc_name", dynamic = True)
+
+# probably going to change this later
 define thought = Character("Thought")
 
-
-# UNCOMMENT AND DELETE WHEN DEPLOYING CODE
+# UNCOMMENT AND/OR DELETE WHEN DEPLOYING CODE
 # define persistent.s01_mc_job = ""
+default s01_mc_name = "Filler Name"
 define s01_mc_job = "Trainee Heart Surgeon"
-default amount_npcs_like_mc = {"allegra":15, "cherry":15, "erikah":15, "jake":15, "jasper":15, "jen":15, "levi":15, "lucy":15, "mason":15, "miles":15, "reese":15, "rohan":15, "sammi":15, "talia":15, "tim":15}
-
-init python:
-    # UNCOMMENT AND DELETE WHEN DEPLOYING CODE
-    s01_mc_outfit = ""
-    s01_mc_outfit = "orange_bathing_suit"
-
-    # scale of 0-30? interactions then make it go lower or higher
-    # amount_npcs_like_mc = {"allegra":15, "cherry":15, "erikah":15, "jake":15, "jasper":15, "jen":15, "levi":15, "lucy":15, "mason":15, "miles":15, "reese":15, "rohan":15, "sammi":15, "talia":15, "tim":15}
+define s01_mc_outfit = "orange_bathing_suit"
 
 
 
-
-# Allegra
+## Allegra
 define allegra = Character("Allegra")
     #placeholders to be changed with actual outfits later
 define allegra_liked_outfits = ["blue_bathing_suit", "red_dress"]
 
-
-
-
-
-
-
-
-
-
-# Cherry
+## Cherry
 define cherry = Character("Cherry")
 
-# Erikah
+## Erikah
 define erikah = Character("Erikah")
 
-# Jake
+## Jake
 define jake = Character("Jake")
 
-# Jasper
+## Jasper
 define jasper = Character("Jasper")
 
-# Jen
+## Jen
 define jen = Character("Jen")
 
-# Levi
+## Levi
 define levi = Character("Levi")
 
-# Lucy
+## Lucy
 define lucy = Character("Lucy")
 
-# Mason
+## Mason
 define mason = Character("Mason")
 
-# Miles
+## Miles
 define miles = Character("Miles")
 
-# Reese
+## Reese
 define reese = Character("Reese")
 
-# Rohan
+## Rohan
 define rohan = Character("Rohan")
 
-# Sammi
+## Sammi
 define sammi = Character("Sammi")
 
-#Talia
+## Talia
 define talia = Character("Talia")
 
-# Tim
+## Tim
 define tim = Character("Tim")

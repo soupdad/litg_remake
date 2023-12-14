@@ -1605,3 +1605,23 @@ style slider_vbox:
 style slider_slider:
     variant "small"
     xsize 900
+
+
+
+
+
+
+
+
+
+
+
+
+
+################################################################################
+## User Defined Screens
+################################################################################
+# Season 1
+# Episode 1, Part 2
+screen e1p2_select_who_to_talk_to:
+    
