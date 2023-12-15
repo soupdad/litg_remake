@@ -70,3 +70,59 @@ define tim = Character("Tim")
 ####################################################################
 ## Season 3
 ####################################################################
+### MC
+
+define s03_mc = Character("s01_mc_name", dynamic = True)
+
+# UNCOMMENT AND/OR DELETE WHEN DEPLOYING CODE
+# define persistent.s03_mc_job = ""
+# define persistent.s03_mc_name = ""
+default s03_mc_name = "Filler Name"
+define s03_mc_job = "Trainee Heart Surgeon"
+define s03_mc_outfit = "orange_bathing_suit"
+
+### NPCs
+## AJ
+define aj = Character("AJ")
+
+## Bill
+define bill = Character("Bill")
+
+## Camilo
+define camilo = Character("Camilo")
+
+## Ciaran
+define ciaran = Character("Ciaran")
+
+## Elladine
+define elladine = Character("Elladine")
+
+## Genevieve
+define genevieve = Character("Genevieve")
+
+## Harry
+define harry = Character("Harry")
+
+## Iona
+define iona = Character("Iona")
+
+## Lily
+define lily = Character("Lily")
+
+## Miki
+define miki = Character("Miki")
+
+## Nicky
+define nicky = Character("Nicky")
+
+## Rafi
+define rafi = Character("Rafi")
+
+## Seb
+define seb = Character("Seb")
+
+## Tai
+define tai = Character("Tai")
+
+## Yasmin
+define yasmin = Character("Yasmin")

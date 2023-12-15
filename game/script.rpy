@@ -65,8 +65,7 @@ label start:
             "Coming soon! Pick a Different Season"
             jump start
         "Season 3":
-            "Coming soon! Pick a Different Season"
-            jump start
+            jump s3e1p1
     return
 # uncomment once done season 1, and actually making menu
 """ label season_01:

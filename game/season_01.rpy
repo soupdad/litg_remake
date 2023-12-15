@@ -3,13 +3,8 @@
 label testing:
     scene black
 
-    "Hi, You are testing out something. That's cool"
+    "hi, i see you're testing something out. proceed."
 
-    show allegra at center
-
-    show allegra at little_hop
-
-    "im allegra and im doing something lol"
     return
 
 
