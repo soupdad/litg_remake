@@ -1621,5 +1621,31 @@ style slider_slider:
 ################################################################################
 ## User Defined Screens
 ################################################################################
-# Season 1
-# Episode 1, Part 2
+## Season 1, Episode 1, Part 2
+screen s1e1p2_select_who_to_talk_to:
+    image "season_01/backgrounds/LI_Open_Villa.png" at double_zoom align(0.5, 0.5)
+
+    frame:
+        padding(20, 20)
+        margin(400, 20)
+        align(0.5, 0.0)
+        text "Welcome to the Villa choice screen! Tap the Islanders you want to chat with. You might not have time to talk to everyone, so choose carefully!" size 25 color "#000000" 
+        
+
+    if "Allegra" not in s1e1p2_who_have_i_talked_to:
+        imagebutton idle "season_01/npc_map_icons/map-icon-allegra.png" align(0.25, 0.8) action Call("s1e1p2_talk_to_allegra_tim_miles") at map_icon
+        imagebutton idle "season_01/npc_map_icons/map-icon-tim.png" align(0.3, 0.8) action Call("s1e1p2_talk_to_allegra_tim_miles") at map_icon
+        imagebutton idle "season_01/npc_map_icons/map-icon-miles.png" align(0.35, 0.8) action Call("s1e1p2_talk_to_allegra_tim_miles") at map_icon
+
+    if "Erikah" not in s1e1p2_who_have_i_talked_to:
+        imagebutton idle "season_01/npc_map_icons/map-icon-erikah.png" align(0.65, 0.8) action Call("s1e1p2_talk_to_erikah_jasper_mason") at map_icon
+        imagebutton idle "season_01/npc_map_icons/map-icon-jasper.png" align(0.7, 0.8) action Call("s1e1p2_talk_to_erikah_jasper_mason") at map_icon
+        imagebutton idle "season_01/npc_map_icons/map-icon-mason.png" align(0.75, 0.8) action Call("s1e1p2_talk_to_erikah_jasper_mason") at map_icon
+
+    if "Levi" not in s1e1p2_who_have_i_talked_to:
+        imagebutton idle "season_01/npc_map_icons/map-icon-levi.png" align(0.65, 0.5) action Call("s1e1p2_talk_to_jen_levi") at map_icon
+        imagebutton idle "season_01/npc_map_icons/map-icon-jen.png" align(0.7, 0.5) action Call("s1e1p2_talk_to_jen_levi") at map_icon
+
+    if "Talia" not in s1e1p2_who_have_i_talked_to:
+        imagebutton idle "season_01/npc_map_icons/map-icon-talia.png" align(0.55, 0.2) action Call("s1e1p2_talk_to_talia_jake") at map_icon
+        imagebutton idle "season_01/npc_map_icons/map-icon-jake.png" align(0.6, 0.2) action Call("s1e1p2_talk_to_talia_jake") at map_icon

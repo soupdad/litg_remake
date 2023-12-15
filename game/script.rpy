@@ -18,6 +18,20 @@ transform little_hop:
     easein_bounce 0.05 yalign 0.9
     easeout_bounce 0.05 yalign 1.0
 
+transform double_zoom:
+    zoom 2.2
+
+transform half_size:
+    zoom 0.5
+
+transform map_icon:
+    zoom 0.3
+    anchor(0.5, 0.5)
+    on hover:
+        zoom 0.35
+    on idle:
+        zoom 0.3
+
 # ON SCREEN POSITIONS
 transform mc_spot:
     # for some reason doesnt work, gahhh

@@ -13,10 +13,9 @@ label testing:
     return
 
 
-    
-
-
-# Season 1, Episode 1, Part 1
+####################################################################
+## Season 1, Episode 1, Part 1
+####################################################################
 label s1e1p1:
     # Intro
     # UNCOMMENT WHEN DEPLOYING CODE
@@ -99,7 +98,7 @@ label s1e1p1:
 
     $ likes_outfit = check_if_like_outfit(allegra_liked_outfits)
     if likes_outfit:
-        $ amount_npcs_like_mc["Allegra"] += 1
+        $ s1_amount_npcs_like_mc["Allegra"] += 1
         show allegra at little_hop
         allegra "That outfit is absolutely amazing, by the way."
         show s01_mc at little_hop
@@ -107,7 +106,7 @@ label s1e1p1:
         show allegra at little_hop
         allegra "I kind of wish I'd dressed up a bit more."
     else:
-        $ amount_npcs_like_mc["Allegra"] -= 1
+        $ s1_amount_npcs_like_mc["Allegra"] -= 1
         show allegra at little_hop
         allegra "Oh wow, interesting outfit choice, by the way."
         allegra "Good luck making a splash wearing that."
@@ -168,7 +167,7 @@ label s1e1p1:
             allegra "So, what are you guys hoping to get out of the Villa?"
 
         "Ask about Allegra":
-            $ amount_npcs_like_mc["Allegra"] += 1
+            $ s1_amount_npcs_like_mc["Allegra"] += 1
             s01_mc "Allegra, what kind of person are you looking for, in here?"
             show allegra at little_hop
             allegra "I don't know. I think my type is 'not my ex'."
@@ -180,7 +179,7 @@ label s1e1p1:
             erikah "What about you, [s01_mc_name]? What are you after from the Villa?"
 
         "Ask about Erikah":
-            $ amount_npcs_like_mc["Erikah"] += 1
+            $ s1_amount_npcs_like_mc["Erikah"] += 1
             s01_mc "So Erikah, what kind of guy do you want to find in here?"
             show erikah at little_hop
             erikah "I don't really have a type on paper. I guess I want to be surprised."
@@ -197,7 +196,7 @@ label s1e1p1:
         "What are you after from the Villa?"
 
         "To find love":
-            $ amount_npcs_like_mc["Allegra"] += 1
+            $ s1_amount_npcs_like_mc["Allegra"] += 1
             $ s1_what_are_you_here_for = "love"
             show allegra at little_hop
             allegra "Exactly."
@@ -206,7 +205,7 @@ label s1e1p1:
             erikah "Well don't forget to enjoy yourself."
 
         "To have fun":
-            $ amount_npcs_like_mc["Erikah"] += 1
+            $ s1_amount_npcs_like_mc["Erikah"] += 1
             $ s1_what_are_you_here_for = "fun"
             show erikah at little_hop
             erikah "Yeah! All about the good times."
@@ -218,8 +217,8 @@ label s1e1p1:
             s01_mc "Not at all!"
                     
         "For the prize money":
-            $ amount_npcs_like_mc["Allegra"] -= 1
-            $ amount_npcs_like_mc["Erikah"] -= 1
+            $ s1_amount_npcs_like_mc["Allegra"] -= 1
+            $ s1_amount_npcs_like_mc["Erikah"] -= 1
             $ s1_what_are_you_here_for = "money"
             show allegra at little_hop
             allegra "What, for real?"
@@ -259,9 +258,9 @@ label s1e1p1:
         "Are you looking for love?"
         "Yeah, of course":
             if s1_what_are_you_here_for == "money":
-                $ amount_npcs_like_mc["Allegra"] -= 1
-                $ amount_npcs_like_mc["Erikah"] -= 1
-                $ amount_npcs_like_mc["Jen"] -= 1
+                $ s1_amount_npcs_like_mc["Allegra"] -= 1
+                $ s1_amount_npcs_like_mc["Erikah"] -= 1
+                $ s1_amount_npcs_like_mc["Jen"] -= 1
                 erikah "That's not what you said just now!"
                 erikah "What's changed?"
             else:
@@ -270,9 +269,9 @@ label s1e1p1:
             
         "Not exactly":
             if s1_what_are_you_here_for == "love" or s1_what_are_you_here_for == "fun":
-                $ amount_npcs_like_mc["Allegra"] -= 1
-                $ amount_npcs_like_mc["Erikah"] -= 1
-                $ amount_npcs_like_mc["Jen"] -= 1
+                $ s1_amount_npcs_like_mc["Allegra"] -= 1
+                $ s1_amount_npcs_like_mc["Erikah"] -= 1
+                $ s1_amount_npcs_like_mc["Jen"] -= 1
                 erikah "That's not what you said just now!"
                 erikah "What's changed?"
             else:
@@ -310,16 +309,16 @@ label s1e1p1:
         "Allegra's ex was cheating on her with his…"
 
         "Yoga instructor":
-            $ amount_npcs_like_mc["Allegra"] -= 1
+            $ s1_amount_npcs_like_mc["Allegra"] -= 1
             allegra "Oh my god, you guys haven't been paying attention to anything I've been saying!"
             allegra "She was his personal trainer."
             jen "Come on, ladies. We're all getting to know each other."
             allegra "Hmph."
         "Personal trainer":
-            $ amount_npcs_like_mc["Allegra"] += 1
+            $ s1_amount_npcs_like_mc["Allegra"] += 1
             allegra "It's so sweet that you were listening, I can't wait to get to know you guys."
         "Next-door neighbour":
-            $ amount_npcs_like_mc["Allegra"] -= 1
+            $ s1_amount_npcs_like_mc["Allegra"] -= 1
             allegra "Oh my god, you guys haven't been paying attention to anything I've been saying!"
             allegra "She was his personal trainer."
             jen "Come on, ladies. We're all getting to know each other."
@@ -333,26 +332,26 @@ label s1e1p1:
     menu:
         s01_mc "My ideal body-type is… "
         "tall, dark and handsome":
-            $ amount_npcs_like_mc["Jake"] += 1
-            $ amount_npcs_like_mc["Jasper"] += 1
+            $ s1_amount_npcs_like_mc["Jake"] += 1
+            $ s1_amount_npcs_like_mc["Jasper"] += 1
             s01_mc "Someone with dark eyes, a strong jaw, and a body like a greek statue."
             talia "Ooh, yeah, I could go for a bit of that."
 
         "sun's out, guns out":
-            $ amount_npcs_like_mc["Levi"] += 1
-            $ amount_npcs_like_mc["Mason"] += 1
+            $ s1_amount_npcs_like_mc["Levi"] += 1
+            $ s1_amount_npcs_like_mc["Mason"] += 1
             s01_mc "Someone totally stacked. The kind of guy who hangs out at the beach."
             jen "Yeah, I like that. Someone with big, strong arms you can wrap around yourself."
 
         "cute, small, well put-together":
-            $ amount_npcs_like_mc["Miles"] += 1
+            $ s1_amount_npcs_like_mc["Miles"] += 1
             s01_mc "Someone who's not too big. That's my preference." 
             jen "I'm not into skinny guys. I like them big."
             erikah "Yeah, big muscular dudes. That's my jam."
             s01_mc "All the more for me!"
 
         "not important as long as they make me laugh":
-            $ amount_npcs_like_mc["Tim"] += 1
+            $ s1_amount_npcs_like_mc["Tim"] += 1
             s01_mc "I'm all about the person underneath. If they're funny and we get on, that's everything."
             talia "That's cute. I'm way shallow compared to that."
 
@@ -363,31 +362,31 @@ label s1e1p1:
         s01_mc "My ideal partner's personality is…"
 
         "intense and romantic":
-            $ amount_npcs_like_mc["Jasper"] += 1
-            $ amount_npcs_like_mc["Miles"] += 1
+            $ s1_amount_npcs_like_mc["Jasper"] += 1
+            $ s1_amount_npcs_like_mc["Miles"] += 1
             s01_mc "I want the kind of guy who's going to treat every day like it's Valentine's day."
             jen "Yeah, the kind of guy who only has eyes for me. I love that."
             erikah "That doesn't sound fun at all."
             allegra "Yeah, I want someone with a sense of humour."
 
         "one of the lads":
-            $ amount_npcs_like_mc["Mason"] += 1
-            $ amount_npcs_like_mc["Levi"] += 1
-            $ amount_npcs_like_mc["Tim"] += 1
+            $ s1_amount_npcs_like_mc["Mason"] += 1
+            $ s1_amount_npcs_like_mc["Levi"] += 1
+            $ s1_amount_npcs_like_mc["Tim"] += 1
             s01_mc "I like a real boy's boy, you know. Someone blokey."
             erikah "I know what you mean."
             jen "Ew, no. I want my man to have eyes for nobody but me."
             jen "I don't want him running off to the pub all the time."
 
         "quiet and thoughtful":
-            $ amount_npcs_like_mc["Jake"] += 1
+            $ s1_amount_npcs_like_mc["Jake"] += 1
             s01_mc "I like it when a guy is sensitive and considerate, you know."
             s01_mc "Someone who can listen well."
             jen "You and me both, hun."
             erikah "I think that sounds kind of dull…"
 
         "not important, as long as they're good in bed":
-            $ amount_npcs_like_mc["Erikah"] += 1
+            $ s1_amount_npcs_like_mc["Erikah"] += 1
             s01_mc "If he knows his way around the bedroom, nothing else really matters."
             erikah "Ha! Yes. Right answer."
 
@@ -457,9 +456,9 @@ label s1e1p1:
         "He's looking right at me."
 
         "Wink at him":
-            $ e1p1_cracking_onto_boys += 1
-            $ amount_npcs_like_mc["Jake"] += 1
-            $ e1p1_initial_meeting_likes.append("Jake")
+            $ s1e1p1_cracking_onto_boys += 1
+            $ s1_amount_npcs_like_mc["Jake"] += 1
+            $ s1e1p1_initial_meeting_likes.append("Jake")
             "His cheeks flush red."
         "Look down at my feet":
             "You avoid his gaze."
@@ -497,9 +496,9 @@ label s1e1p1:
         "Mason's giving me the eye…"
 
         "Smile back":
-            $ e1p1_cracking_onto_boys += 1
-            $ amount_npcs_like_mc["Mason"] += 1
-            $ e1p1_initial_meeting_likes.append("Mason")
+            $ s1e1p1_cracking_onto_boys += 1
+            $ s1_amount_npcs_like_mc["Mason"] += 1
+            $ s1e1p1_initial_meeting_likes.append("Mason")
             "He grins."
         "Look away":
             "You break eye contact first. He doesn't seem bothered."
@@ -535,22 +534,22 @@ label s1e1p1:
         "Miles is trying to show off his muscles."
 
         "Cheer":
-            $ e1p1_cracking_onto_boys += 1
-            $ amount_npcs_like_mc["Miles"] += 1
-            $ e1p1_initial_meeting_likes.append("Miles")
+            $ s1e1p1_cracking_onto_boys += 1
+            $ s1_amount_npcs_like_mc["Miles"] += 1
+            $ s1e1p1_initial_meeting_likes.append("Miles")
             s01_mc "Woo! Awesome!"
             "Miles bows and blows a kiss at you."
             # IF STATEMENT
-            if e1p1_cracking_onto_boys == 3:
+            if s1e1p1_cracking_onto_boys == 3:
                 erikah "Wow, you're cracking on to all the boys, huh?"
                 s01_mc "First impressions are everything, hun."
                 s01_mc "I wonder who's going to be next?"
-            call e1p1_see_anyone_you_like_choice
+            call s1e1p1_see_anyone_you_like_choice
 
         "Don't encourage him":
             "Some of the other girls clap, but it's clear he's not really impressing anyone."
             # IF STATEMENT
-            if e1p1_cracking_onto_boys == 0:
+            if s1e1p1_cracking_onto_boys == 0:
                 erikah "Wow, you're not giving an inch, huh?"
                 s01_mc "What do you mean?"
                 erikah "The boys keep nodding at you and winking and stuff, and you're just stonewalling them!"
@@ -558,9 +557,9 @@ label s1e1p1:
                 erikah"That's totally not my attitude, but you do you, hun."
                 s01_mc "Maybe I'm just not into any of the guys we've seen so far?"
             else:
-                call e1p1_see_anyone_you_like_choice
+                call s1e1p1_see_anyone_you_like_choice
 
-    label e1p1_see_anyone_you_like_choice:
+    label s1e1p1_see_anyone_you_like_choice:
         # From "Miles is trying to show off his muscles."
         erikah "See anybody you like yet?"
         # CHOICE
@@ -575,19 +574,19 @@ label s1e1p1:
                     s01_mc"I like the look of…"
 
                     "Jake":
-                        $ amount_npcs_like_mc["Jake"] += 1
+                        $ s1_amount_npcs_like_mc["Jake"] += 1
                         erikah "Really? That's not who I was going to pick."
                         s01_mc "So, who are you into?"
                         erikah "Not telling!"
                         s01_mc "Fair enough. I wonder who's next?"
                     "Mason":
-                        $ amount_npcs_like_mc["Mason"] += 1
+                        $ s1_amount_npcs_like_mc["Mason"] += 1
                         erikah "Really? That's not who I was going to pick."
                         s01_mc "So, who are you into?"
                         erikah "Not telling!"
                         s01_mc "Fair enough. I wonder who's next?"
                     "Miles":
-                        $ amount_npcs_like_mc["Miles"] += 1
+                        $ s1_amount_npcs_like_mc["Miles"] += 1
                         erikah "Really? That's not who I was going to pick."
                         s01_mc "So, who are you into?"
                         erikah "Not telling!"
@@ -637,8 +636,8 @@ label s1e1p1:
         "What do you do?"
 
         "Flutter your eyelashes at him":
-            $ amount_npcs_like_mc["Tim"] += 1
-            $ e1p1_initial_meeting_likes.append("Tim")
+            $ s1_amount_npcs_like_mc["Tim"] += 1
+            $ s1e1p1_initial_meeting_likes.append("Tim")
             "He grins."
         "Ignore him":
             "He looks away, slightly disappointed."
@@ -672,8 +671,8 @@ label s1e1p1:
 
     menu:
         "Make bedroom eyes":
-            $ amount_npcs_like_mc["Jasper"] += 1
-            $ e1p1_initial_meeting_likes.append("Jasper")
+            $ s1_amount_npcs_like_mc["Jasper"] += 1
+            $ s1e1p1_initial_meeting_likes.append("Jasper")
             "Jasper notices you looking at him and raises an eyebrow."
         "Look at your nails":
             "Jasper notices you checking your nails, shrugs, and walks over to join the other boys."
@@ -711,8 +710,8 @@ label s1e1p1:
         "Levi's checking everyone out."
 
         "Catch his eye":
-            $ amount_npcs_like_mc["Levi"] += 1
-            $ e1p1_initial_meeting_likes.append("Levi")
+            $ s1_amount_npcs_like_mc["Levi"] += 1
+            $ s1e1p1_initial_meeting_likes.append("Levi")
             "As you make eye contact, he raises his eyebrows slightly."
             "A tiny smile forms in the corners of his mouth."
         "Act like you're not bothered":
@@ -725,15 +724,15 @@ label s1e1p1:
 
     # IF STATEMENT
     # If you didn't react positively to any of the boys, you get the following instead
-    if e1p1_cracking_onto_boys == 0:
+    if s1e1p1_cracking_onto_boys == 0:
         "While the boys are checking each other out, you catch Talia glancing at you."
         "She nods her head in the direction of the boys and rolls her eyes."
-    elif "Levi" in e1p1_initial_meeting_likes and "Mason" not in e1p1_initial_meeting_likes: 
+    elif "Levi" in s1e1p1_initial_meeting_likes and "Mason" not in s1e1p1_initial_meeting_likes: 
         # reacted positive to mason and neg to levi
         "While the boys are checking each other out, you catch Mason glancing up at you."
         s01_mc "Looks like my little smile worked. He already can't keep his eyes off me!"
         s01_mc "This would be the perfect time to say something to one of the boys, before all the grafting gets underway…"
-    elif "Mason" in e1p1_initial_meeting_likes and "Levi" not in e1p1_initial_meeting_likes:
+    elif "Mason" in s1e1p1_initial_meeting_likes and "Levi" not in s1e1p1_initial_meeting_likes:
         # reacted positive to levi and neg to mason
         "While the boys are checking each other out, you catch Levi glancing up at you."
         s01_mc "Looks like I've caught his attention already."
@@ -752,69 +751,69 @@ label s1e1p1:
 
                 # dialog for Levi, Mason, Jasper, and Miles is the same
                 "Levi":
-                    $ e1p1_boy_spoke_to = "Levi"
-                    $ amount_npcs_like_mc["Levi"] += 1
+                    $ s1e1p1_boy_spoke_to = "Levi"
+                    $ s1_amount_npcs_like_mc["Levi"] += 1
                 "Mason":
-                    $ e1p1_boy_spoke_to = "Mason"
-                    $ amount_npcs_like_mc["Mason"] += 1
+                    $ s1e1p1_boy_spoke_to = "Mason"
+                    $ s1_amount_npcs_like_mc["Mason"] += 1
                 "Jasper":
-                    $ e1p1_boy_spoke_to = "Jasper"
-                    $ amount_npcs_like_mc["Jasper"] += 1
+                    $ s1e1p1_boy_spoke_to = "Jasper"
+                    $ s1_amount_npcs_like_mc["Jasper"] += 1
                 "Miles":
-                    $ e1p1_boy_spoke_to = "Miles"
-                    $ amount_npcs_like_mc["Miles"] += 1
+                    $ s1e1p1_boy_spoke_to = "Miles"
+                    $ s1_amount_npcs_like_mc["Miles"] += 1
                 "Tim":
-                    $ e1p1_boy_spoke_to = "Tim"
-                    $ amount_npcs_like_mc["Tim"] += 1
+                    $ s1e1p1_boy_spoke_to = "Tim"
+                    $ s1_amount_npcs_like_mc["Tim"] += 1
                 "Jake":
-                    $ e1p1_boy_spoke_to = "Jake"
-                    $ amount_npcs_like_mc["Jake"] += 1
+                    $ s1e1p1_boy_spoke_to = "Jake"
+                    $ s1_amount_npcs_like_mc["Jake"] += 1
 
-            s01_mc "Hey [e1p1_boy_spoke_to], …I'm [s01_mc_name]. It's great to meet you."
+            s01_mc "Hey [s1e1p1_boy_spoke_to], …I'm [s01_mc_name]. It's great to meet you."
             # IF STATEMENT
-            if e1p1_boy_spoke_to == "Levi":
+            if s1e1p1_boy_spoke_to == "Levi":
                 levi "Hey, [s01_mc_name]. It's good to meet you, too."
-                call e1p1_how_you_flirt_choice
+                call s1e1p1_how_you_flirt_choice
                 s01_mc "What's your type on paper, babe?"
                 levi "Not to be too cheeky right off… But I'd say I'm looking at it."
                 s01_mc "Noted."
                 "He holds your gaze and smiles."
-            elif e1p1_boy_spoke_to == "Mason":
+            elif s1e1p1_boy_spoke_to == "Mason":
                 mason "Hey, [s01_mc_name]. It's good to meet you, too."
-                call e1p1_how_you_flirt_choice
+                call s1e1p1_how_you_flirt_choice
                 s01_mc "What's your type on paper, babe?"
                 mason "Not to be too cheeky right off… But I'd say I'm looking at it."
                 s01_mc "Noted."
                 "He holds your gaze and smiles."
-            elif e1p1_boy_spoke_to == "Jasper":
+            elif s1e1p1_boy_spoke_to == "Jasper":
                 jasper "Hey, [s01_mc_name]. It's good to meet you, too."
-                call e1p1_how_you_flirt_choice
+                call s1e1p1_how_you_flirt_choice
                 s01_mc "What's your type on paper, babe?"
                 jasper "Not to be too cheeky right off… But I'd say I'm looking at it."
                 s01_mc "Noted."
                 "He holds your gaze and smiles."
-            elif e1p1_boy_spoke_to == "Miles":
+            elif s1e1p1_boy_spoke_to == "Miles":
                 miles "Hey, [s01_mc_name]. It's good to meet you, too."
-                call e1p1_how_you_flirt_choice
+                call s1e1p1_how_you_flirt_choice
                 s01_mc "What's your type on paper, babe?"
                 miles "Not to be too cheeky right off… But I'd say I'm looking at it."
                 s01_mc "Noted."
                 "He holds your gaze and smiles."
-            elif e1p1_boy_spoke_to == "Tim":
+            elif s1e1p1_boy_spoke_to == "Tim":
                 tim "Hey, [s01_mc_name]. It's good to meet you, too."
-                call e1p1_how_you_flirt_choice
+                call s1e1p1_how_you_flirt_choice
                 s01_mc "What's your type on paper, babe?"
                 tim "I need someone with enough banter to keep up with me!"
                 tim "Which is why I'll always be single."
                 s01_mc "Noted."
-            elif e1p1_boy_spoke_to == "Jake":
+            elif s1e1p1_boy_spoke_to == "Jake":
                 jake "Hey, [s01_mc_name]. It's good to meet you, too."
-                call e1p1_how_you_flirt_choice
+                call s1e1p1_how_you_flirt_choice
                 s01_mc "What's your type on paper, babe?"
                 jake "Oh well… (He looks shyly at you.) I'm a firm believer that I'll know it when I find it."
                 s01_mc "Noted."
         
-            label e1p1_how_you_flirt_choice:
+            label s1e1p1_how_you_flirt_choice:
                 # CHOICE
                 menu:
                     "I should"
@@ -854,7 +853,9 @@ label s1e1p1:
     "And one of the boys is dumped from the island."
     "You won't want to miss it."
 
-# Season 1, Episode 1, Part 2
+####################################################################
+## Season 1, Episode 1, Part 2
+####################################################################
 label s1e1p2:
     "Our sexy singles have just met one another for the first time."
     "Now, it's time to let them loose in the Villa."
@@ -883,7 +884,9 @@ label s1e1p2:
 
     # Allegra, Tim, and Miles at pool
     label s1e1p2_talk_to_allegra_tim_miles:
-        $ e1p2_who_have_i_talked_to.append("Allegra", "Tim", "Miles")
+        $ s1e1p2_who_have_i_talked_to.append("Allegra")
+        $ s1e1p2_who_have_i_talked_to.append("Tim")
+        $ s1e1p2_who_have_i_talked_to.append("Miles")
 
         "Allegra, Tim, and Miles have wasted no time getting acquainted with the pool."
         "Allegra is sitting on the poolside, her legs in the water."
@@ -898,10 +901,10 @@ label s1e1p2:
         tim "She might have."
 
         # IF STATEMENT
-        if "Tim" in e1p1_initial_meeting_likes:
+        if "Tim" in s1e1p1_initial_meeting_likes:
             # if you reacted positively to tim during introduction to boys
             tim "Me and her definitely had a bit of a look going on when we all came in."
-        elif "Miles" in e1p1_initial_meeting_likes:
+        elif "Miles" in s1e1p1_initial_meeting_likes:
             # if you reacted positively to miles during introduction to boys
             miles "I thought [s01_mc_name] looked like my type straight away."
 
@@ -914,8 +917,8 @@ label s1e1p2:
 
         # IF STATEMENT
         # CHOICE
-        if "Mason" in e1p2_who_have_i_talked_to or "Levi" in e1p2_who_have_i_talked_to:
-            if "Mason" in e1p2_who_have_i_talked_to and "Levi" in e1p2_who_have_i_talked_to:
+        if "Mason" in s1e1p2_who_have_i_talked_to or "Levi" in s1e1p2_who_have_i_talked_to:
+            if "Mason" in s1e1p2_who_have_i_talked_to and "Levi" in s1e1p2_who_have_i_talked_to:
                 menu:
                     "I'm just trying to chat to everyone.":
                         s01_mc "I want to keep people guessing."
@@ -933,7 +936,7 @@ label s1e1p2:
                     "None of your business.":
                         s01_mc "I wouldn't tell you if they had! Cheeky."
 
-            elif "Mason" in e1p2_who_have_i_talked_to:
+            elif "Mason" in s1e1p2_who_have_i_talked_to:
                 menu:
                     "I'm just trying to chat to everyone.":
                         s01_mc "I want to keep people guessing."
@@ -948,7 +951,7 @@ label s1e1p2:
                     "None of your business.":
                         s01_mc "I wouldn't tell you if they had! Cheeky."
 
-            elif "Levi" in e1p2_who_have_i_talked_to:
+            elif "Levi" in s1e1p2_who_have_i_talked_to:
                 menu:
                     "I'm just trying to chat to everyone.":
                         s01_mc "I want to keep people guessing."
@@ -990,7 +993,7 @@ label s1e1p2:
         menu:
             "Do I prefer someone chill, like Miles, or someone with banter, like Tim?"
             "Someone chill.":
-                $ amount_npcs_like_mc["Miles"] += 1
+                $ s1_amount_npcs_like_mc["Miles"] += 1
                 miles "Exactly!"
                 allegra "I disagree. I don't like that 'too cool for school' attitude some guys have."
                 allegra "In my experience, it's covering up the fact that they're really dull and have no chat."
@@ -998,13 +1001,13 @@ label s1e1p2:
                 miles "That's not... I'm not saying that…"
                 allegra "Don't worry, babe. I'm not talking about you."
             "Someone with banter.":
-                $ amount_npcs_like_mc["Tim"] += 1
+                $ s1_amount_npcs_like_mc["Tim"] += 1
                 tim "Exactly! Can you imagine dating someone with no chat?"
                 miles "Can you imagine dating a man who never shuts up for five seconds, though?"
                 allegra "Sounds alright, to be honest. Good banter is everything."
                 s01_mc "I just don't want to be with a guy who acts like I'm not even there, you know?"
             "I'm all about the looks.":
-                $ amount_npcs_like_mc["Allegra"] += 1
+                $ s1_amount_npcs_like_mc["Allegra"] += 1
                 "Allegra laughs. Miles hesitates for a second, then joins in."
                 allegra "The only thing that really matters. She's so right."
                 "Miles laughs and slaps Tim on the back."
@@ -1022,13 +1025,19 @@ label s1e1p2:
         "You and Allegra walk off before the bromance gets too much to bear."
         
         # checks to see if you have talked to everyone
-        if len(e1p2_who_have_i_talked_to) == 10:
-            jump s1e1p2_outro
+        if len(s1e1p2_who_have_i_talked_to) == 10:
+            call s1e1p2_outro
+        else:
+            call screen s1e1p2_select_who_to_talk_to
+
+        return
 
 
     # Erikah, Jasper, and Mason on lawn
     label s1e1p2_talk_to_erikah_jasper_mason:
-        $ e1p2_who_have_i_talked_to.append("Erikah", "Jasper", "Mason")
+        $ s1e1p2_who_have_i_talked_to.append("Erikah")
+        $ s1e1p2_who_have_i_talked_to.append("Jasper")
+        $ s1e1p2_who_have_i_talked_to.append("Mason")
         "Erikah seems delighted to have two boys chatting her up. Let's see if [s01_mc_name] cramps her style."
 
         "Jasper sees you approaching and goes to shake your hand."
@@ -1041,7 +1050,7 @@ label s1e1p2:
                 jasper "So good to meet you."
 
             "Hug him.":
-                $ amount_npcs_like_mc["Jasper"] += 1
+                $ s1_amount_npcs_like_mc["Jasper"] += 1
                 "You look at his outstretched hand."
                 s01_mc "A bit formal, isn't it?"
                 "You give him a hug. "
@@ -1057,7 +1066,7 @@ label s1e1p2:
         mason "I'm Mason."
 
         # IF STATEMENT
-        if "Mason" in e1p1_initial_meeting_likes:
+        if "Mason" in s1e1p1_initial_meeting_likes:
             # If you reacted positively to Mason upon meeting, these lines occur)
             "Without waiting, he gives you a massive bear hug."
             mason "Looks like I caught your eye earlier, yeah?"
@@ -1073,7 +1082,7 @@ label s1e1p2:
         # CHOICE
         menu:
             "Ask about Mason":
-                $ amount_npcs_like_mc["Mason"] += 1
+                $ s1_amount_npcs_like_mc["Mason"] += 1
                 s01_mc "So, what do you do in the outside world, Mason?"
                 mason "Well, I used to play drums in a band called Seventh Heaven…"
                 erikah "Oh my god, I remember you guys! You had that song... how did it go?"
@@ -1087,7 +1096,7 @@ label s1e1p2:
                 erikah "…"
 
             "Ask about Jasper":
-                $ amount_npcs_like_mc["Jasper"] += 1
+                $ s1_amount_npcs_like_mc["Jasper"] += 1
                 s01_mc "So what's your job, Jasper?"
                 jasper "Oh, I'm into finance."
                 s01_mc "That's pretty intense."
@@ -1141,7 +1150,7 @@ label s1e1p2:
                 # SUB-CHOICE
                 menu:
                     "I wanted to speak to you alone.":
-                        $ amount_npcs_like_mc["Mason"] += 1
+                        $ s1_amount_npcs_like_mc["Mason"] += 1
                         mason "I thought we had a little spark, actually."
 
                     "I didn't want to mingle anymore.":
@@ -1200,19 +1209,24 @@ label s1e1p2:
                 "You look up at the Villa."
         
         # checks to see if you have talked to everyone
-        if len(e1p2_who_have_i_talked_to) == 10:
-            jump s1e1p2_outro
-
+        if len(s1e1p2_who_have_i_talked_to) == 10:
+            call s1e1p2_outro
+        else:
+            call screen s1e1p2_select_who_to_talk_to
+        
+        return
 
     # Jen and Levi in bedroom
     label s1e1p2_talk_to_jen_levi:
+        $ s1e1p2_who_have_i_talked_to.append("Levi")
+        $ s1e1p2_who_have_i_talked_to.append("Jen")
         "In the bedroom Levi and Jen are having their ups and downs. Or at least Levi is…"
         "Levi is bouncing up and down on one of the beds. Jen is leaning against a wall watching him."
         levi "Yeah, they're really bouncy. Love it."
         "He notices you, and jumps off the bed."
         levi "Alright?"
         levi "I wasn't sure if you'd noticed me when I walked in. "
-        if "Levi" in e1p1_initial_meeting_likes:
+        if "Levi" in s1e1p1_initial_meeting_likes:
             # If you react positively upon meeting levi
             levi "Alright?"
             levi "I'm glad you came over. You and Jen caught my eye as soon as I walked in."
@@ -1222,7 +1236,7 @@ label s1e1p2:
             "Levi seems interested in me, how do I respond?"
             
             "I can't wait to get to know you.":
-                $ amount_npcs_like_mc["Levi"] += 1
+                $ s1_amount_npcs_like_mc["Levi"] += 1
                 levi "Yeah, likewise."
             "Hi, I'm [s01_mc_name].":
                 levi "And I'm Levi."
@@ -1361,7 +1375,7 @@ label s1e1p2:
                     levi "So, what I'm thinking is, you and me should like, get to know each other a bit."
 
                     "I like the sound of that":
-                        $ amount_npcs_like_mc["Levi"] += 1
+                        $ s1_amount_npcs_like_mc["Levi"] += 1
                         levi "Sick."
                         levi "I don't know what's going to happen this evening, but, like, that's a plan."
                         s01_mc "You work quickly, huh?"
@@ -1391,12 +1405,17 @@ label s1e1p2:
                 "You smile at Levi as you follow Jen outside."
 
         # checks to see if you have talked to everyone
-        if len(e1p2_who_have_i_talked_to) == 10:
+        if len(s1e1p2_who_have_i_talked_to) >= 1:
             jump s1e1p2_outro
+        else:
+            call screen s1e1p2_select_who_to_talk_to
+
+        return
 
     # Talia and Jake on roof
     label s1e1p2_talk_to_talia_jake:
-        $ e1p2_who_have_i_talked_to.append("Talia", "Jake")
+        $ s1e1p2_who_have_i_talked_to.append("Talia")
+        $ s1e1p2_who_have_i_talked_to.append("Jake")
         "Talia seems to have vanished off somewhere, leaving Jake alone on the roof."
         "Little tip, Jake - to win this game you actually have to talk to the girls!"
         "As you walk out onto the roof terrace, you practically walk straight into Jake."
@@ -1405,7 +1424,7 @@ label s1e1p2:
         jake"I was hoping you would come up and talk to me."
 
         # IF STATEMENT
-        if "Jake" in e1p1_initial_meeting_likes:
+        if "Jake" in s1e1p1_initial_meeting_likes:
             # if you reacted positively to jake upon meeting him
             jake"I noticed you looking at me when we all came in."
 
@@ -1547,8 +1566,13 @@ label s1e1p2:
         "As you walk back down to the Villa, Jake catches your eye and nervously looks away, then looks back again to see if you're still looking."
         "This time, he winks."
         # checks to see if you have talked to everyone
-        if len(e1p2_who_have_i_talked_to) == 10:
-            jump s1e1p2_outro
+        if len(s1e1p2_who_have_i_talked_to) == 10:
+            call s1e1p2_outro
+        else:
+            call screen s1e1p2_select_who_to_talk_to
+
+        return
+    return
 
     label s1e1p2_outro:
         "Someone's been grafting hard."
@@ -1567,7 +1591,7 @@ label s1e1p2:
                 talia "I know! I saw you taking a look around."
             "I'm still getting used to this.":
                 talia "It's so different, isn't it?"
-    
+        
         talia "Sun, sea, and all these boys. What more do you want?"
         s01_mc "Sea?"
         talia "Well, there's a pool. That's close enough, I reckon."
@@ -1597,8 +1621,20 @@ label s1e1p2:
         "And our first coupling up leads to tears of joy, and tears of misery."
         "You wouldn't want to miss it"
 
+        jump start
+
+    
+    
 
 
-# Season 1, Episode 1, Part 3
-# Season 1, Episode 1, Part 4
-# Season 1, Episode 1, Part 5
+####################################################################
+## Season 1, Episode 1, Part 3
+####################################################################
+
+####################################################################
+## Season 1, Episode 1, Part 4
+####################################################################
+
+####################################################################
+## Season 1, Episode 1, Part 5
+####################################################################

@@ -1,3 +1,7 @@
+####################################################################
+## Season 1
+####################################################################
+
 ## MC
 define s01_mc = Character("s01_mc_name", dynamic = True)
 
@@ -10,8 +14,7 @@ default s01_mc_name = "Filler Name"
 define s01_mc_job = "Trainee Heart Surgeon"
 define s01_mc_outfit = "orange_bathing_suit"
 
-
-
+### NPCS
 ## Allegra
 define allegra = Character("Allegra")
     #placeholders to be changed with actual outfits later
@@ -58,3 +61,12 @@ define talia = Character("Talia")
 
 ## Tim
 define tim = Character("Tim")
+
+####################################################################
+## Season 2
+####################################################################
+
+
+####################################################################
+## Season 3
+####################################################################
