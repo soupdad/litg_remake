@@ -2,7 +2,7 @@
     menu:
         "Season 1":
             # jump season_01
-            jump s1e1p1_01
+            jump s3e1p1
         "Season 2":
             "Coming soon! Pick a Different Season"
             jump start
