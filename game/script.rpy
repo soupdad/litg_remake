@@ -64,6 +64,8 @@ label start:
         "Season 2":
             "Coming soon! Pick a Different Season"
             jump start
+        "Season 2: Wedding":
+            jump s2_wedding_set_up
         "Season 3":
             jump s3e1p1
     return

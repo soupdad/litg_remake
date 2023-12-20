@@ -23,17 +23,24 @@ init python:
     ### Season 2
     ######################################################################
     ## General
+    
 
+    ## Wedding
+    s2_wedding_partner = ""
+    s2_wedding_living_together = False
+    s2_wedding_secret_moment = "No one"
+    s2_wedding_travel_plans = "No one"
+    s2_wedding_win = True
+    s2_wedding_spent_prize_on = "Random"
 
     ######################################################################
     ### Season 3
     ######################################################################
     ## General
     s3_coupled_up_with = []
+    s3_current_partner = ""
     # add and remove keys and values when islanders are added or voted off
-    s3_amount_npcs_like_mc = {"AJ":15, "Bill":15, "Camilo":15, "Genevieve":15, 
-                            "Harry":15, "Nicky":15, "Seb":15}
+    s3_amount_npcs_like_mc = {"AJ":15, "Elladine":15, "Nicky":15, "Seb":15}
+    s3_li_like_mc = {"Bill":15, "Camilo":15, "Harry":15, }
                         
     ## Episode 1, Part 1
-    s3e1p1_feeling_hungry = False
-    s3e1p1_took_a_nap = False

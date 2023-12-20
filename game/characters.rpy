@@ -68,18 +68,23 @@ define tim = Character("Tim")
 
 
 ####################################################################
+## Season 2 Wedding
+####################################################################
+
+define s2_wedding_mc = Character("s02_wedding_mc_name", dynamic = True)
+
+####################################################################
 ## Season 3
 ####################################################################
 ### MC
-
 define s03_mc = Character("s01_mc_name", dynamic = True)
+define s3_mc_attr = {'Outfit':'orange_bathing_suit', 'Job':'Scientist', 'Bisexual':False, 
+                    'Sweet':0, 'Bold':0, 'Funny':0}
 
 # UNCOMMENT AND/OR DELETE WHEN DEPLOYING CODE
 # define persistent.s03_mc_job = ""
 # define persistent.s03_mc_name = ""
 default s03_mc_name = "Filler Name"
-define s03_mc_job = "Trainee Heart Surgeon"
-define s03_mc_outfit = "orange_bathing_suit"
 
 ### NPCs
 ## AJ

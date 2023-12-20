@@ -1649,3 +1649,13 @@ screen s1e1p2_select_who_to_talk_to:
     if "Talia" not in s1e1p2_who_have_i_talked_to:
         imagebutton idle "season_01/npc_map_icons/map-icon-talia.png" align(0.55, 0.2) action Call("s1e1p2_talk_to_talia_jake") at map_icon
         imagebutton idle "season_01/npc_map_icons/map-icon-jake.png" align(0.6, 0.2) action Call("s1e1p2_talk_to_talia_jake") at map_icon
+
+
+## Season 3, Episode 1, Part 1
+screen s3e1p1_text_message:
+    frame:
+        padding(20, 20)
+        margin(400, 20)
+        align(0.5, 0.5)
+        text "Girls, it's time to start meeting the boys. AJ, please make your way to the lawn and choose a boy to couple up with. Elladine and MC, stand by in the bedroom. You'll be up next!" size 25 color "#000000"
+        text "#girlmeetsboy #getthepartystarted" size 25 color "#000000"
