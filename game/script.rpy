@@ -12,6 +12,9 @@
         else:
             return False
 
+    
+
+
 # TRANSFORMS
 transform little_hop:
     yalign 1.0
@@ -34,24 +37,26 @@ transform map_icon:
 
 # ON SCREEN POSITIONS
 transform mc_spot:
-    # for some reason doesnt work, gahhh
-    xalign 1.5 yalign 1.0
-    easein 0.1 xalign 0.1
+    easein 0.2 xalign 0.05
+    
+
+transform beside_mc:
+    easein 0.2 xalign 0.25
 
 transform npc_1:
     xalign 1.5 yalign 1.0
-    easein 0.1 xalign 0.4
+    easein 0.2 xalign 0.55
 
 transform npc_2:
     xalign 1.5 yalign 1.0
-    easein 0.1 xalign 0.65
+    easein 0.2 xalign 0.7
 
 transform npc_3:
     xalign 1.5 yalign 1.0
-    easein 0.1 xalign 0.9
+    easein 0.2 xalign 0.95
 
 transform npc_exit:
-    easeout 0.05 xalign 1.5
+    easeout 0.2 xalign 1.5
 
 
 label start:
@@ -65,7 +70,7 @@ label start:
             "Coming soon! Pick a Different Season"
             jump start
         "Season 2: Wedding":
-            jump s2_wedding_set_up
+            jump s2w_set_up
         "Season 3":
             jump s3e1p1
     return
