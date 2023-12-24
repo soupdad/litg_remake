@@ -49,7 +49,7 @@ transform npc_1:
 
 transform npc_2:
     xalign 1.5 yalign 1.0
-    easein 0.2 xalign 0.7
+    easein 0.2 xalign 0.8
 
 transform npc_3:
     xalign 1.5 yalign 1.0

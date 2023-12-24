@@ -32,13 +32,17 @@ init python:
     s2_spent_prize_on = "Random"
 
     ## Wedding
-    s2w_partner = ""
+    s2w_partner = ''
     s2w_partner_pronouns = ["he", "him", "his"]
     s2w_living_together = False
     s2w_secret_moment = "No one"
     s2w_travel_plans = "No one"
     s2w_win = True
     s2w_spent_prize_on = "Random"
+    s2w_mc_bp = ''
+    s2w_partner_bp = ''
+    s2w_officiant = ''
+
 
     s2wp1_talked_to = []
 

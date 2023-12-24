@@ -462,7 +462,7 @@ label s2w_part1:
                 marisol "It's ok if you're a bit overwhelmed. There is so much going on in this room right now. Maybe we should…"
 
             "Yeah, it's just a lot to take in.":
-                "He smiles at you and pulls you into a reassuring embrace."
+                "She smiles at you and pulls you into a reassuring embrace."
                 marisol "Hey, it's alright."
                 marisol "It's ok if you're a bit overwhelmed. There is so much going on in this room right now. Maybe we should…"
             
@@ -470,7 +470,7 @@ label s2w_part1:
                 marisol "Oh…"
                 marisol "Um, I think the loos are just over there."
                 "You dash into the toilets, which you don't need to use, and take a few deep breaths to gather yourself."
-                "When you exit, [s2w_partner] is waiting for you with his arm out ready to link it back with yours."
+                "When you exit, [s2w_partner] is waiting for you with her arm out ready to link it back with yours."
                 marisol "It's ok if you're a bit overwhelmed. There is so much going on in this room right now. Maybe we should…"
 
     elif s2w_partner == "Lucas":
@@ -722,7 +722,7 @@ label s2w_part1:
                 elisa "It's ok if you're a bit overwhelmed. There is so much going on in this room right now. Maybe we should…"
 
             "Yeah, it's just a lot to take in.":
-                "He smiles at you and pulls you into a reassuring embrace."
+                "She smiles at you and pulls you into a reassuring embrace."
                 elisa "Hey, it's alright."
                 elisa "It's ok if you're a bit overwhelmed. There is so much going on in this room right now. Maybe we should…"
             
@@ -730,7 +730,7 @@ label s2w_part1:
                 elisa "Oh…"
                 elisa "Um, I think the loos are just over there."
                 "You dash into the toilets, which you don't need to use, and take a few deep breaths to gather yourself."
-                "When you exit, [s2w_partner] is waiting for you with his arm out ready to link it back with yours."
+                "When you exit, [s2w_partner] is waiting for you with her arm out ready to link it back with yours."
                 elisa "It's ok if you're a bit overwhelmed. There is so much going on in this room right now. Maybe we should…"
 
 
@@ -1198,21 +1198,37 @@ label s2w_part1:
 
 label s2wp1_talk_to_who:
     # CHOICE
+
+    if s2w_partner == 'Henrik' or s2w_partner == 'Lucas' or s2w_partner == 'Marisol' or s2w_partner == 'Jakub' or s2w_partner == 'Noah' or s2w_partner == 'Rahim' or s2w_partner == 'Gary':
+        if len(s2wp1_talked_to) == 3:
+            jump s2wp1_the_proposal
+        
+        else:
+            pass
+    elif len(s2wp1_talked_to) == 4:
+        jump s2wp1_the_proposal
+    
+    else:
+
+
     menu:
         "I'd like to speak to…"
         "Priya, Rocco, Lottie" if 'Priya' not in s2wp1_talked_to:
             jump s2wp1_talk_to_priya_rocco_lottie
-        "Henrik, Lucas, Jakub, Marisol" if ('Henrik' not in s2wp1_talked_to and s2w_partner != 'Lucas') or  ('Henrik' not in s2wp1_talked_to and s2w_partner != 'Henrik') or ('Henrik' not in s2wp1_talked_to and s2w_partner != 'Marisol') or ('Henrik' not in s2wp1_talked_to and s2w_partner != 'Jakub'):
+        "Henrik, Lucas, Jakub, Marisol" if ('Henrik' not in s2wp1_talked_to and s2w_partner != 'Lucas') and ('Henrik' not in s2wp1_talked_to and s2w_partner != 'Henrik') and ('Henrik' not in s2wp1_talked_to and s2w_partner != 'Marisol') and ('Henrik' not in s2wp1_talked_to and s2w_partner != 'Jakub'):
             jump s2wp1_talk_to_henrik_lucas_jakub_marisol
-        "Hope, Noah, Hannah, Shannon" if 'Hope' not in s2wp1_talked_to:
+        "Hope, Noah, Hannah, Shannon" if 'Hope' not in s2wp1_talked_to and s2w_partner != 'Noah':
             jump s2wp1_talk_to_hope_noah_hannah_shannon
-        "Gary, Ibrahim, Jo" if ('Gary' not in s2wp1_talked_to and s2w_partner != 'Rahim') or ('Gary' not in s2wp1_talked_to and s2w_partner != 'Gary'):
+        "Gary, Ibrahim, Jo" if ('Gary' not in s2wp1_talked_to and s2w_partner != 'Rahim') and ('Gary' not in s2wp1_talked_to and s2w_partner != 'Gary'):
             jump s2wp1_talk_to_gary_ibrahim_jo
-    # else:
-        # jump #FILL
+    
+    jump s2w_the_proposal
 
 label s2wp1_talk_to_priya_rocco_lottie:
-    # Priya, Rocco, Lottie
+    ###############################################################
+    ## Priya, Rocco, Lottie
+    ###############################################################
+
     $ s2wp1_talked_to.append("Priya")
     
     show priya at npc_1
@@ -1513,7 +1529,11 @@ label s2wp1_talk_to_priya_rocco_lottie:
     #     jump s2wp1_talk_to_who
 
 label s2wp1_talk_to_henrik_lucas_jakub_marisol:
-    # Henrik, Lucas, Jakub, Marisol
+    ###############################################################
+    ## Henrik, Lucas, Jakub, Marisol
+    ###############################################################
+
+    $ s2wp1_talked_to.append('Henrik')
 
     show lucas at npc_1
     show jakub at npc_2
@@ -1834,354 +1854,1123 @@ label s2wp1_talk_to_henrik_lucas_jakub_marisol:
     
     "You chat for a while longer. Everyone seems happy to be back together again."
 
+    show marisol at npc_exit
+    show henrik at npc_exit
+    show lucas at npc_exit
+
     jump s2wp1_talk_to_who
 
-# -Hope, Noah, Hannah, Shannon
-# 	"You walk up to the group as Shannon is in the middle of a story."
-# --------If You went on a trip with Shannon-----------------
-# Shannon: And then me and MC's paraglider blew off course and we ended up in the mayor's house!
-# Noah: What?
-# Hannah: That's so intense!
-# Shannon: MC! I was just filling them in on Monaco. Remember the mayor's house?
-# s2w_mc "Oh yeah she…"
-# 	-Gave us the best lunch!
-# 		Shannon: It was so good!
-# 		Shannon: I'm glad she was so understanding
-# 	-Was not happy
-# 		Shannon: Can't really blame her. We did take out her bird bath, after all. 
-# 	-Had the nicest curtains
-# 		Shannon: She did! They were so plush. 
-# Shannon: Shame we destroyed them after crashing through her window…
-#  Noah: Sounds like you had an amazing adventure!
+label s2wp1_talk_to_hope_noah_hannah_shannon:
+    ###############################################################
+    ## Hope, Noah, Hannah, Shannon
+    ###############################################################
+    $ s2wp1_talked_to.append('Hope')
 
-# -----If you went on holiday with Hope or did not go on a holiday with anyone------
-# Shannon: …so yeah, I ran to the car, slammed the door, and sped away. I can never go back . 
-# Shannon: It was a pretty tame holiday for me. 
-# Shannon: Really needed a good travel partner, you know?
-# "She turns to yo"
-# Shannon: Oh, hey you guys!
+    "You walk up to the group as Shannon is in the middle of a story."
 
-# Hope: Hey, girl! So glad you made it. 
-# s2w_mc "Hey guys!"
-# Noah: Hannah, didn't I see something about you finishing your first draft of a novel?
-# Hannah: Yeah!
-# Hannah: Editing's really hard, though… It's worse than writing!
-# Noah: I'm sure it'll be great
-# Hannah: I'm just struggling with the ending at the moment. It doesn't feel right. I don't think I've been inspired properly yet. 
-# MC thoughts: Hanna's struggling to end her novel…
-# 	-Give it a surprise twist!
-# 		Hannah: Nooo, that's so lame. 
-# 		Hannah: Twists are so cheap. 
-# 	-Make everyone fall in love
-# 		Hannah: Like, literally everyone?
-# 		s2w_mc "Why not?"
-# 		"She thinks for a moment."
-# 		Hannah: But why would the lake monster and judge suddenly fall in love?
-# 	-make it descend into violence. 
-# 		Noah: Damn, that's dark!
-# 		"She thinks for a moment."
-# 		Hannah: It could work, though. 
-# 		Hannah: It'd definitely be cathartic for me!
-# bobby "Speaking of books, I saw that you had some pretty exciting news, Noah?"
-# Noah: Oh, it's nothing much. 
-# Shannon: Don't be modest!
-# Noah: Well, they put me in charge of revamping all the kids areas in our local libraries. 
-# s2w_mc "That sounds…"
-# 		-Right up your street
-# 			Noah: They said it was because they saw how good I was with kids.
-# 		-Like hard work
-# 			Noah: It's not that bad. Kids are good at telling you what they want. 
-# 			Noah: Though, I can't get them an actual spaceship or racecar…
-# 		-super dull!
-# 			Noah: What? No. 
-# Noah: It's actually loads of fin! I get to mess around with fun designs all day.
-# 	bobby "And what about you, Hope?"
-# 	Hope: Oh, I've been designing a new range of toys at work!
-# Hope: I never thought I'd be the one designing stuff, but so far it seems to be going well!
-# # Thought
-# "Hope's designing a new toy range. "
-# 	-That sounds like so much fun!
-# 		Hope: It is!
-# Hope: Means I have to spend a lot of time around the kids testing them, though. 
-# Hope: Luckily, I can just leave them in a room with toys and take notes. 
-# Shannon: Nothing better than interacting with kids through science. 
-# 	-Don't you have to be around kids for that?
-# 		Hope: Yeah, it's a bit of a downside, not gonna lie. 
-# Hope: Luckily, I can just leave them in a room with toys and take notes. 
-# Shannon: Nothing better than interacting with kids through science. 
-# 	-Make a Gary action figure
-# 		Shannon: Yes! Give him a functional toy crane. 
-# 		Hope: An Islander range? That sounds hilarious. 
-# Noah: Well, if you'll excuse me, there are some mini-quiches with my name on them. 
-# "The rest of you chat for a little while longer, before you and Bobby move on."
+    show shannon at npc_1
+    show noah at npc_2
+    show hannah at npc_3
 
-# -Gary, Ibrahim, Jo
-# 	"Bobby dances his way across the room with you towards the others."
-# 	rahim "Nice moves, Bobby. "
-# bobby "Why walk when you can dance?"
-# Jo: Come join us, guys. Gary was just telling us what he'd been up to. 
-# gary "Oh, nothing much…"
-# gary "Only had a morning TV show get in touch is all!"
-# rahim "What for?"
-# gary "They want me and nan to have an advice slot on it called ‘Gary and His Nan'!"
-# # Thought
-# "Gary's been given his own morning TV slot!"
-# 	-That's incredible!
-# 		bobby "Yeah, that's not what I was expecting at all!"
-# 	-There's no escaping you
-# 		gary "Tired of my mug, are you?"
-# 	-I want advice from your nan!
-# 		gary "So does the rest of the nation!"
-# 		gary "I just wish she'd see that. "
-# rahim "I honestly thought you were going to just say you'd been up a new crane or something. "
-# gary "Oh mate, I have been. "
-# gary "But there's only one thing more thrilling than being in the cab of a brand new EC-B tower crane, and that's getting a call from a TV company"
-# Jo: What did your nan say?
-# gary "She's not convinced. "
-# gary "Every time I mention it, she sends me out to stand in the snow. "
-# gary "Thank goodness it hasn't snowed yet. "
-# rahim "You have to convince her!"
-# gary "Yeah, I'm doing my best. Buth, what have you been up to, Rahim?"
-# s2w_mc "Let me guess…"
-# 	-You cosplayed as Violet Man
-# 		rahim "You're bang on. I went to this great comic convention. "
-# 		rahim "I posed for one too many photos and my suit ripped apart. "
-# 		Jo: I told you to be careful flexing!
-# 	-It was golf stuff, right?
-# 		rahim "That was too easy. "
-# 		rahim "…but you're not wrong. "
-# 		"He turns to Jo."
-# 		rahim "Am I really that predictable?"
-# 		Jo: Well, you are a professional golf player, babe. 
-# 		Jo: I don't think it's that hard to predict you'd be playing golf. 
-# 	-You went in search of Blackbeard's treasure?
-# 		rahim "… I did not. "
-# 		rahim "But now I really wish I had. Is that even a thing?"
-# rahim "Oh, and I also got to see this one perform her sweet BMX skills around the world. "
-# "He takes a hold of Jo's hand, she smiles at him."
-# Jo: You should have seen Rahim during his last game, though. He sunk a birdie almost every hole!
-# Jo: Even got a hole-in-one on the last!
-# rahim "I did alright, but Jo's the real champ. She smashed her championship and came first!"
-# Jo: I was just in the zone this year, that's all. 
-# MC thoughts: Ibrahim and Jo have been watching each other compete and win…
-# 	-It must be amazing to watch that
-# Jo: Seeing the person you love doing their all and achieving is so rewarding!
-# Jo: And hot…
-# 	-Could you warn me next time there's this much cheese?
-# 		gary "Yeah, usually the waiter asks you to say when. "
-# 		rahim "I don't care if you think it's cheese. I've had a great time. "
-# 	-I wonder if you could combine gold and BMXing
-# 		bobby "Wouldn't that just be, like, extreme polo?"
-# 		gary "Ah mate, extreme polo sounds mint!"
-# 		Jo: We should give it a try, babe. 
-# "After a little more chatter, the group disperses to get drinks and nibbles."
+    if s2w_travel_plans == 'Shannon':
+        shannon "And then me and [s2w_mc_name]'s paraglider blew off course and we ended up in the mayor's house!"
+        noah "What?"
+        hannah "That's so intense!"
+        shannon "[s2w_mc_name]! I was just filling them in on Monaco. Remember the mayor's house?"
+        # CHOICE
+        menu:
+            "Oh yeah she…"
+            "Gave us the best lunch!":
+                shannon "It was so good!"
+                shannon "I'm glad she was so understanding"
+            "Was not happy":
+                shannon "Can't really blame her. We did take out her bird bath, after all."
+            "Had the nicest curtains":
+                shannon "She did! They were so plush."
+                shannon "Shame we destroyed them after crashing through her window…"
+        noah "Sounds like you had an amazing adventure!"
+    else:
+        shannon "…so yeah, I ran to the car, slammed the door, and sped away. I can never go back."
+        shannon "It was a pretty tame holiday for me."
+        shannon "Really needed a good travel partner, you know?"
+        "She turns to you"
+        shannon "Oh, hey you guys!"
 
-# "You look around at the Islanders mingling."
-# MC thoughts: Right, I've waited long enough. 
-# MC thoughts: It's time. 
-# MC thoughts: How should I get everyone's attention?
-# -Tap the side of your glass
-# 	"You tap the side of your glass several times with a spoon."
-# "The high-pitched dings ring out across the venue. Everyone turns to look at you."
-# -Clap your hands loudly
-# 	"You clap your hands together hard several times."
-# "It takes the others a while to realise you're not just celebrating something."
-# -Shout over the noise of everyone. 
-# 	"You take a deep breath and yell loudly."
-# 	s2w_mc "Oi! Everyone listen to me!"
-# 	"Several Islanders jump and then turn to look at you, puzzled."
-# Shannon: What's up babe?
-# Shannon: Are you doing a speech?
-# s2w_mc "Um, sort of…"
-# "You turn to Bobby, who looks as confused as the others."
-# MC thoughts: Here we go! 
-# s2w_mc "Bobby…"
-# 	-In the time I've known you…
-# 	-Since first seeing you in the Villa…
-# 	-Every since I fell for your silly face…
-# s2w_mc "I've…"
-# 	-Grown to love you more every day…
-# 	-Not been able to keep you out of my mind…
-# 	-Found it hard not to fall completely in love with you…
-# Hannah: Is she…?
-# lottie "No way. "
-# s2w_mc "And so, Bobby…"
-# 	-Go down on one knee
-# 		"You take a knee and pull out the ring."
-# 		"A chorus of gasps bounces around the roo"
-# 		priya "It's happening!"
-# 		Hannah: How'd I not see this coming?
-# 		"Chelsea lets put a high-pitched squeal"
-# 	-Stay standing
-# 		"You take the ring box out while standing in front of Bobby."
-# 	-Pull the ring out from behind his ear
-# "You reach behind Bobby's ear, and return it with the ring clasped in your fingers."
-# s2w_mc "Will you marry me?"
-# "The room is silent, waiting for Bobby's answer. (Is different for other LIs) - but this is Bobby specific route tho :"
-# "Bobby clasps his hands over his mouth in shock."
-# "His eyes tear up."
-# bobby "Yes! Yes I will, babe!"
-# "He takes the ring and puts it on his finger."
-# bobby "Woah that's tight!"
-# s2w_mc "Huh?"
-# bobby "Kidding! It's perfect. "
-# "The room bursts into applause."
-# chelsea "This. "
-# chelsea "Is. "
-# chelsea "Amazing!"
-# MC thoughts: Me and Bobby are getting married!
-# 	-Pull him in for a kiss
-# "You wrap your fingers around the back of Bobby's neck and gently pull him towards yo"
-# "You've kissed Bobby countless times, but something about this is different. It's electrifying."
-# "You're no longer simply kissing your boyfriend."
-# "You're kissing your fianc"
-# -Give him a massive hug
-# "You wrap your arms around Bobby's waist and pull him into a strong embrace."
-# "In the warmth of his body, you feel safe and comforted."
-# 	-Turn and cheer with the others. 
-# 		"You turn, holding up Bobby's arm, and let out a loud cheer."
-# 		"The others shout encouragement back at yo"
-# 		lottie "Yes, girl!"
-# 		chelsea "Agh! Too exciting!"
-# "Your friends run up to you, giving you both a huge group hug."
-# priya "Congrats, babe!"
-# gary "Mate! Nice one. "
-# chelsea "You have to let me help plan your wedding!!!"
-# bobby "Of course!"
-# "He turns to you."
-# bobby "Let's start right away!"
-# lottie "Aren't you rushing a bit?"
-# bobby "Why wait? We should do it as soon as possible!"
-# s2w_mc "Yeah, I like that!. Let's not mess about. Let's just do it!"
-# Shannon: I guess first things first. 
-# "She turns to you."
-# Shannon: Who's going to be your maid of honour?
-# Shannon: And who's going to be Bobby's best man?
-# bobby "Wait, what if I also want a maid of honour?"
-# lottie "Ugh, all these terms are so old fashioned. Why do we have so many?"
-# lottie "Why not just call them Best Person and be done with it?"
-# bobby "Hey, yeah! I like that. "
-# bobby "Who do you want as your best person, babe?"
-# s2w_mc "For my best person, I choose…"
-# 	-Chelsea
-# 		chelsea "Really?"
-# 		chelsea "Agh!"
-# 		chelsea "I…"
-# chelsea "Have…"
-# chelsea "All.."
-# chelsea "the…"
-# chelsea "Ideas!"
-# chelsea "Whoa, I'm feeling faint!"
-# lottie "You OK?"
-# chelsea "Yeah! I'm fine now. Just got all fluttery!"
-# 	-Shannon
-# 		Shannon: Really?!
-# 		Shannon: I won't let you down babe!
-# 	-Ibrahim
-# 		rahim "Really?!"
-# 		rahim "I won't let you down, babe!"
+    show shannon at npc_exit
+    show hope at npc_1
 
-# s2w_mc "What about you, babe? Who are you going to have as your best person?"
-# bobby "I don't know! I'm stuck on my choice. "
-# bobby "Who do you think it should be?"
-# s2w_mc "Really? You want me to choose?"
-# bobby "Yeah! I trust your judgement.. "
-# "You go over to Bobby and whisper your recommendation."
-# s2w_mc "You should pick…"
-# 	-Marisol
-# 		bobby "That's a great idea!"
-# 		bobby "Hey, Marisol!"
-# 		bobby "How would you like to be my best person?"
-# 		marisol "I'd love to!"
-# 		marisol "I need to find a better dress!"
-# 	-Lucas
-# bobby "That's a great idea!"
-# 		bobby "Hey, Lucas!"
-# 		bobby "How would you like to be my best person?"
-# 		lucas "I'd love to!"
-# 		lucas "I take it I can't wear my leather jacket to the ceremony?"
-# 	-Gary
-# 		bobby "That's a great idea!"
-# 		bobby "Hey, Gary!"
-# 		bobby "How would you like to be my best person?"
-# 		gary "I'd love to!"
-# 		gary "Oh mate… I need to get a better suit"
+    hope "Hey, girl! So glad you made it."
+    s2w_mc "Hey guys!"
+    noah "Hannah, didn't I see something about you finishing your first draft of a novel?"
+    hannah "Yeah!"
+    hannah "Editing's really hard, though… It's worse than writing!"
+    noah "I'm sure it'll be great"
+    hannah "I'm just struggling with the ending at the moment. It doesn't feel right. I don't think I've been inspired properly yet. "
 
-# lottie "By the way, I can totally do the wedding, too. "
-# lottie "I've done one before. "
-# rocco "Oh! I can do ceremonies too! I got a licence over the internet. "
-# priya "Wait, if that's an option, I want to volunteer. "
-# priya "I'd love to marry you two. "
-# priya "As in, make you an official couple. Not like, marry both of you."
-# Noah: I actually married two friends of mine a few summers back, so i could do it. 
-# bobby "I love this! Babe, who should do it?"
-# s2w_mc "I'm going to pick…"
-# 	-Priya
-# 	-Lottie
-# 	-Rocco
-# 	-Noah
+    # CHOICE
+    menu:
+        thought "Hanna's struggling to end her novel…"
+        "Give it a surprise twist!":
+            hannah "Nooo, that's so lame. "
+            hannah "Twists are so cheap. "
+        "Make everyone fall in love":
+            hannah "Like, literally everyone?"
+            s2w_mc "Why not?"
+            "She thinks for a moment."
+            hannah "But why would the lake monster and judge suddenly fall in love?"
+        "Make it descend into violence.":
+            noah "Damn, that's dark!"
+            "She thinks for a moment."
+            hannah "It could work, though. "
+            hannah "It'd definitely be cathartic for me!"
 
-# bobby "That's who I was going to pick! "
-# bobby "We're sickeningly in-sync and we're not even married yet. "
-# bobby "So, is that it? Have we planned our wedding?"
-# chelsea "Oh honey, you haven't even started planning the wedding!"
-# chelsea "But I'm here to help. "
-# "She runs over to you."
-# chelsea "MC!"
-# chelsea "*If you chose her as BP* As your official best person, I have an amazing idea already!"
-#     *If you chose someone else as BP* I know I'm not part of the wedding party, but I have this amazing idea!
-# chelsea "What if we get a carriage pulled by unicorns!"
-# s2w_mc "Unicorns? "
-# 	-It might be hard to find some
-# 		rocco "I heard it isn't the right season. "
-# 		priya "They're not real!"
-# 		chelsea "But I saw one once!"
-# 	-They're not real, babes
-# chelsea "But I saw one once!"
-# 	-Yes! Get me my unicorns!
-# 		chelsea "Yay!"
-# 		priya "I hate to be the one to tell you this, babes…"
-# 		priya "But unicorns aren't real."
-# 		chelsea "But I saw one once!"
-# "She pouts for a moment."
-# chelsea "OK! How about this instead?"
-# chelsea "Doves! Just loads of doves. They're, like, a symbol of weddings, right?"
-# bobby "We'll put that on the maybe pile. "
-# chelsea "Wait! I've got it!"
-# chelsea "Let me design you a ‘Memories' box!"
-# chelsea "During the wedding, everyone can leave a note for you and Bobby, which you can then read afterwards!"
-# chelsea "It'll be so sweet!"
-# bobby "That's actually a great idea!"
-# MC thoughts: Do I want Chelsea to make me a memory box?
-# 	- Yes! That sounds amazing!
-# chelsea "Yes!"
-# 		chelsea "I'll get started right away!"
-# 		chelsea "Where did I put my emergency glitter kit?"
-# 	-Nah, I don't think we need that…
-# 		chelsea "Oh…"
-# 		bobby "But, babe, that sounds like such a great idea. "
-# 		bobby "I'd love to read what everyone says about us after the ceremony"
-# 		MC thoughts: It would be nice to read everyone's messages after the wedding
-# 			-In that case, let's do it
-# 				chelsea "Yes!"
-# 				chelsea "I'll get started right away!"
-# 				chelsea "Where did I put my emergency glitter kit?"
-# 			-I still don't think we need it. 
-# 				chelsea "OK…"
-# chelsea "I guess I don't need to find my emergency glitter kit after all. "
+    # IF STATEMENT
+    if s2w_partner == "Bobby":
+        bobby "Speaking of books, I saw that you had some pretty exciting news, Noah?"
+    elif s2w_partner == "Gary":
+        gary "Speaking of books, I saw that you had some pretty exciting news, Noah?"
+    elif s2w_partner == "Rahim":
+        rahim "Speaking of books, I saw that you had some pretty exciting news, Noah?"
+    elif s2w_partner == "Marisol":
+        marisol "Speaking of books, I saw that you had some pretty exciting news, Noah?"
+    elif s2w_partner == "Lucas":
+        lucas "Speaking of books, I saw that you had some pretty exciting news, Noah?"
+    elif s2w_partner == "Henrik":
+        henrik "Speaking of books, I saw that you had some pretty exciting news, Noah?"
+    elif s2w_partner == "Jakub":
+        jakub "Speaking of books, I saw that you had some pretty exciting news, Noah?"
+    elif s2w_partner == "Arjun":
+        arjun "Speaking of books, I saw that you had some pretty exciting news, Noah?"
+    elif s2w_partner == "Kassam":
+        kassam "Speaking of books, I saw that you had some pretty exciting news, Noah?"
+    elif s2w_partner == "Felix":
+        felix "Speaking of books, I saw that you had some pretty exciting news, Noah?"
+    elif s2w_partner == "Elijah":
+        elijah "Speaking of books, I saw that you had some pretty exciting news, Noah?"
+    elif s2w_partner == "Carl":
+        carl "Speaking of books, I saw that you had some pretty exciting news, Noah?"
+    elif s2w_partner == "Elisa":
+        elisa "Speaking of books, I saw that you had some pretty exciting news, Noah?"
+    
+    noah "Oh, it's nothing much."
 
-# "For the rest of the night, you hold hands with Bobby, even when you're busy dancing."
-# "Surrounded by all the friends you made during your time in the Villa, you feel content and excited for what's to come next."
-# "The wedding."
-# "Your wedding."
-# "But for now, tonight, it's about partying it up with those you love."
-# LI commentator: It's me! I'm back!
-# LI Commentator: Just when you thought you were safe from my outstanding wit and charm. 
-# LI commentator: IT's so great to have the gang back together! And now there's a wedding!
-# LI commentator: I'm determined to make an appearance, even if I don't get an invite. 
-# LI commentator: I wonder how I can get hold of one of those giant cakes people hide in?
-# LI commentator: Coming up!
-# LI commentator: MC and Bobby's wedding!
+    show hannah at npc_exit
+    show shannon at npc_3
+
+    shannon "Don't be modest!"
+    noah "Well, they put me in charge of revamping all the kids areas in our local libraries."
+
+    # CHOICE
+    menu:
+        s2w_mc "That sounds…"
+        "Right up your street":
+            noah "They said it was because they saw how good I was with kids."
+        "Like hard work":
+            noah "It's not that bad. Kids are good at telling you what they want. "
+            noah "Though, I can't get them an actual spaceship or racecar…"
+        "Super dull!":
+            noah "What? No."
+            noah "It's actually loads of fun! I get to mess around with fun designs all day."
+
+    # IF STATEMENT
+    if s2w_partner == "Bobby":
+        bobby "And what about you, Hope?"
+    elif s2w_partner == "Gary":
+        gary "And what about you, Hope?"
+    elif s2w_partner == "Rahim":
+        rahim "And what about you, Hope?"
+    elif s2w_partner == "Marisol":
+        marisol "And what about you, Hope?"
+    elif s2w_partner == "Lucas":
+        lucas "And what about you, Hope?"
+    elif s2w_partner == "Henrik":
+        henrik "And what about you, Hope?"
+    elif s2w_partner == "Jakub":
+        jakub "And what about you, Hope?"
+    elif s2w_partner == "Arjun":
+        arjun "And what about you, Hope?"
+    elif s2w_partner == "Kassam":
+        kassam "And what about you, Hope?"
+    elif s2w_partner == "Felix":
+        felix "And what about you, Hope?"
+    elif s2w_partner == "Elijah":
+        elijah "And what about you, Hope?"
+    elif s2w_partner == "Carl":
+        carl "And what about you, Hope?"
+    elif s2w_partner == "Elisa":
+        elisa "And what about you, Hope?" 
+
+    hope "Oh, I've been designing a new range of toys at work!"
+    hope "I never thought I'd be the one designing stuff, but so far it seems to be going well!"
+
+    # CHOICE
+    menu:
+        thought "Hope's designing a new toy range."
+        "That sounds like so much fun!":
+            hope "It is!"
+            hope "Means I have to spend a lot of time around the kids testing them, though."
+            hope "Luckily, I can just leave them in a room with toys and take notes."
+            shannon "Nothing better than interacting with kids through science."
+        "Don't you have to be around kids for that?":
+            hope "Yeah, it's a bit of a downside, not gonna lie."
+            hope "Luckily, I can just leave them in a room with toys and take notes."
+            shannon "Nothing better than interacting with kids through science."
+        "Make a Gary action figure":
+            shannon "Yes! Give him a functional toy crane."
+            hope "An Islander range? That sounds hilarious."
+
+    noah "Well, if you'll excuse me, there are some mini-quiches with my name on them."
+    "The rest of you chat for a little while longer, before you and [s2w_partner] move on."
+
+    show noah at npc_exit
+    show hope at npc_exit
+    show shannon at npc_exit
+
+    jump s2wp1_talk_to_who
+
+label s2wp1_talk_to_gary_ibrahim_jo:
+    ###############################################################
+    ## Gary, Ibrahim, Jo
+    ###############################################################
+    $ pronoun = s2w_partner_pronouns[1]
+    "[s2w_partner] dances [pronoun] way across the room with you towards the others."
+
+    $ s2wp1_talked_to.append('Gary')
+
+    show gary at npc_1
+    show rahim at npc_2
+    show jo at npc_3
+
+    rahim "Nice moves, [s2w_partner]."
+
+    # IF STATEMENT
+    if s2w_partner == "Bobby":
+        bobby "Why walk when you can dance?"
+    elif s2w_partner == "Marisol":
+        marisol "Why walk when you can dance?"
+    elif s2w_partner == "Lucas":
+        lucas "Why walk when you can dance?"
+    elif s2w_partner == "Henrik":
+        henrik "Why walk when you can dance?"
+    elif s2w_partner == "Jakub":
+        jakub "Why walk when you can dance?"
+    elif s2w_partner == "Arjun":
+        arjun "Why walk when you can dance?"
+    elif s2w_partner == "Kassam":
+        kassam "Why walk when you can dance?"
+    elif s2w_partner == "Felix":
+        felix "Why walk when you can dance?"
+    elif s2w_partner == "Elijah":
+        elijah "Why walk when you can dance?"
+    elif s2w_partner == "Carl":
+        carl "Why walk when you can dance?"
+    elif s2w_partner == "Noah":
+        noah "Why walk when you can dance?"
+    elif s2w_partner == "Elisa":
+        elisa "Why walk when you can dance?"
+
+    jo "Come join us, guys. Gary was just telling us what he'd been up to. "
+    gary "Oh, nothing much…"
+    gary "Only had a morning TV show get in touch is all!"
+    rahim "What for?"
+    gary "They want me and nan to have an advice slot on it called 'Gary and His Nan'!"
+
+    # CHOICE
+    menu:
+        "Gary's been given his own morning TV slot!"
+        "That's incredible!":
+            # IF STATEMENT
+            if s2w_partner == "Bobby":
+                bobby "Yeah, that's not what I was expecting at all!"
+            elif s2w_partner == "Marisol":
+                marisol "Yeah, that's not what I was expecting at all!"
+            elif s2w_partner == "Lucas":
+                lucas "Yeah, that's not what I was expecting at all!"
+            elif s2w_partner == "Henrik":
+                henrik "Yeah, that's not what I was expecting at all!"
+            elif s2w_partner == "Jakub":
+                jakub "Yeah, that's not what I was expecting at all!"
+            elif s2w_partner == "Arjun":
+                arjun "Yeah, that's not what I was expecting at all!"
+            elif s2w_partner == "Kassam":
+                kassam "Yeah, that's not what I was expecting at all!"
+            elif s2w_partner == "Felix":
+                felix "Yeah, that's not what I was expecting at all!"
+            elif s2w_partner == "Elijah":
+                elijah "Yeah, that's not what I was expecting at all!"
+            elif s2w_partner == "Carl":
+                carl "Yeah, that's not what I was expecting at all!"
+            elif s2w_partner == "Noah":
+                noah "Yeah, that's not what I was expecting at all!"
+            elif s2w_partner == "Elisa":
+                elisa "Yeah, that's not what I was expecting at all!"
+        "There's no escaping you":
+            gary "Tired of my mug, are you?"
+        "I want advice from your nan!":
+            gary "So does the rest of the nation!"
+            gary "I just wish she'd see that."
+
+    rahim "I honestly thought you were going to just say you'd been up a new crane or something."
+    gary "Oh mate, I have been."
+    gary "But there's only one thing more thrilling than being in the cab of a brand new EC-B tower crane, and that's getting a call from a TV company"
+    jo "What did your nan say?"
+    gary "She's not convinced."
+    gary "Every time I mention it, she sends me out to stand in the snow."
+    gary "Thank goodness it hasn't snowed yet."
+    rahim "You have to convince her!"
+    gary "Yeah, I'm doing my best. But, what have you been up to, Rahim?"
+
+    # CHOICE
+    menu:
+        s2w_mc "Let me guess…"
+        "You cosplayed as Violet Man":
+            rahim "You're bang on. I went to this great comic convention."
+            rahim "I posed for one too many photos and my suit ripped apart."
+            jo "I told you to be careful flexing!"
+        "It was golf stuff, right?":
+            rahim "That was too easy."
+            rahim "…but you're not wrong."
+            "He turns to Jo."
+            rahim "Am I really that predictable?"
+            jo "Well, you are a professional golf player, babe."
+            jo "I don't think it's that hard to predict you'd be playing golf."
+        "You went in search of Blackbeard's treasure?":
+            rahim "… I did not."
+            rahim "But now I really wish I had. Is that even a thing?"
+
+    rahim "Oh, and I also got to see this one perform her sweet BMX skills around the world."
+    "He takes a hold of Jo's hand, she smiles at him."
+    jo "You should have seen Rahim during his last game, though. He sunk a birdie almost every hole!"
+    jo "Even got a hole-in-one on the last!"
+    rahim "I did alright, but Jo's the real champ. She smashed her championship and came first!"
+    jo "I was just in the zone this year, that's all."
+
+    # CHOICE
+    menu:
+        thought "Ibrahim and Jo have been watching each other compete and win…"
+        "It must be amazing to watch that":
+            jo "Seeing the person you love doing their all and achieving is so rewarding!"
+            jo "And hot…"
+        "Could you warn me next time there's this much cheese?":
+            gary "Yeah, usually the waiter asks you to say when."
+            rahim "I don't care if you think it's cheese. I've had a great time."
+        "I wonder if you could combine golf and BMXing":
+            bobby "Wouldn't that just be, like, extreme polo?"
+            gary "Ah mate, extreme polo sounds mint!"
+            jo "We should give it a try, babe."
+    
+    "After a little more chatter, the group disperses to get drinks and nibbles."
+
+    show jo at npc_exit
+    show rahim at npc_exit
+    show gary at npc_exit
+
+    jump s2wp1_talk_to_who
+
+label s2wp1_the_proposal:
+    ################################################################
+    ## The Proposal
+    ################################################################
+
+    "You look around at the Islanders mingling."
+    thought "Right, I've waited long enough."
+    thought "It's time."
+
+    # CHOICE
+    menu:
+        thought "How should I get everyone's attention?"
+        "Tap the side of your glass":
+            "You tap the side of your glass several times with a spoon."
+            "The high-pitched dings ring out across the venue. Everyone turns to look at you."
+        "Clap your hands loudly":
+            "You clap your hands together hard several times."
+            "It takes the others a while to realise you're not just celebrating something."
+        "Shout over the noise of everyone.":
+            "You take a deep breath and yell loudly."
+            s2w_mc "Oi! Everyone listen to me!"
+            "Several Islanders jump and then turn to look at you, puzzled."
+
+    show priya at npc_1
+    show shannon at npc_2
+    show rocco at npc_3
+
+    shannon "What's up babe?"
+    shannon "Are you doing a speech?"
+    s2w_mc "Um, sort of…"
+    "You turn to [s2w_partner], who looks as confused as the others."
+    thought "Here we go!"
+
+    # SPEECH CHOICE
+    menu:
+        s2w_mc "[s2w_partner]…"
+        "In the time I've known you…":
+            pass
+        "Since first seeing you in the Villa…":
+            pass
+        "Every since I fell for your silly face…":
+            pass
+
+    # SPEECH CHOICE
+    menu:
+        s2w_mc "I've…"
+        "Grown to love you more every day…":
+            pass
+        "Not been able to keep you out of my mind…":
+            pass
+        "Found it hard not to fall completely in love with you…":
+            pass
+
+    show rocco at npc_exit
+    show hannah at npc_3
+
+    hannah "Is she…?"
+
+    show shannon at npc_exit
+    show lottie at npc_2
+
+    lottie "No way."
+
+    $ pronoun = s2w_partner_pronouns[2]
+    # SPEECH CHOICE
+    menu:
+        s2w_mc "And so, [s2w_partner]…"
+        "Go down on one knee":
+            "You take a knee and pull out the ring."
+            "A chorus of gasps bounces around the room."
+            priya "It's happening!"
+            hannah "How'd I not see this coming?"
+            "Chelsea lets put a high-pitched squeal."
+        "Stay standing":
+            "You take the ring box out while standing in front of [s2w_partner]."
+        "Pull the ring out from behind [pronoun] ear":
+            "You reach behind [s2w_partner]'s ear, and return it with the ring clasped in your fingers."
+
+
+    s2w_mc "Will you marry me?"
+    "The room is silent, waiting for [s2w_partner]'s answer."
+    "[s2w_partner] clasps [pronoun] hands over [pronoun] mouth in shock."
+    "[pronoun.capitalize()] eyes tear up."
+
+    # IF STATEMENT
+    if s2w_partner == "Bobby":
+        bobby "Yes! Yes I will, babe!"
+        "He takes the ring and puts it on his finger."
+        bobby "Woah that's tight!"
+        s2w_mc "Huh?"
+        bobby "Kidding! It's perfect."
+    elif s2w_partner == "Gary":
+        # FILL
+        pass
+    elif s2w_partner == "Rahim":
+        rahim "Yes! Yes I will, babe!"
+        "He takes the ring and puts it on his finger."
+        rahim "It's a perfect fit."
+    elif s2w_partner == "Marisol":
+        # FILL
+        pass
+    elif s2w_partner == "Lucas":
+        lucas "Yes! Yes I will, babe!"
+        "He takes the ring and puts it on his finger."
+        lucas "It's a perfect fit."
+    elif s2w_partner == "Henrik":
+        # FILL
+        pass
+    elif s2w_partner == "Jakub":
+        # FILL
+        pass
+    elif s2w_partner == "Arjun":
+        # FILL
+        pass
+    elif s2w_partner == "Kassam":
+        # FILL
+        pass
+    elif s2w_partner == "Felix":
+        # FILL
+        pass
+    elif s2w_partner == "Elijah":
+        # FILL
+        pass
+    elif s2w_partner == "Carl":
+        # FILL
+        pass
+    elif s2w_partner == "Noah":
+        # FILL
+        pass
+    elif s2w_partner == "Elisa":
+        # FILL
+        pass
+
+    "The room bursts into applause."
+
+    show hannah at npc_exit
+    show chelsea at npc_3
+
+    chelsea "This."
+    chelsea "Is."
+    chelsea "Amazing!"
+
+    $ pronoun = s2w_partner_pronouns[1]
+    # CHOICE
+    menu:
+        thought "Me and [s2w_partner] are getting married!"
+        "Pull [pronoun] in for a kiss":
+            "You wrap your fingers around the back of [s2w_partner]'s neck and gently pull [pronoun] towards you."
+            "You've kissed [s2w_partner] countless times, but something about this is different. It's electrifying."
+            # IF STATEMENT
+            if s2w_partner == 'Marisol' or s2w_partner == 'Elisa':
+                "You're no longer simply kissing your girlfriend."
+            else:
+                "You're no longer simply kissing your boyfriend."
+            "You're kissing your fiance."
+        "Give [pronoun] a massive hug":
+            "You wrap your arms around [s2w_partner]'s waist and pull [pronoun] into a strong embrace."
+            $ pronoun = s2w_partner_pronouns[2]
+            "In the warmth of [pronoun] body, you feel safe and comforted."
+        "Turn and cheer with the others.":
+            "You turn, holding up [s2w_partner]'s arm, and let out a loud cheer."
+            "The others shout encouragement back at you."
+            lottie "Yes, girl!"
+            chelsea "Agh! Too exciting!"
+
+    "Your friends run up to you, giving you both a huge group hug."
+    priya "Congrats, babe!"
+
+    show chelsea at npc_exit
+
+    # IF STATEMENT
+    if s2w_partner == 'Gary':
+        show henrik at npc_3
+        henrik "Mate! Nice one."
+        show henrik at npc_exit
+    else:
+        show gary at npc_3
+        gary "Mate! Nice one."
+        show gary at npc_exit
+    
+    show chelsea at npc_3
+    chelsea "You have to let me help plan your wedding!!!"
+
+    # IF STATMENT
+    if s2w_partner == "Bobby":
+        bobby "Of course!"
+        "He turns to you."
+        bobby "Let's start right away!"
+        lottie "Aren't you rushing a bit?"
+        bobby "Why wait? We should do it as soon as possible!"
+    elif s2w_partner == "Gary":
+        gary "Of course!"
+        "He turns to you."
+        gary "Let's start right away!"
+        lottie "Aren't you rushing a bit?"
+        gary "Why wait? We should do it as soon as possible!"
+    elif s2w_partner == "Rahim":
+        rahim "Of course!"
+        "He turns to you."
+        rahim "Let's start right away!"
+        lottie "Aren't you rushing a bit?"
+        rahim "Why wait? We should do it as soon as possible!"
+    elif s2w_partner == "Marisol":
+        marisol "Of course!"
+        "She turns to you."
+        marisol "Let's start right away!"
+        lottie "Aren't you rushing a bit?"
+        marisol "Why wait? We should do it as soon as possible!"
+    elif s2w_partner == "Lucas":
+        lucas "Of course!"
+        "He turns to you."
+        lucas "Let's start right away!"
+        lottie "Aren't you rushing a bit?"
+        lucas "Why wait? We should do it as soon as possible!"
+    elif s2w_partner == "Henrik":
+        henrik "Of course!"
+        "He turns to you."
+        henrik "Let's start right away!"
+        lottie "Aren't you rushing a bit?"
+        henrik "Why wait? We should do it as soon as possible!"
+    elif s2w_partner == "Jakub":
+        jakub "Of course!"
+        "He turns to you."
+        jakub "Let's start right away!"
+        lottie "Aren't you rushing a bit?"
+        jakub "Why wait? We should do it as soon as possible!"
+    elif s2w_partner == "Arjun":
+        arjun "Of course!"
+        "He turns to you."
+        arjun "Let's start right away!"
+        lottie "Aren't you rushing a bit?"
+        arjun "Why wait? We should do it as soon as possible!"
+    elif s2w_partner == "Kassam":
+        kassam "Of course!"
+        "He turns to you."
+        kassam "Let's start right away!"
+        lottie "Aren't you rushing a bit?"
+        kassam "Why wait? We should do it as soon as possible!"
+    elif s2w_partner == "Felix":
+        felix "Of course!"
+        "He turns to you."
+        felix "Let's start right away!"
+        lottie "Aren't you rushing a bit?"
+        felix "Why wait? We should do it as soon as possible!"
+    elif s2w_partner == "Elijah":
+        elijah "Of course!"
+        "He turns to you."
+        elijah "Let's start right away!"
+        lottie "Aren't you rushing a bit?"
+        elijah "Why wait? We should do it as soon as possible!"
+    elif s2w_partner == "Carl":
+        carl "Of course!"
+        "He turns to you."
+        carl "Let's start right away!"
+        lottie "Aren't you rushing a bit?"
+        carl "Why wait? We should do it as soon as possible!"
+    elif s2w_partner == "Noah":
+        noah "Of course!"
+        "He turns to you."
+        noah "Let's start right away!"
+        lottie "Aren't you rushing a bit?"
+        noah "Why wait? We should do it as soon as possible!"
+    elif s2w_partner == "Elisa":
+        elisa "Of course!"
+        "She turns to you."
+        elisa "Let's start right away!"
+        lottie "Aren't you rushing a bit?"
+        elisa "Why wait? We should do it as soon as possible!"
+
+    s2w_mc "Yeah, I like that!. Let's not mess about. Let's just do it!"
+
+    show priya at npc_exit
+    show shannon at npc_1
+
+    shannon "I guess first things first. "
+    "She turns to you."
+    shannon "Who's going to be your maid of honour?"
+
+    # IF STATEMENT
+    if s2w_partner == "Bobby":
+        shannon "And who's going to be [s2w_partner]'s best man?"
+        bobby "Wait, what if I also want a maid of honour?"
+        lottie "Ugh, all these terms are so old fashioned. Why do we have so many?"
+        lottie "Why not just call them Best Person and be done with it?"
+        bobby "Hey, yeah! I like that."
+        bobby "Who do you want as your best person, babe?"
+    elif s2w_partner == "Gary":
+        shannon "And who's going to be [s2w_partner]'s best man?"
+        gary "Wait, what if I also want a maid of honour?"
+        lottie "Ugh, all these terms are so old fashioned. Why do we have so many?"
+        lottie "Why not just call them Best Person and be done with it?"
+        gary "Hey, yeah! I like that."
+        gary "Who do you want as your best person, babe?"
+    elif s2w_partner == "Rahim":
+        shannon "And who's going to be [s2w_partner]'s best man?"
+        rahim "Wait, what if I also want a maid of honour?"
+        lottie "Ugh, all these terms are so old fashioned. Why do we have so many?"
+        lottie "Why not just call them Best Person and be done with it?"
+        rahim "Hey, yeah! I like that."
+        rahim "Who do you want as your best person, babe?"
+    elif s2w_partner == "Marisol":
+        shannon "And who's going to be [s2w_partner]'s maid of honour?"
+        marisol "Wait, what if I want a best man?"
+        lottie "Ugh, all these terms are so old fashioned. Why do we have so many?"
+        lottie "Why not just call them Best Person and be done with it?"
+        marisol "Hey, yeah! I like that. "
+        marisol "Who do you want as your best person, babe?"
+    elif s2w_partner == "Lucas":
+        shannon "And who's going to be [s2w_partner]'s best man?"
+        lucas "Wait, what if I also want a maid of honour?"
+        lottie "Ugh, all these terms are so old fashioned. Why do we have so many?"
+        lottie "Why not just call them Best Person and be done with it?"
+        lucas "Hey, yeah! I like that. "
+        lucas "Who do you want as your best person, babe?"
+    elif s2w_partner == "Henrik":
+        shannon "And who's going to be [s2w_partner]'s best man?"
+        henrik "Wait, what if I also want a maid of honour?"
+        lottie "Ugh, all these terms are so old fashioned. Why do we have so many?"
+        lottie "Why not just call them Best Person and be done with it?"
+        henrik "Hey, yeah! I like that. "
+        henrik "Who do you want as your best person, babe?"
+    elif s2w_partner == "Jakub":
+        shannon "And who's going to be [s2w_partner]'s best man?"
+        jakub "Wait, what if I also want a maid of honour?"
+        lottie "Ugh, all these terms are so old fashioned. Why do we have so many?"
+        lottie "Why not just call them Best Person and be done with it?"
+        jakub "Hey, yeah! I like that. "
+        jakub "Who do you want as your best person, babe?"
+    elif s2w_partner == "Arjun":
+        shannon "And who's going to be [s2w_partner]'s best man?"
+        arjun "Wait, what if I also want a maid of honour?"
+        lottie "Ugh, all these terms are so old fashioned. Why do we have so many?"
+        lottie "Why not just call them Best Person and be done with it?"
+        jakub "Hey, yeah! I like that. "
+        jakub "Who do you want as your best person, babe?"
+    elif s2w_partner == "Kassam":
+        shannon "And who's going to be [s2w_partner]'s best man?"
+        kassam "Wait, what if I also want a maid of honour?"
+        lottie "Ugh, all these terms are so old fashioned. Why do we have so many?"
+        lottie "Why not just call them Best Person and be done with it?"
+        kassam "Hey, yeah! I like that. "
+        kassam "Who do you want as your best person, babe?"
+    elif s2w_partner == "Felix":
+        shannon "And who's going to be [s2w_partner]'s best man?"
+        felix "Wait, what if I also want a maid of honour?"
+        lottie "Ugh, all these terms are so old fashioned. Why do we have so many?"
+        lottie "Why not just call them Best Person and be done with it?"
+        felix "Hey, yeah! I like that. "
+        felix "Who do you want as your best person, babe?"
+    elif s2w_partner == "Elijah":
+        shannon "And who's going to be [s2w_partner]'s best man?"
+        elijah "Wait, what if I also want a maid of honour?"
+        lottie "Ugh, all these terms are so old fashioned. Why do we have so many?"
+        lottie "Why not just call them Best Person and be done with it?"
+        elijah "Hey, yeah! I like that. "
+        elijah "Who do you want as your best person, babe?"
+    elif s2w_partner == "Carl":
+        shannon "And who's going to be [s2w_partner]'s best man?"
+        carl "Wait, what if I also want a maid of honour?"
+        lottie "Ugh, all these terms are so old fashioned. Why do we have so many?"
+        lottie "Why not just call them Best Person and be done with it?"
+        carl "Hey, yeah! I like that. "
+        carl "Who do you want as your best person, babe?"
+    elif s2w_partner == "Noah":
+        shannon "And who's going to be [s2w_partner]'s best man?"
+        noah "Wait, what if I also want a maid of honour?"
+        lottie "Ugh, all these terms are so old fashioned. Why do we have so many?"
+        lottie "Why not just call them Best Person and be done with it?"
+        noah "Hey, yeah! I like that. "
+        noah "Who do you want as your best person, babe?"
+    elif s2w_partner == "Elisa":
+        shannon "And who's going to be [s2w_partner]'s maid of honour?"
+        elisa "Wait, what if I want a best man?"
+        lottie "Ugh, all these terms are so old fashioned. Why do we have so many?"
+        lottie "Why not just call them Best Person and be done with it?"
+        elisa "Hey, yeah! I like that. "
+        elisa "Who do you want as your best person, babe?"
+
+    # CHOICE
+    menu:
+        s2w_mc "For my best person, I choose…"
+        "Chelsea":
+            $ s2w_mc_bp = 'Chelsea'
+            chelsea "Really?"
+            chelsea "Agh!"
+            chelsea "I…"
+            chelsea "Have…"
+            chelsea "All.."
+            chelsea "the…"
+            chelsea "Ideas!"
+            chelsea "Whoa, I'm feeling faint!"
+            lottie "You OK?"
+            chelsea "Yeah! I'm fine now. Just got all fluttery!"
+        "Shannon":
+            $ s2w_mc_bp = 'Shannon'
+            shannon "Really?!"
+            shannon "I won't let you down babe!"
+        "Ibrahim" if s2w_partner != 'Rahim':
+            $ s2w_mc_bp = 'Rahim'
+            rahim "Really?!"
+            rahim "I won't let you down, babe!"
+        "Bobby" if s2w_partner != 'Bobby':
+            $ s2w_mc_bp = 'Bobby'
+            bobby "Really?!"
+            bobby "I won't let you down, babe!"
+
+    s2w_mc "What about you, babe? Who are you going to have as your best person?"
+
+    # IF STATEMENT
+    if s2w_partner == "Bobby":
+        bobby "I don't know! I'm stuck on my choice."
+        bobby "Who do you think it should be?"
+        s2w_mc "Really? You want me to choose?"
+        bobby "Yeah! I trust your judgement."
+    elif s2w_partner == "Gary":
+        gary "I don't know! I'm stuck on my choice."
+        gary "Who do you think it should be?"
+        s2w_mc "Really? You want me to choose?"
+        gary "Yeah! I trust your judgement."
+    elif s2w_partner == "Rahim":
+        rahim "I don't know! I'm stuck on my choice."
+        rahim "Who do you think it should be?"
+        s2w_mc "Really? You want me to choose?"
+        rahim "Yeah! I trust your judgement."
+    elif s2w_partner == "Marisol":
+        marisol "I don't know! I'm stuck on my choice."
+        marisol "Who do you think it should be?"
+        s2w_mc "Really? You want me to choose?"
+        marisol "Yeah! I trust your judgement."
+    elif s2w_partner == "Lucas":
+        lucas "I don't know! I'm stuck on my choice."
+        lucas "Who do you think it should be?"
+        s2w_mc "Really? You want me to choose?"
+        lucas "Yeah! I trust your judgement."
+    elif s2w_partner == "Henrik":
+        henrik "I don't know! I'm stuck on my choice."
+        henrik "Who do you think it should be?"
+        s2w_mc "Really? You want me to choose?"
+        henrik "Yeah! I trust your judgement."
+    elif s2w_partner == "Jakub":
+        jakub "I don't know! I'm stuck on my choice."
+        jakub "Who do you think it should be?"
+        s2w_mc "Really? You want me to choose?"
+        jakub "Yeah! I trust your judgement."
+    elif s2w_partner == "Arjun":
+        arjun "I don't know! I'm stuck on my choice."
+        arjun "Who do you think it should be?"
+        s2w_mc "Really? You want me to choose?"
+        arjun "Yeah! I trust your judgement."
+    elif s2w_partner == "Kassam":
+        kassam "I don't know! I'm stuck on my choice."
+        kassam "Who do you think it should be?"
+        s2w_mc "Really? You want me to choose?"
+        kassam "Yeah! I trust your judgement."
+    elif s2w_partner == "Felix":
+        felix "I don't know! I'm stuck on my choice."
+        felix "Who do you think it should be?"
+        s2w_mc "Really? You want me to choose?"
+        felix "Yeah! I trust your judgement."
+    elif s2w_partner == "Elijah":
+        elijah "I don't know! I'm stuck on my choice."
+        elijah "Who do you think it should be?"
+        s2w_mc "Really? You want me to choose?"
+        elijah "Yeah! I trust your judgement."
+    elif s2w_partner == "Carl":
+        carl "I don't know! I'm stuck on my choice."
+        carl "Who do you think it should be?"
+        s2w_mc "Really? You want me to choose?"
+        carl "Yeah! I trust your judgement."
+    elif s2w_partner == "Noah":
+        noah "I don't know! I'm stuck on my choice."
+        noah "Who do you think it should be?"
+        s2w_mc "Really? You want me to choose?"
+        noah "Yeah! I trust your judgement."
+    elif s2w_partner == "Elisa":
+        elisa "I don't know! I'm stuck on my choice."
+        elisa "Who do you think it should be?"
+        s2w_mc "Really? You want me to choose?"
+        elisa "Yeah! I trust your judgement."
+
+    "You go over to [s2w_partner] and whisper your recommendation."
+
+    # CHOICE
+    menu:
+        s2w_mc "You should pick…"
+        "Marisol" if s2w_partner != 'Marisol':
+            $ s2w_partner_bp = 'Marisol'
+        "Lucas" if s2w_partner != 'Lucas':
+            $ s2w_partner_bp = 'Lucas'
+        "Gary" if s2w_partner != 'Gary':
+            $ s2w_partner_bp = 'Gary'
+
+    # IF STATEMENT
+    if s2w_partner == "Bobby":
+        bobby "That's a great idea!"
+        bobby "Hey, [s2w_partner_bp]!"
+        bobby "How would you like to be my best person?"
+    elif s2w_partner == "Gary":
+        gary "That's a great idea!"
+        gary "Hey, [s2w_partner_bp]!"
+        gary "How would you like to be my best person?"
+    elif s2w_partner == "Rahim":
+        rahim "That's a great idea!"
+        rahim "Hey, [s2w_partner_bp]!"
+        rahim "How would you like to be my best person?"
+    elif s2w_partner == 'Marisol':
+        marisol "That's a great idea!"
+        marisol "Hey, [s2w_partner_bp]!"
+        marisol "How would you like to be my best person?"
+    elif s2w_partner == "Lucas":
+        lucas "That's a great idea!"
+        lucas "Hey, [s2w_partner_bp]!"
+        lucas "How would you like to be my best person?"
+    elif s2w_partner == "Henrik":
+        henrik "That's a great idea!"
+        henrik "Hey, [s2w_partner_bp]!"
+        henrik "How would you like to be my best person?"
+    elif s2w_partner == "Jakub":
+        jakub "That's a great idea!"
+        jakub "Hey, [s2w_partner_bp]!"
+        jakub "How would you like to be my best person?"
+    elif s2w_partner == "Arjun":
+        arjun "That's a great idea!"
+        arjun "Hey, [s2w_partner_bp]!"
+        arjun "How would you like to be my best person?"
+    elif s2w_partner == "Kassam":
+        kassam "That's a great idea!"
+        kassam "Hey, [s2w_partner_bp]!"
+        kassam "How would you like to be my best person?"
+    elif s2w_partner == "Felix":
+        felix "That's a great idea!"
+        felix "Hey, [s2w_partner_bp]!"
+        felix "How would you like to be my best person?"
+    elif s2w_partner == "Elijah":
+        elijah "That's a great idea!"
+        elijah "Hey, [s2w_partner_bp]!"
+        elijah "How would you like to be my best person?"
+    elif s2w_partner == "Carl":
+        carl "That's a great idea!"
+        carl "Hey, [s2w_partner_bp]!"
+        carl "How would you like to be my best person?"
+    elif s2w_partner == "Noah":
+        noah "That's a great idea!"
+        noah "Hey, [s2w_partner_bp]!"
+        noah "How would you like to be my best person?"
+    elif s2w_partner == "Elisa":
+        elisa "That's a great idea!"
+        elisa "Hey, [s2w_partner_bp]!"
+        elisa "How would you like to be my best person?"
+
+    if s2w_partner_bp == 'Marisol':
+        marisol "I'd love to!"
+        marisol "I need to find a better dress!"
+    elif s2w_partner_bp == 'Lucas':
+        lucas "I'd love to!"
+        lucas "I take it I can't wear my leather jacket to the ceremony?"
+    elif s2w_partner_bp == 'Gary':
+        gary "I'd love to!"
+        gary "Oh mate… I need to get a better suit"
+
+    lottie "By the way, I can totally do the wedding, too."
+    lottie "I've done one before."
+    rocco "Oh! I can do ceremonies too! I got a licence over the internet."
+    priya "Wait, if that's an option, I want to volunteer."
+    priya "I'd love to marry you two."
+    priya "As in, make you an official couple. Not like, marry both of you."
+
+    # IF STATEMENT
+    if s2w_partner != 'Noah':
+        noah "I actually married two friends of mine a few summers back, so i could do it."
+
+    # IF STATEMENT
+    if s2w_partner == "Bobby":
+        bobby "I love this! Babe, who should do it?"
+    elif s2w_partner == "Gary":
+        gary "I love this! Babe, who should do it?"
+    elif s2w_partner == "Rahim":
+        rahim "I love this! Babe, who should do it?"
+    elif s2w_partner == "Marisol":
+        marisol "I love this! Babe, who should do it?"
+    elif s2w_partner == "Lucas":
+        lucas "I love this! Babe, who should do it?"
+    elif s2w_partner == "Henrik":
+        henrik "I love this! Babe, who should do it?"
+    elif s2w_partner == "Jakub":
+        jakub "I love this! Babe, who should do it?"
+    elif s2w_partner == "Arjun":
+        arjun "I love this! Babe, who should do it?"
+    elif s2w_partner == "Kassam":
+        kassam "I love this! Babe, who should do it?"
+    elif s2w_partner == "Felix":
+        felix "I love this! Babe, who should do it?"
+    elif s2w_partner == "Elijah":
+        elijah "I love this! Babe, who should do it?"
+    elif s2w_partner == "Carl":
+        carl "I love this! Babe, who should do it?"
+    elif s2w_partner == "Noah":
+        noah "I love this! Babe, who should do it?"
+    elif s2w_partner == "Elisa":
+        elisa "I love this! Babe, who should do it?"
+
+    # CHOICE
+    menu:
+        s2w_mc "I'm going to pick…"
+        "Priya":
+            $ s2w_officiant = 'Priya'
+        "Lottie":
+            $ s2w_officiant = 'Lottie'
+        "Rocco":
+            $ s2w_officiant = 'Rocco'
+        "Noah" if s2w_partner != 'Noah':
+            $ s2w_officiant = 'Noah'
+
+    # IF STATEMENT
+    if s2w_partner == "Bobby":
+        bobby "That's who I was going to pick!"
+        bobby "We're sickeningly in-sync and we're not even married yet."
+        bobby "So, is that it? Have we planned our wedding?"
+    elif s2w_partner == "Gary":
+        gary "That's who I was going to pick!"
+        gary "We're sickeningly in-sync and we're not even married yet."
+        gary "So, is that it? Have we planned our wedding?"
+    elif s2w_partner == "Rahim":
+        rahim "That's who I was going to pick!"
+        rahim "We're sickeningly in-sync and we're not even married yet."
+        rahim "So, is that it? Have we planned our wedding?"
+    elif s2w_partner == "Marisol":
+        marisol "That's who I was going to pick!"
+        marisol "We're sickeningly in-sync and we're not even married yet."
+        marisol "So, is that it? Have we planned our wedding?"
+    elif s2w_partner == "Lucas":
+        lucas "That's who I was going to pick!"
+        lucas "We're sickeningly in-sync and we're not even married yet."
+        lucas "So, is that it? Have we planned our wedding?"
+    elif s2w_partner == "Henrik":
+        henrik "That's who I was going to pick!"
+        henrik "We're sickeningly in-sync and we're not even married yet."
+        henrik "So, is that it? Have we planned our wedding?"
+    elif s2w_partner == "Jakub":
+        jakub "That's who I was going to pick!"
+        jakub "We're sickeningly in-sync and we're not even married yet."
+        jakub "So, is that it? Have we planned our wedding?"
+    elif s2w_partner == "Arjun":
+        arjun "That's who I was going to pick!"
+        arjun "We're sickeningly in-sync and we're not even married yet."
+        arjun "So, is that it? Have we planned our wedding?"
+    elif s2w_partner == "Kassam":
+        kassam "That's who I was going to pick!"
+        kassam "We're sickeningly in-sync and we're not even married yet."
+        kassam "So, is that it? Have we planned our wedding?"
+    elif s2w_partner == "Felix":
+        felix "That's who I was going to pick!"
+        felix "We're sickeningly in-sync and we're not even married yet."
+        felix "So, is that it? Have we planned our wedding?"
+    elif s2w_partner == "Elijah":
+        elijah "That's who I was going to pick!"
+        elijah "We're sickeningly in-sync and we're not even married yet."
+        elijah "So, is that it? Have we planned our wedding?"
+    elif s2w_partner == "Carl":
+        carl "That's who I was going to pick!"
+        carl "We're sickeningly in-sync and we're not even married yet."
+        carl "So, is that it? Have we planned our wedding?"
+    elif s2w_partner == "Noah":
+        noah "That's who I was going to pick!"
+        noah "We're sickeningly in-sync and we're not even married yet."
+        noah "So, is that it? Have we planned our wedding?"
+    elif s2w_partner == "Elisa":
+        elisa "That's who I was going to pick!"
+        elisa "We're sickeningly in-sync and we're not even married yet."
+        elisa "So, is that it? Have we planned our wedding?"
+
+    chelsea "Oh honey, you haven't even started planning the wedding!"
+    chelsea "But I'm here to help. "
+    "She runs over to you."
+    chelsea "[s2w_mc_name]!"
+
+    # IF STATEMENT
+    if s2w_mc_bp == 'Chelsea':
+        chelsea "I have an amazing idea already!"
+    else:
+        chelsea "I know I'm not part of the wedding party, but I have this amazing idea!"
+
+    chelsea "What if we get a carriage pulled by unicorns!"
+
+    # CHOICE
+    menu:
+        s2w_mc "Unicorns?"
+        "It might be hard to find some":
+            rocco "I heard it isn't the right season."
+            priya "They're not real!"
+        "They're not real, babes":
+            pass
+        "Yes! Get me my unicorns!":
+            chelsea "Yay!"
+            priya "I hate to be the one to tell you this, babes…"
+            priya "But unicorns aren't real."
+
+    chelsea "But I saw one once!"
+    "She pouts for a moment."
+    chelsea "OK! How about this instead?"
+    chelsea "Doves! Just loads of doves. They're, like, a symbol of weddings, right?"
+
+    # IF STATEMENT
+    if s2w_partner == "Bobby":
+        bobby "We'll put that on the maybe pile."
+    elif s2w_partner == "Gary":
+        gary "We'll put that on the maybe pile."
+    elif s2w_partner == "Rahim":
+        rahim "We'll put that on the maybe pile."
+    elif s2w_partner == "Marisol":
+        marisol "We'll put that on the maybe pile."
+    elif s2w_partner == "Lucas":
+        lucas "We'll put that on the maybe pile."
+    elif s2w_partner == "Henrik":
+        henrik "We'll put that on the maybe pile."
+    elif s2w_partner == "Jakub":
+        jakub "We'll put that on the maybe pile."
+    elif s2w_partner == "Arjun":
+        arjun "We'll put that on the maybe pile."
+    elif s2w_partner == "Kassam":
+        kassam "We'll put that on the maybe pile."
+    elif s2w_partner == "Felix":
+        felix "We'll put that on the maybe pile."
+    elif s2w_partner == "Elijah":
+        elijah "We'll put that on the maybe pile."
+    elif s2w_partner == "Carl":
+        carl "We'll put that on the maybe pile."
+    elif s2w_partner == "Noah":
+        noah "We'll put that on the maybe pile."
+    elif s2w_partner == "Elisa":
+        elisa "We'll put that on the maybe pile."
+
+    chelsea "Wait! I've got it!"
+    chelsea "Let me design you a 'Memories' box!"
+    chelsea "During the wedding, everyone can leave a note for you and Bobby, which you can then read afterwards!"
+    chelsea "It'll be so sweet!"
+
+    # IF STATEMENT
+    if s2w_partner == "Bobby":
+        bobby "That's actually a great idea!"
+        bobby "I'd love to read what everyone says about us after the ceremony"
+    elif s2w_partner == "Gary":
+        gary "That's actually a great idea!"
+        gary "I'd love to read what everyone says about us after the ceremony"
+    elif s2w_partner == "Rahim":
+        rahim "That's actually a great idea!"
+        rahim "I'd love to read what everyone says about us after the ceremony"
+    elif s2w_partner == "Marisol":
+        marisol "That's actually a great idea!"
+        marisol "I'd love to read what everyone says about us after the ceremony"
+    elif s2w_partner == "Lucas":
+        lucas "That's actually a great idea!"
+        lucas "I'd love to read what everyone says about us after the ceremony"
+    elif s2w_partner == "Henrik":
+        henrik "That's actually a great idea!"
+        henrik "I'd love to read what everyone says about us after the ceremony"
+    elif s2w_partner == "Jakub":
+        jakub "That's actually a great idea!"
+        jakub "I'd love to read what everyone says about us after the ceremony"
+    elif s2w_partner == "Arjun":
+        arjun "That's actually a great idea!"
+        arjun "I'd love to read what everyone says about us after the ceremony"
+    elif s2w_partner == "Kassam":
+        kassam "That's actually a great idea!"
+        kassam "I'd love to read what everyone says about us after the ceremony"
+    elif s2w_partner == "Felix":
+        felix "That's actually a great idea!"
+        felix "I'd love to read what everyone says about us after the ceremony"
+    elif s2w_partner == "Elijah":
+        elijah "That's actually a great idea!"
+        elijah "I'd love to read what everyone says about us after the ceremony"
+    elif s2w_partner == "Carl":
+        carl "That's actually a great idea!"
+        carl "I'd love to read what everyone says about us after the ceremony"
+    elif s2w_partner == "Noah":
+        noah "That's actually a great idea!"
+        noah "I'd love to read what everyone says about us after the ceremony"
+    elif s2w_partner == "Elisa":
+        elisa "That's actually a great idea!"
+        elisa "I'd love to read what everyone says about us after the ceremony"
+
+    # CHOICE
+    menu:
+        thought "Do I want Chelsea to make me a memory box?"
+        "Yes! That sounds amazing!":
+            chelsea "Yes!"
+            chelsea "I'll get started right away!"
+            chelsea "Where did I put my emergency glitter kit?"
+        "Nah, I don't think we need that…":
+            chelsea "Oh…"
+            chelsea "I guess I don't need to find my emergency glitter kit after all."
+
+    "For the rest of the night, you hold hands with [s2w_partner], even when you're busy dancing."
+    "Surrounded by all the friends you made during your time in the Villa, you feel content and excited for what's to come next."
+    "The wedding."
+    "Your wedding."
+    "But for now, tonight, it's about partying it up with those you love."
+    "It's me! I'm back!"
+    "Just when you thought you were safe from my outstanding wit and charm. "
+    "IT's so great to have the gang back together! And now there's a wedding!"
+    "I'm determined to make an appearance, even if I don't get an invite. "
+    "I wonder how I can get hold of one of those giant cakes people hide in?"
+    "Coming up!"
+    "[s2w_mc_name] and [s2w_partner]'s wedding!"
 
 
 
