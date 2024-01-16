@@ -35,6 +35,14 @@ transform map_icon:
     on idle:
         zoom 0.3
 
+transform select_episode_button:
+    zoom 1
+    anchor(0.5, 0.5)
+    on hover:
+        zoom 1.04
+    on idle:
+        zoom 1
+
 # ON SCREEN POSITIONS
 transform mc_spot:
     easein 0.2 xalign 0.05
@@ -49,7 +57,7 @@ transform npc_1:
 
 transform npc_2:
     xalign 1.5 yalign 1.0
-    easein 0.2 xalign 0.8
+    easein 0.2 xalign 0.75
 
 transform npc_3:
     xalign 1.5 yalign 1.0
@@ -70,7 +78,7 @@ label start:
             "Coming soon! Pick a Different Season"
             jump start
         "Season 2: Wedding":
-            jump s2w_set_up
+            call screen s2w_select_episode
         "Season 3":
             jump s3e1p1
     return
@@ -97,6 +105,10 @@ label episode_01:
             "Coming soon! Pick a Different Part"
             jump episode_01 """
 
+label episode_unavailable:
+    call screen episode_unavailable
+
+    call screen s2w_select_episode
 
 
 

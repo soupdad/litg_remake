@@ -1621,15 +1621,38 @@ style slider_slider:
 ################################################################################
 ## User Defined Screens
 ################################################################################
-## Season 1, Episode 1, Part 2
-screen s1e1p2_select_who_to_talk_to:
-    image "season_01/backgrounds/LI_Open_Villa.png" at double_zoom align(0.5, 0.5)
+## General
+## S2 Wedding Choose Episode Screen
+screen s2w_select_episode:
+    image "season_02/backgrounds/edited_sandy_intro.png"
+
+    imagebutton idle "season_02/s2we1_button.png" align(0.2, 0.5) action Jump("s2w_set_up") at select_episode_button
+    imagebutton idle "season_02/s2we2_button.png" align(0.5, 0.5) action Call("episode_unavailable") at select_episode_button
+    imagebutton idle "season_02/s2we3_button.png" align(0.8, 0.5) action Call("episode_unavailable") at select_episode_button
+
+
+
+screen episode_unavailable:
+    image "season_02/backgrounds/edited_sandy_intro.png"
 
     frame:
         padding(20, 20)
         margin(400, 20)
-        align(0.5, 0.0)
-        text "Welcome to the Villa choice screen! Tap the Islanders you want to chat with. You might not have time to talk to everyone, so choose carefully!" size 25 color "#000000" 
+        align(0.5, 0.5)
+        text "Sorry but that episode isn't available either due to it not being made yet or because you haven't completed the ones before it. Please select another episode." size 40 color "#000000" 
+
+## Season 1, Episode 1, Part 2
+screen s1e1p2_select_who_to_talk_to:
+    image "season_01/backgrounds/LI_Open_Villa.png" at double_zoom align(0.5, 0.5)
+
+    button:
+        action CallScreen("s2w_select_episode")
+
+        frame:
+            padding(20, 20)
+            margin(400, 20)
+            align(0.5, 0.0)
+            text "Welcome to the Villa choice screen! Tap the Islanders you want to chat with. You might not have time to talk to everyone, so choose carefully!" size 25 color "#000000" 
         
 
     if "Allegra" not in s1e1p2_who_have_i_talked_to:

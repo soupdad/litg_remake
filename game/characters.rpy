@@ -197,14 +197,14 @@ define s2w_mc = Character("s2w_mc_name", dynamic = True, image = "s2w_mc", windo
 ## Season 3
 ####################################################################
 ### MC
-define s03_mc = Character("s01_mc_name", dynamic = True)
+define s3_mc = Character("s3_mc_name", dynamic = True)
 define s3_mc_attr = {'Outfit':'orange_bathing_suit', 'Job':'Scientist', 'Bisexual':False, 
                     'Sweet':0, 'Bold':0, 'Funny':0}
 
 # UNCOMMENT AND/OR DELETE WHEN DEPLOYING CODE
 # define persistent.s03_mc_job = ""
 # define persistent.s03_mc_name = ""
-default s03_mc_name = "Filler Name"
+default s3_mc_name = "Filler Name"
 
 ### NPCs
 ## AJ

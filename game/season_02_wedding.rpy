@@ -18,7 +18,7 @@ label s2w_set_up:
 
     s2w_mc "I can't wait!"
 
-    "Since we currently don't have a Season 2 there are a couple questions that need to be answered to customize your playthrough."
+    "Since we currently don't have a Season 2 so there are a couple questions that need to be answered to customize your playthrough."
 
     jump s2w_customize_my_story
 
@@ -1209,10 +1209,10 @@ label s2wp1_talk_to_who:
         jump s2wp1_the_proposal
     
     else:
-
+        pass
 
     menu:
-        "I'd like to speak to…"
+        "I'd like to speak to… [s2wp1_talked_to]"
         "Priya, Rocco, Lottie" if 'Priya' not in s2wp1_talked_to:
             jump s2wp1_talk_to_priya_rocco_lottie
         "Henrik, Lucas, Jakub, Marisol" if ('Henrik' not in s2wp1_talked_to and s2w_partner != 'Lucas') and ('Henrik' not in s2wp1_talked_to and s2w_partner != 'Henrik') and ('Henrik' not in s2wp1_talked_to and s2w_partner != 'Marisol') and ('Henrik' not in s2wp1_talked_to and s2w_partner != 'Jakub'):
@@ -2249,7 +2249,8 @@ label s2wp1_the_proposal:
     s2w_mc "Will you marry me?"
     "The room is silent, waiting for [s2w_partner]'s answer."
     "[s2w_partner] clasps [pronoun] hands over [pronoun] mouth in shock."
-    "[pronoun.capitalize()] eyes tear up."
+    $ pronoun = pronoun.capitalize()
+    "[pronoun] eyes tear up."
 
     # IF STATEMENT
     if s2w_partner == "Bobby":
@@ -2436,12 +2437,12 @@ label s2wp1_the_proposal:
         lottie "Aren't you rushing a bit?"
         elisa "Why wait? We should do it as soon as possible!"
 
-    s2w_mc "Yeah, I like that!. Let's not mess about. Let's just do it!"
+    s2w_mc "Yeah, I like that! Let's not mess about. Let's just do it!"
 
     show priya at npc_exit
     show shannon at npc_1
 
-    shannon "I guess first things first. "
+    shannon "I guess first things first."
     "She turns to you."
     shannon "Who's going to be your maid of honour?"
 
@@ -2566,10 +2567,14 @@ label s2wp1_the_proposal:
             shannon "I won't let you down babe!"
         "Ibrahim" if s2w_partner != 'Rahim':
             $ s2w_mc_bp = 'Rahim'
+            show shannon at npc_exit
+            show rahim at npc_1
             rahim "Really?!"
             rahim "I won't let you down, babe!"
         "Bobby" if s2w_partner != 'Bobby':
             $ s2w_mc_bp = 'Bobby'
+            show shannon at npc_exit
+            show bobby at npc_1
             bobby "Really?!"
             bobby "I won't let you down, babe!"
 
@@ -2718,14 +2723,21 @@ label s2wp1_the_proposal:
         elisa "How would you like to be my best person?"
 
     if s2w_partner_bp == 'Marisol':
+        show lottie at npc_exit
+        show marisol at npc_2
         marisol "I'd love to!"
         marisol "I need to find a better dress!"
     elif s2w_partner_bp == 'Lucas':
+        show lottie at npc_exit
+        show lucas at npc_2
         lucas "I'd love to!"
         lucas "I take it I can't wear my leather jacket to the ceremony?"
     elif s2w_partner_bp == 'Gary':
+        show lottie at npc_exit
+        show gary at npc_2
         gary "I'd love to!"
         gary "Oh mate… I need to get a better suit"
+
 
     lottie "By the way, I can totally do the wedding, too."
     lottie "I've done one before."
