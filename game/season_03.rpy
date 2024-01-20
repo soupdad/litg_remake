@@ -1473,6 +1473,7 @@ label s3e1p2:
         menu:
             "Should I volunteer to kiss [s3e1p2_spooned_a_badger]?"
             "No thanks, he's not my type":
+                $ s3e1p2_challenge_kiss = False
                 s3_mc "He's not for me."
                 # IF STATEMENT
                 if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Camilo":
@@ -1484,6 +1485,7 @@ label s3e1p2:
                     elladine "I'll take one for the team."
                     "She kisses him."
             "Go on then, it's only a game":
+                $ s3e1p2_challenge_kiss = True
                 s3_mc "I'll do it."
                 s3_mc "I'll kiss him."
                 # IF STATEMENT
@@ -1511,6 +1513,7 @@ label s3e1p2:
                     harry "You're a really good kisser."
                 "You blush a little and go back to the girls."
             "Do I have to stop at kissing him?":
+                $ s3e1p2_challenge_kiss = True
                 s3_mc "Let me at him."
                 "You stride over to [s3e1p2_spooned_a_badger] and kiss him hard on his lips. You grind your body against his."
                 # IF STATEMENT
@@ -1610,23 +1613,62 @@ label s3e1p2:
         "Seb":
             $ s3e1p2_caught_having_sex = "Seb"
 
-    # CHOICES
-    menu:
-        "Should I go and kiss him?"
-        "Yes! Get in there with [s3e1p2_caught_having_sex]":
-            "You rush over to [s3e1p2_caught_having_sex] and plant a kiss on his lips."
-            "[s3e1p2_caught_having_sex] blushes at your touch."
-            "You wink at him as you walk back to the girls."
-        "Nah, let one of the other girls":
-            # IF STATMENT
-            if s3_coupled_up_with[-1] == "Bill":
-            elif s3_coupled_up_with[-1] == "Camilo":
-            elif s3_coupled_up_with[-1] == "Harry":
-            miki "I'll kiss him!"
-            "Miki walks over and kisses Camilo quickly."
-            miki "Thank you, next!"
-
-# WORKING ON THIS SPOT HERE, WORKING HERE, WORK WORK WORK WORK WORK WORK
+    # IF STATEMENT
+    if s3e1p2_caught_having_sex == "Seb":
+        if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Harry":
+            iona "OK, I'll go and kiss them."
+            "Iona saunters over plants a kiss on his lips."
+            seb "Thank you for that."
+            "Iona smiles."
+            iona "Any day"
+        elif s3_coupled_up_with[-1] == "Camilo":
+            genevieve "OK, I'll go and kiss them."
+            "Genevieve saunters over plants a kiss on his lips."
+            seb "Thank you for that."
+            "Genevieve smiles."
+            genevieve "Any day"
+    elif s3e1p2_caught_having_sex == "Nicky":
+        if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Harry":
+            iona "OK, I'll go and kiss them."
+            "Iona saunters over plants a kiss on his lips."
+            nicky "Thank you for that."
+            "Iona smiles."
+            iona "Any day"
+        elif s3_coupled_up_with[-1] == "Camilo":
+            genevieve "OK, I'll go and kiss them."
+            "Genevieve saunters over plants a kiss on his lips."
+            nicky "Thank you for that."
+            "Genevieve smiles."
+            genevieve "Any day"
+    else:
+        # CHOICES
+        menu:
+            "Should I go and kiss him?"
+            "Yes! Get in there with [s3e1p2_caught_having_sex]":
+                $ s3e1p2_challenge_kiss = True
+                "You rush over to [s3e1p2_caught_having_sex] and plant a kiss on his lips."
+                "[s3e1p2_caught_having_sex] blushes at your touch."
+                "You wink at him as you walk back to the girls."
+                # IF STATEMENT
+                if s3e1p2_first_clue_kiss:
+                    if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Harry":
+                        iona "Check out [s3_mc_name] getting all the kisses..."
+                        iona "You go, babe."
+                    elif s3_coupled_up_with[-1] == "Camilo":
+                        genevieve "Check out [s3_mc_name] getting all the kisses..."
+                        genevieve "You go, babe."
+                    s3_mc "Thanks hun!"
+                    "You blow all the girls a kiss. They all laugh."
+            "Nah, let one of the other girls":
+                # IF STATMENT
+                if s3_coupled_up_with[-1] == "Bill":
+                    genevieve "I'll kiss him!"
+                    "Genevieve walks over and kisses [s3e1p2_caught_having_sex] quickly."
+                    genevieve "Thank you, next!"
+                elif s3_coupled_up_with[-1] == "Camilo" or s3_coupled_up_with[-1] == "Harry":
+                    miki "I'll kiss him!"
+                    "Miki walks over and kisses [s3e1p2_caught_having_sex] quickly."
+                    miki "Thank you, next!"
 
     iona "Would the guy getting sweaty and sexy in the weird places please come forward?"
     s3_mc "Did I get it right?"
@@ -1639,9 +1681,29 @@ label s3e1p2:
         camilo "Yeah, you did, hun."
     elif s3_current_partner == "Harry" and s3e1p2_caught_having_sex == "Harry":
         harry "Yeah, you did, hun."
+    elif s3_current_partner != s3e1p2_caught_having_sex:
+        if s3_coupled_up_with[-1] == "Bill":
+            bill "Nope. It was me."
+        elif s3_coupled_up_with[-1] == "Camilo":
+            camilo "Nope. It was me."
+        elif s3_coupled_up_with[-1] == "Harry":
+            harry "Nope. It was me."
+        
+        s3_mc "Aw, I didn't get it right!"
+
+        if s3e1p2_caught_having_sex == "Bill":
+            bill "I can't believe you thought it was me."
+        elif s3e1p2_caught_having_sex == "Camilo":
+            camilo "I can't believe you thought it was me."
+        elif s3e1p2_caught_having_sex == "Harry":
+            harry "I can't believe you thought it was me."
+        elif s3e1p2_caught_having_sex == "Nicky":
+            nicky "I can't believe you thought it was me."
+        elif s3e1p2_caught_having_sex == "Seb":
+            seb "I can't believe you thought it was me."
 
     # IF STATEMENT
-    if s3e1p2_caught_having_sex == "Bill":
+    if s3_current_partner == "Bill":
         aj "Why did you have sex in the wardrobe?"
         aj "Aren't there like coat hangers and stuff?"
         bill "I was having a house party and there was zero privacy."
@@ -1651,12 +1713,24 @@ label s3e1p2:
         genevieve "Until now."
         bill "Oh yeah..."
         bill "Awks..."
-    elif s3e1p2_caught_having_sex == "Camilo":
-        # NEED TO FILL
-        "EMPTY"
-    elif s3e1p2_caught_having_sex == "Harry":
-        # NEED TO FILL
-        "EMPTY"
+    elif s3_current_partner == "Camilo":
+        camilo "It was closed, OK? And like, I work at my parents' shop so it's basically my shop so it's basically my second house. It would have been fine..."
+        camilo "But my dad still believes in getting milk in glass bottles, you know, to save the planet."
+        camilo "And, like, after closing up me and this girl decided to get down and dirty on these boxes..."
+        camilo "Heat of the moment, like..."
+        camilo "But then the next thing I know a whole crate of these milk bottles have smashed and there is milk everywhere."
+        harry "Remind me never to buy anything from your shop, like, ever."
+    elif s3_current_partner == "Harry":
+        harry "We were up on the roof, getting into it, and then I hear this buzzing sound..."
+        harry "And there's this drone up there!"
+        harry "So I threw my shoe at it."
+        aj "Wait, what about the pilot? You could have hurt someone!"
+        harry "Drones don't have pilots, AJ. They're only small."
+        aj "Oh, right..."
+        harry "And besides, it was breaking the law!"
+        harry "You shouldn't fly them around built up areas."
+        elladine "Right, speaking of laws, what were you doing up on a roof?"
+        harry "Just checking out the sights of the city from a different angle."
 
     # IF STATEMENT
     if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Camilo":
@@ -1687,10 +1761,48 @@ label s3e1p2:
             $ s3e1p2_rescue_cat = "Seb"
 
     s3_mc "I reckon it's [s3e1p2_rescue_cat]."
-    aj "Yeah, me too."
-    aj "I'll take this one."
-    "AJ jogs over to [s3e1p2_rescue_cat] and kisses him, stroking his hair a little."
-    aj "Meow."
+
+    # IF STATEMENT
+    if s3e1p2_rescue_cat == "Seb" or s3e1p2_rescue_cat == "Nicky":
+        aj "Yeah, me too."
+        aj "I'll take this one."
+        "AJ jogs over to [s3e1p2_rescue_cat] and kisses him, stroking his hair a little."
+        aj "Meow."
+    else:
+        # CHOICE
+        menu:
+            "Should I go and kiss [s3e1p2_rescue_cat]?"
+            "Yes! Kiss him all over":
+                "You rush over to [s3e1p2_rescue_cat] and smother him in kisses all over his body."
+                s3_mc "You're just so kissable."
+                "The girls and guys all cheer."
+                camilo "Woah."
+                # IF STATEMENT
+                if s3e1p2_challenge_kiss:
+                    if s3_coupled_up_with[-1] == "Bill":
+                        genevieve "[s3_mc_name] is at it again!"
+                    elif s3_coupled_up_with[-1] == "Camilo" or s3_coupled_up_with[-1] == "Harry":
+                        miki "[s3_mc_name] is at it again!"
+
+            "Nah, I don't want to":
+                if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Harry":
+                    iona "I think it's Seb."
+                    iona "I'm kissing him."
+                    "Iona runs over to Seb and kisses him."
+                    iona "Am I right?"
+                elif s3_coupled_up_with[-1] == "Camilo":
+                    genevieve "I think it's Seb."
+                    genevieve "I'm kissing him."
+                    "Genevieve runs over to Seb and kisses him."
+                    genevieve "Am I right?"
+
+            "Just a quick peck will do":
+                "You walk over to [s3e1p2_rescue_cat] and gently kiss him."
+                if s3e1p2_challenge_kiss:
+                    if s3_coupled_up_with[-1] == "Bill":
+                        genevieve "[s3_mc_name] is at it again!"
+                    elif s3_coupled_up_with[-1] == "Camilo" or s3_coupled_up_with[-1] == "Harry":
+                        miki "[s3_mc_name] is at it again!"
 
     # IF STATEMENT
     if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Camilo":
@@ -1715,11 +1827,11 @@ label s3e1p2:
     menu:
         "Whoa, Seb saved a cat from a burning tree!"
         "That's so brave":
-            # NEED TO FILL
-            "EMPTY"
+            s3_mc "That's so brave, Seb!"
+            seb "Thanks, [s3_mc_name]."
         "He's foolish":
-            # NEED TO FILL
-            "EMPTY"
+            thought "He could have gotten hurt!"
+            s3_mc "He should have waited for the emergency services."
         "Seb clearly loves cats":
             s3_mc "Oh, you must love cats then to risk your life for them."
             seb "Yeah, cats are pretty awesome."
@@ -1757,14 +1869,13 @@ label s3e1p2:
     # IF STATEMENT
     if s3_coupled_up_with[-1] == "Bill":
         s3_mc "'This boy asked a girl out by making her a plate of heart shaped sandwiches!'"
+        aj "Aw, that's actually a really sweet one."
     elif s3_coupled_up_with[-1] == "Camilo":
-        # NEED TO FILL
-        "EMPTY"
+        s3_mc "'This boy once flew a date to Rome!'"
+        aj "Wow, that's so exciting!"
     elif s3_coupled_up_with[-1] == "Harry":
-        # NEED TO FILL
-        "EMPTY"
-
-    aj "Aw, that's actually a really sweet one."
+        s3_mc "'This boy once serenaded a girl with a ukulele wearing nothing but a tie.'"
+        aj "Aw, that's actually kinda hilarious and sweet all rolled into one."
 
     # CHOICE
     menu:
@@ -1790,32 +1901,50 @@ label s3e1p2:
         miki "Aw, yeah."
         miki "He's a cutie."
 
-
-    # CHOICE
-    menu:
-        "Should I go and kiss [s3e1p2_asked_girl_out]?"
-        "Why not?":
-            # NEED TO FILL
-            "EMPTY"
-        "Yeah, he's a cutie":
-            "[s3e1p2_asked_girl_out] smiles as you walk over to him."
-            s3_mc "Come here, you."
-            "You smooch, hands all over each other."
-            "Everyone cheers."
-        "Nah, [s3e1p2_asked_girl_out] isn't for me.":
-            # NEED TO FILL
-            "EMPTY"
+    # IF STATEMENT
+    if s3e1p2_asked_girl_out == "Nicky" or s3e1p2_asked_girl_out == "Seb":
+        if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Harry":
+            iona "I'll kiss [s3e1p2_asked_girl_out]!"
+            "Iona kisses [s3e1p2_asked_girl_out] on the nose."
+            iona "Such a cutie."
+        elif s3_coupled_up_with[-1] == "Camilo":
+            genevieve "I'll kiss [s3e1p2_asked_girl_out]!"
+            "Genevieve kisses [s3e1p2_asked_girl_out] on the nose."
+            genevieve "Such a cutie."
+    else:
+        # CHOICE
+        menu:
+            "Should I go and kiss [s3e1p2_asked_girl_out]?"
+            "Why not?":
+                "[s3e1p2_asked_girl_out] smiles as you walk over to him."
+                s3_mc "Come here, you."
+                "You smooch, hands all over each other."
+                "Everyone cheers."
+            "Yeah, he's a cutie":
+                "[s3e1p2_asked_girl_out] smiles as you walk over to him."
+                s3_mc "Come here, you."
+                "You smooch, hands all over each other."
+                "Everyone cheers."
+            "Nah, [s3e1p2_asked_girl_out] isn't for me.":
+                if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Harry":
+                    iona "I'll kiss [s3e1p2_asked_girl_out]!"
+                    "Iona kisses [s3e1p2_asked_girl_out] on the nose."
+                    iona "Such a cutie."
+                elif s3_coupled_up_with[-1] == "Camilo":
+                    genevieve "I'll kiss [s3e1p2_asked_girl_out]!"
+                    "Genevieve kisses [s3e1p2_asked_girl_out] on the nose."
+                    genevieve "Such a cutie."
 
     # IF STATEMENT
     if s3_coupled_up_with[-1] == "Bill":
         iona "Will the hopeless romantic please step forward?"
         "Bill steps forward."
         iona "It's Bill!"
-
         # IF STATEMENT
         if s3e1p2_asked_girl_out == "Bill":
             thought "I guessed that right!"
-
+        else:
+            nicky "That's so sweet, man."
         bill "You can never go wrong with a good sandwich."
         bill "Only problem is that she hated mayo and I had put it in every one."
         bill "I had them for my lunch in the end."
@@ -1824,22 +1953,25 @@ label s3e1p2:
         genevieve "Will the hopeless romantic please step forward?"
         "Camilo steps forward."
         genevieve "It's Bill!"
-
         # IF STATEMENT
         if s3e1p2_asked_girl_out == "Camilo":
-            thought "I guessed that right!"
-        # NEED TO FILL
-        "EMPTY"
+            camilo "[s3_mc_name] knows me so well already."
+        else:
+            harry "That's so sweet, man."
+            miki "Yeah, you're a real cutie."
     elif s3_coupled_up_with[-1] == "Harry":
         iona "Will the hopeless romantic please step forward?"
         "Harry steps forward."
         iona "It's Harry!"
-
         # IF STATEMENT
         if s3e1p2_asked_girl_out == "Harry":
-            thought "I guessed that right!"
-        # NEED TO FILL
-        "EMPTY"
+            thought "I knew it!"
+        else:
+            elladine "Harry! That's hilarious."
+        harry "Yeah, I really can't even play the uke very well but I thought, like, why not."
+        bill "And the tie was essential?"
+        seb "But the clothes weren't..."
+        harry "You've got to look smart, even in the nude."
 
     elladine "Right now, it's the boys' turn to find out some secrets about the girls!"
     elladine "Everyone switch sides."
@@ -1870,23 +2002,34 @@ label s3e1p2:
         bill "Is that even a type that, like, people have?"
         aj "It wouldn't work on paper."
         iona "Can the fire starter please step forward..."
-        Elladine steps forward.
-        iona "Elladine!"
     elif s3_coupled_up_with[-1] == "Camilo":
-        seb "Genevieve."
+        seb "Elladine."
         "Seb jogs over and kisses her."
         seb "She seems like the fire starting type."
-        # NEED TO FILL
-        "EMPTY"
-
+        "Elladine gasps."
+        camilo "Is that even a type that, like, people have?"
         genevieve "Can the fire starter please step forward..."
+
+
+    # IF STATEMENT
+    if s3e1p2_set_fire:
+        "You step forward."
+        if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Harry":
+            iona "[s3_mc_name]!"
+        elif s3_coupled_up_with[-1] == "Camilo":
+            genevieve "[s3_mc_name]!"
+        aj "Woah, [s3_mc_name]. That's intense."
+        s3_mc "Yeah, it was so embarrassing. All I wanted to do was make him breakfast in bed."
+        s3_mc "No one got hurt."
+        s3_mc "Just my pride..."
+        s3_mc "And his kitchen cupboards."
+    else:
         "Elladine steps forward."
         genevieve "Elladine!"
-
-    elladine "Yeah, it was an accident, obviously. I was trying to make him a nice fry up."
-    elladine "I knocked this kitchen roll off the top shelf and it got caught in the toaster."
-    elladine "No one got hurt thankfully, but yeah, I never called him back after that."
-    elladine "I was way too embarrassed."
+        elladine "Yeah, it was an accident, obviously. I was trying to make him a nice fry up."
+        elladine "I knocked this kitchen roll off the top shelf and it got caught in the toaster."
+        elladine "No one got hurt thankfully, but yeah, I never called him back after that."
+        elladine "I was way too embarrassed."
 
     # IF STATEMENT
     if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Harry":
@@ -1905,6 +2048,7 @@ label s3e1p2:
         "In general would I be interested in being with girls while on Love Island?"
         "Yeah, I'd be interested in dating girls!":
             $ s3_mc_attr['Bisexual'] = True
+            thought "If it felt right and I met the right person, I could imagine getting with a girl in here, for sure!"
         "No, I'm going to stick with boys.":
             $ s3_mc_attr['Bisexual'] = False
 
@@ -1919,9 +2063,19 @@ label s3e1p2:
     
     # IF STATEMENT
     if s3_mc_attr['Bisexual'] == True:
-        # NEED TO FILL
-        "EMPTY"
-    
+        "AJ winks at you."
+        if s3_coupled_up_with[-1] == "Bill":
+            genevieve "Wait, what was that?"
+        elif s3_coupled_up_with[-1] == "Camilo" or s3_coupled_up_with[-1] == "Harry":
+            miki "Wait, what was that?"
+        s3_mc "A code for girls who like girls."
+        s3_mc "It's like a secret handshake that we have."
+        aj "There's a secret handshake? Why wasn't I told?"
+        if s3_coupled_up_with[-1] == "Bill":
+            s3_mc "Ssh, don't give away that it's fake. We've got to keep Genevieve on her toes."
+        elif s3_coupled_up_with[-1] == "Camilo" or s3_coupled_up_with[-1] == "Harry":
+            s3_mc "Ssh, don't give away that it's fake. We've got to keep Miki on her toes."
+
     # IF STATEMENT
     if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Harry":
         iona "Good guess, Nicky."
@@ -1929,133 +2083,113 @@ label s3e1p2:
         genevieve "Good guess, Nicky."
 
     elladine "Next boy, grab a case!"
-    
-    
-# GIRLS SECRET 1
+    "Camilo runs over and picks up a case."
 
     # IF STATEMENT
     if s3_coupled_up_with[-1] == "Bill":
-        "Harry goes and picks up a suitcase."
-        harry "'This girl...'"
-        # IF STATEMENT
-        if s3e1p2_mc_secret == "Thunder":
-            harry "'...is sexually attracted to the rumble of thunder!'"
-        elif s3e1p2_mc_secret == "Rollercoaster":
-            harry "'...had a naughty adventure on a rollercoaster!'"
-        elif s3e1p2_mc_secret == "Dimples":
-            harry "'...has a tendency to get too excited by dimples!'"
-        elif s3e1p2_mc_secret == "Fan Fiction":
-            harry "'...wrote fan fiction when she was younger!'"
-        
-        thought "Oh no! This is about me."
-        thought "I wonder if Harry can guess who that's about."
+        camilo "'This girl took a job as a waitress to escape a blind date.'"
+        thought "Have I taken a job as a waitress to escape a blind date?"
+    elif s3_coupled_up_with[-1] == "Camilo" or s3_coupled_up_with[-1] == "Harry":
+        camilo "'This girl did a sexy birthday striptease for a guy...'"
+        camilo "'Only to be interrupted by his family, who had flown in to surprise him!'"
+        thought "Have I ever gotten interrupted during a sexy dance?"
+
+    # CHOICE
+    menu:
+        "Is that clue about me?"
+        "Yeah, that's about me":
+            $ s3e1p2_camilos_clue = True
+            thought "I wonder if Camilo will get it right..."
+        "No, I've never done that":
+            $ s3e1p2_camilos_clue = False
+            thought "I wonder who did that..."
+
+    # IF STATEMENT
+    if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Harry":
+        camilo "I reckon this is..."
+        camilo "Elladine!"
+        "He goes over to Elladine and kisses her."
+    elif s3_coupled_up_with[-1] == "Camilo":
+        camilo "I reckon this is..."
+        camilo "[s3_mc_name]!"
+        "He runs over to you."
+        camilo "Mind if I kiss you, [s3_mc_name]?"
+        # CHOICE
+        menu:
+        "Do I mind if Camilo kisses me?"
+        "Sure, go for it":
+            "He puts a hand behind your head and draws you in close."
+            "He tenderly kisses the bottom of your lip."
+        "Nah, I'd rather you didn't":
+            camilo "That's fine! But just so everyone knows, I think this is about MC!"
+            "He walks back to the others."
+
+    elladine "Would the girl please step forward!"
+    
+    # IF STATEMENT
+    if s3e1p2_camilos_clue:
+        "You step forward."
+        if s3_coupled_up_with[-1] == "Bill":
+            "Genevieve also steps forward."
+            genevieve "Aw! Babe, what a coincidence!"
+        elif s3_coupled_up_with[-1] == "Camilo" or s3_coupled_up_with[-1] == "Harry":
+            "Miki also steps forward."
+            miki "Oh my god, hun! We're so similar."
+        s3_mc "Ha! Yeah..."
+        s3_mc "I guess it could happen to anyone."
+        if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Harry":
+            camilo "I got that so wrong."
+    else:
+        if s3_coupled_up_with[-1] == "Bill":
+            "Genevieve steps forward."
+        elif s3_coupled_up_with[-1] == "Camilo" or s3_coupled_up_with[-1] == "Harry":
+            "Miki steps forward."
+        camilo "Damn, I got that so wrong."
+
+    # IF STATEMENT
+    "Harry goes and picks up a suitcase."
+    harry "'This girl...'"
+    # IF STATEMENT
+    if s3e1p2_mc_secret == "Thunder":
+        harry "'...is sexually attracted to the rumble of thunder!'"
+    elif s3e1p2_mc_secret == "Rollercoaster":
+        harry "'...had a naughty adventure on a rollercoaster!'"
+    elif s3e1p2_mc_secret == "Dimples":
+        harry "'...has a tendency to get too excited by dimples!'"
+    elif s3e1p2_mc_secret == "Fan Fiction":
+        harry "'...wrote fan fiction when she was younger!'"
+    
+    thought "Oh no! This is about me."
+    thought "I wonder if Harry can guess who that's about."
+
+    # IF STATEMENT
+    if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Camilo":
         harry "I reckon it's Genevieve."
         "He strides over and kisses Genevieve, accidentally bumping against her nose."
         genevieve "Don't worry. I didn't need my nose..."
         harry "Did I get it right?"
         genevieve "Nope!"
-
-        # CHOICE
-        menu:
-            "The clue was about me! I'd better step forward..."
-            "Proudly own it":
-                "You leap forward with your hand on your hips."
-                s3_mc "It's me!"
-            "Shamefully scuffle forward":
-                "You shuffle your feet forward looking down at the floor."
-                s3_mc "It's me."
-            "Blame it on someone else":
-                "You point at Elladine with an accusing finger"
-                s3_mc "This is a set up! Elladine is clearly the one that secret is about!"
-                "Everyone keeps staring at you and it's clear your pointed blame is not believed."
-                s3_mc "Fine, it's me."
-
-        # IF STATEMENT
-        if s3e1p2_mc_secret == "Thunder":
-            s3_mc "The thunder lover."
-        elif s3e1p2_mc_secret == "Rollercoaster":
-            s3_mc "The rollercoaster lover."
-        elif s3e1p2_mc_secret == "Dimples":
-            s3_mc "The dimple lover."
-        elif s3e1p2_mc_secret == "Fan Fiction":
-            s3_mc "The fan fiction lover."
-
-        harry "[s3_mc_name]?"
-        s3_mc "Yeah."
-        harry "Woah, I was well off."
-        harry "Ah, sorry, Genevieve."
-        genevieve "You have got to tell us more about that later, hun."
-        bill "Yeah, I need details."
-    elif s3_coupled_up_with[-1] == "Camilo":
-        "Bill goes and picks up a suitcase."
-        bill "'This girl...'"
-        # IF STATEMENT
-        if s3e1p2_mc_secret == "Thunder":
-            bill "'...is sexually attracted to the rumble of thunder!'"
-        elif s3e1p2_mc_secret == "Rollercoaster":
-            bill "'...had a naughty adventure on a rollercoaster!'"
-        elif s3e1p2_mc_secret == "Dimples":
-            bill "'...has a tendency to get too excited by dimples!'"
-        elif s3e1p2_mc_secret == "Fan Fiction":
-            bill "'...wrote fan fiction when she was younger!'"
-        
-        thought "Oh no! This is about me."
-        thought "I wonder if Bill can guess who that's about."
-        bill "I reckon it's Miki."
-        "He strides over and kisses Miki."
-        bill "Did I get it right?"
-        miki "Nope!"
-
-        # CHOICE
-        menu:
-            "The clue was about me! I'd better step forward..."
-            "Proudly own it":
-                "You leap forward with your hand on your hips."
-                s3_mc "It's me!"
-            "Shamefully scuffle forward":
-                "You shuffle your feet forward looking down at the floor."
-                s3_mc "It's me."
-            "Blame it on someone else":
-                "You point at Elladine with an accusing finger"
-                s3_mc "This is a set up! Elladine is clearly the one that secret is about!"
-                "Everyone keeps staring at you and it's clear your pointed blame is not believed."
-                s3_mc "Fine, it's me."
-
-        # IF STATEMENT
-        if s3e1p2_mc_secret == "Thunder":
-            s3_mc "The thunder lover."
-        elif s3e1p2_mc_secret == "Rollercoaster":
-            s3_mc "The rollercoaster lover."
-        elif s3e1p2_mc_secret == "Dimples":
-            s3_mc "The dimple lover."
-        elif s3e1p2_mc_secret == "Fan Fiction":
-            s3_mc "The fan fiction lover."
-
-        bill "[s3_mc_name]?"
-        s3_mc "Yeah."
-        bill "Woah, I was well off."
-        bill "Ah, sorry, Genevieve."
-        miki "You have got to tell us more about that later, hun."
-        camilo "Yeah, I need details."
     elif s3_coupled_up_with[-1] == "Harry":
-        "Camilo goes and picks up a suitcase."
-        camilo "'This girl...'"
-        # IF STATEMENT
-        if s3e1p2_mc_secret == "Thunder":
-            camilo "'...is sexually attracted to the rumble of thunder!'"
-        elif s3e1p2_mc_secret == "Rollercoaster":
-            camilo "'...had a naughty adventure on a rollercoaster!'"
-        elif s3e1p2_mc_secret == "Dimples":
-            camilo "'...has a tendency to get too excited by dimples!'"
-        elif s3e1p2_mc_secret == "Fan Fiction":
-            camilo "'...wrote fan fiction when she was younger!'"
-        
-        thought "Oh no! This is about me."
-        thought "I wonder if Camilo can guess who that's about."
-        camilo "I reckon it's Iona."
-        "He strides over and kisses Iona."
-        camilo "Did I get it right?"
-        iona "Nope!"
+        harry "I reckon it's [s3_mc_name]."
+        "He walks over to you."
+        harry "I've got a hunch it was you because you kinda look guilty..."
+        harry "But I also just really want to kiss you."
+        harry "You up for that?"
+
+        # CHOICE
+        menu:
+            "Do I mind if Harry kisses me?"
+            "Yeah, sure!":
+                "He closes his eyes and leans in for a kiss."
+                "He leans the wrong way and bumps against your nose."
+                harry "Oops."
+                harry "Let me try that again."
+                "Your lips touch and you feel him stumble forward a little. He gains his balance and draws you closer."
+            "I'd rather you didn't.":
+                harry "That's fine! But just so everyone knows, I think this is about [s3_mc_name]!"
+                "He walks back to the others."
+
+        harry "Did I get it right?"
 
     # CHOICE
     menu:
@@ -2063,249 +2197,1030 @@ label s3e1p2:
         "Proudly own it":
             "You leap forward with your hand on your hips."
             s3_mc "It's me!"
+            # IF STATEMENT
+            if s3e1p2_mc_secret == "Thunder":
+                s3_mc "The thunder lover."
+            elif s3e1p2_mc_secret == "Rollercoaster":
+                s3_mc "The theme park exhibitionist."
+            elif s3e1p2_mc_secret == "Dimples":
+                s3_mc "The dimple lover."
+            elif s3e1p2_mc_secret == "Fan Fiction":
+                s3_mc "The smutty dirty lovely fan fiction writer."
         "Shamefully scuffle forward":
-            "You shuffle your feet forward looking down at the floor."
-            s3_mc "It's me."
+            "You step forward slowly, trying not to make any eye contact by looking at the ground."
+            s3_mc "Yeah, that's about me."
         "Blame it on someone else":
-            "You point at Elladine with an accusing finger"
-            s3_mc "This is a set up! Elladine is clearly the one that secret is about!"
-            "Everyone keeps staring at you and it's clear your pointed blame is not believed."
-            s3_mc "Fine, it's me."
+            s3_mc "Um..."
+            s3_mc "How do we know that clue isn't actually about you, Harry?"
+            s3_mc "Whoever smelt it dealt it is a motto I live by."
+            harry "Er, that's not how the game works."
+            seb "Yeah, it's about one of you girls."
+            "You shuffle your feet awkwardly."
+            seb "It's about you. Isn't it, [s3_mc_name]?"
+            s3_mc "Yeah... yeah it is."
 
     # IF STATEMENT
-    if s3e1p2_mc_secret == "Thunder":
-        s3_mc "The thunder lover."
-    elif s3e1p2_mc_secret == "Rollercoaster":
-        s3_mc "The rollercoaster lover."
-    elif s3e1p2_mc_secret == "Dimples":
-        s3_mc "The dimple lover."
-    elif s3e1p2_mc_secret == "Fan Fiction":
-        s3_mc "The fan fiction lover."
+    if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Camilo":
+        harry "[s3_mc_name]?"
+        s3_mc "Yeah."
+        harry "Woah, I was well off."
+        harry "Ah, sorry, Genevieve."
+        genevieve "You have got to tell us more about that later, hun."
+    elif s3_coupled_up_with[-1] == "Harry":
+        harry "Yes! I got it right."
+        miki "You have got to tell us more about that later, hun."
 
-    camilo "[s3_mc_name]?"
-    s3_mc "Yeah."
-    camilo "Woah, I was well off."
-    camilo "Ah, sorry, Genevieve."
-    iona "You have got to tell us more about that later, hun."
-    harry "Yeah, I need details."
+    # IF STATEMENT
+    if s3_coupled_up_with[-1] == "Bill":
+        bill "Yeah, I need details."
+    elif s3_coupled_up_with[-1] == "Camilo":
+        camilo "Yeah, I need details."
+    elif s3_coupled_up_with[-1] == "Harry":
+        harry "Yeah, I need details."
+    
+    # CHOICE
+    menu:
+        "Everyone wants to hear more about my secret..."
+        "Maybe another day...":
+            s3_mc "I've got an air of mystery to keep up, haven't I?"
+            s3_mc "Maybe I'll reveal more another time."    
+        "No way, this is enough already":
+            s3_mc "You know too much already and we hardly know each other!"
+            s3_mc "I've got a reputation to keep up."
+        "This wasn't the half of it":
+            s3_mc "I've got even more laundry that needs airing."
+            s3_mc "If you want to have a rummage..."
 
-Choiceseb "Everyone wants to hear more about my secret..."
--Maybe another day...
-s3_mc "I've got an air of mystery to keep up, haven't I?"
-s3_mc "Maybe I'll reveal more another time."
+    "Elladine coughs pointedly."
 
--No way, this is enough already
--This wasn't the half of it
+    # IF STATEMENT
+    if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Harry":
+        bill "Right, my turn!"
+        "Bill goes up and grabs another case."
+        bill "'This girl accidentally ordered sex toys to her work address.'"
+        # CHOICE
+        menu:
+            "Have I ever accidentally ordered sex toys to my work?"
+            "Yes, how did the suitcase know?":
+                $ s3e1p2_ordered_sex_toys = True
+                thought "Mysterious, all-seeing suitcase..."
+            "Nah, I've never done that.":
+                $ s3e1p2_ordered_sex_toys = False
+                thought "How embarrassing..."
+                thought "I'm glad that's not about me!"
 
-Elladine coughs pointedly.
+        bill "I reckon this is..."
 
-# GIRL SECRET 2
+        # IF STATEMENT
+        if s3_coupled_up_with[-1] == "Bill":
+            bill "[s3_mc_name]?"
+            bill "I think it's you, babes."
+            "He walks over to you."
+            bill "Mind if I kiss you?"
+            # CHOICE
+            menu:
+                "Do I mind if Bill kisses me?"
+                "Go for it, babes":
+                    "He kisses you softly, His hand rests on your back, drawing you in closer."
+                "Nah, I'd rather you didn't":
+                    bill "That's fine! But just so everyone knows, I think this is about MC!"
+                    "He walks back to the others."
 
-(If you kissed your partner in the first episode with the gem choice)
-bill "Can I go again?"
-iona "Sure!"
-He smiles at you as he walks over, hoisting a case over his toned shoulders.
-bill "OK, this girl..."
-He looks up at you and smiles.
-bill "'This girl has already kissed a boy since we got into the Villa!'"
-iona "We'll all have by the end of this challenge."
-He turns the piece of paper over.
-bill "'Before the challenge started!'"
-Everyone laughs.
-genevieve "OK, I have no idea who that was."
-bill "I think I do..."
-He strides up to you and gently places his palm on your cheek.
-bill "Fancy a round two?"
-Choiceseb "Do I want Bill to kiss me again?"
--Yes!
-He leans in and kisses you softly on the lips. (you get ❤️ with Bill)
-genevieve "MC is getting all the action today!"
+        elif s3_coupled_up_with[-1] == "Harry":
+            bill "Iona?"
+            "He walks over and kisses Iona."
 
--Nah, you can kiss someone else
--Go on then, Bill
+        # IF STATEMENT
+        if s3_coupled_up_with[-1] == "Bill":
+            genevieve "Would the girl with the multiple packages please step forward?"
+        elif s3_coupled_up_with[-1] == "Harry":
+            miki "Would the girl with the multiple packages please step forward?"
+        
+        # IF STATEMENT
+        if s3e1p2_ordered_sex_toys:
+            "You and Iona both step forward."
+            bill "I got it right!"
+            iona "No way."
+            iona "That's hilarious."
+            iona "You've done that too?"
+            s3_mc "Yeah!"
+        else:
+            "Iona steps forward."
+            if s3_coupled_up_with[-1] == "Bill":
+                bill "Damn, I got it wrong!"
+                s3_mc "Can't believe you thought that was me! "
+                "He winks at you."
+                bill "Maybe I just wanted an excuse to kiss you."
+                s3_mc "Cheeky."
+            else:
+                "Iona steps forward."
+                bill "Booyah. I got it right!"
+                iona "Booyah?"
+                "She winks."
+                iona "Boo you more like."
 
-iona "The answer was, of course..."
-You step forward.
-iona "MC!"
-bill "Knew it."
-iona "Oh, you guys!"
-elladine "Such cuties."
+        nicky "Woah, girl."
+        nicky "That's like, so embarrassing."
+        iona "To be honest, I wasn't embarrassed at all."
+        iona "It was just a faff to get all the boxes home on the train."
+        harry "Boxes plural? As in more than one?"
+        iona "Bulk order discount, babe. "
+        "Bill whistles."
+        bill "Wow."
+        # IF STATEMENT
+        if s3_coupled_up_with[-1] == "Bill":
+            genevieve "Yeah! You go, sister."
+        elif s3_coupled_up_with[-1] == "Harry":
+            miki "Yeah! You go, sister."
 
+    # IF STATEMENT
+    if s3e1p1_cheeky_snog:
+        if s3_coupled_up_with[-1] == "Bill":
+            bill "Can I go again?"
+            iona "Sure!"
+            camilo "I'll go next."
+            "He smiles at you as he walks over, hoisting a case over his toned shoulders."
+            bill "OK, this girl..."
+            "He looks up at you and smiles."
+            bill "'This girl has already kissed a boy since we got into the Villa!'"
+            iona "We'll all have by the end of this challenge."
+            "He turns the piece of paper over."
+            bill "'Before the challenge started!'"
+            "Everyone laughs."
+            genevieve "OK, I have no idea who that was."
+            bill "I think I do..."
+            "He strides up to you and gently places his palm on your cheek."
+            bill "Fancy a round two?"
+            # CHOICE
+            menu:
+                "Do I want Bill to kiss me again?"
+                "Yes!":
+                    "He leans in and kisses you softly on the lips."
+                    genevieve "[s3_mc_name] is getting all the action today!"
+                "Nah, you can kiss someone else":
+                    bill "OK, suit yourself."
+                    bill "I'll give AJ a quick kiss then."
+                    "He kisses AJ on the cheek."
+                "Go on then, Bill":
+                    "He leans in and kisses you softly on the lips."
+                    genevieve "[s3_mc_name] is getting all the action today!"
+            iona "The answer was, of course..."
+            "You step forward."
+            iona "[s3_mc_name]!"
+            bill "Knew it."
+            iona "Oh, you guys!"
+            elladine "Such cuties."
+            iona "OK..."
+            iona "Next round."
 
-iona "OK..."
-iona "Next round."
+            bill "Can I go again?"
+            "The other boys cheer him on."
+        elif s3_coupled_up_with[-1] == "Harry":
+            harry "Can I go again?"
+            iona "Sure!"
+            camilo "I'll go next."
+            "He smiles at you as he walks over, hoisting a case over his toned shoulders."
+            harry "OK, this girl..."
+            "He looks up at you and smiles."
+            harry "'This girl has already kissed a boy since we got into the Villa!'"
+            iona "We'll all have by the end of this challenge."
+            "He turns the piece of paper over."
+            harry "'Before the challenge started!'"
+            "Everyone laughs."
+            miki "OK, I have no idea who that was."
+            harry "I think I do..."
+            "He strides up to you and gently places his palm on your cheek."
+            harry "Fancy a round two?"
+            # CHOICE
+            menu:
+                "Do I want Bill to kiss me again?"
+                "Yes!":
+                    "He leans in and kisses you softly on the lips."
+                    miki "[s3_mc_name] is getting all the action today!"
+                "Nah, you can kiss someone else":
+                    harry "OK, suit yourself."
+                    harry "I'll give AJ a quick kiss then."
+                    "He kisses AJ on the cheek."
+                "Go on then, Bill":
+                    "He leans in and kisses you softly on the lips."
+                    miki "[s3_mc_name] is getting all the action today!"
+            iona "The answer was, of course..."
+            "You step forward."
+            iona "[s3_mc_name]!"
+            harry "Knew it."
+            iona "Oh, you guys!"
+            elladine "Such cuties."
+            iona "OK..."
+            iona "Next round."
 
-MC coupled with Bill
-bill "Can I go again? "
-The other boys cheer him on.
-He grabs a case and looks at the clue.
-s3_mc "Just read the secret, hun."
-bill "'This girl has only ever had sex while on the water.'"
-The boys go into a huddle.
-elladine "Oh my gosh, which of you is this about?"
-You look around the group. Nobody says anything.
-aj "Come on, girls. It has to be one of us."
-It quickly becomes clear that the clue isn't about any of you.
-genevieve "I don't get it. Who could it be?"
-iona "It's got to be one of us."
-A clatter and rattle of wheels grabs everyone's attention as a large suitcase wheels out onto the platform.
-aj "Oh, wow."
-aj "That's one huge suitcase."
-genevieve "I've never seen one that big before..."
-bill "I got a text!"
-Text: Islanders, there is an unexpected item in your bagging area. Bill, please unzip the case.
-elladine "Oh my gosh, Bill! Open up the case already!"
-Bill tentatively unzips the suitcase.
-A stunning woman steps out.
-M: Hey, you lot. I'm Miki.
-Miki
--21, from Cambridge
--Lifestyle vlogger
--Loves it when you smash the subscribe button
+            harry "Can I go again?"
+            "The other boys cheer him on."
+        elif s3_coupled_up_with[-1] == "Camilo":
+            camilo "I'll go next"
+            "He smiles at you as he walks over, hoisting a case over his toned shoulders."
+            camilo "OK, this girl..."
+            "He looks up at you and smiles."
+            camilo "'This girl has already kissed a boy since we got into the Villa!'"
+            genevieve "We'll all have by the end of this challenge."
+            "He turns the piece of paper over."
+            camilo "'Before the challenge started!'"
+            "Everyone laughs."
+            miki "OK, I have no idea who that was."
+            camilo "I think I do..."
+            "He strides up to you and gently places his palm on your cheek."
+            camilo "Fancy a round two?"
+            # CHOICE
+            menu:
+                "Do I want Bill to kiss me again?"
+                "Yes!":
+                    "He leans in and kisses you softly on the lips."
+                    miki "[s3_mc_name] is getting all the action today!"
+                "Nah, you can kiss someone else":
+                    camilo "OK, suit yourself."
+                    camilo "I'll give AJ a quick kiss then."
+                    "He kisses AJ on the cheek."
+                "Go on then, Bill":
+                    "He leans in and kisses you softly on the lips."
+                    miki "[s3_mc_name] is getting all the action today!"
+            genevieve "The answer was, of course..."
+            "You step forward."
+            genevieve "[s3_mc_name]!"
+            camilo "Knew it."
+            genevieve "Oh, you guys!"
+            elladine "Such cuties."
+            genevieve "OK..."
+            genevieve "Next round."
 
-She nods at Bill.
-M: Thanks for getting me out of there, Bill.
-Genevieve splutters in shock.
-genevieve "Wait..what? But..."
-iona "It's a new girl!"
-Elladine and Iona run over to hug Miki.
-elladine "Welcome to the Villa, hun."
-nicky "Yeah, hey. I hope you weren't stuck in there for long, babe."
-M: Nah, just a few minutes.
+            camilo "Can I go again?"
+            "The other boys cheer him on."
+    else:
+        if s3_coupled_up_with[-1] == "Bill":
+            bill "I'll go"
+        elif s3_coupled_up_with[-1] == "Camilo":
+            camilo "I'll go"
+        elif s3_coupled_up_with[-1] == "Harry":
+            harry "I'll go"
+    
+    "He grabs a case and looks at the clue."
+    s3_mc "Just read the secret, hun."
 
-Choiceseb "There's a new girl in the Villa..."
--Welcome her with a hug
+    # IF STATEMENT
+    if s3_coupled_up_with[-1] == "Bill":
+        bill "'This girl has only ever had sex while on the water.'"
+    elif s3_coupled_up_with[-1] == "Camilo":
+        camilo "'This girl has been proposed to six times...'"
+    elif s3_coupled_up_with[-1] == "Harry":
+        harry "'This girl has never had sex with the lights off.'"
 
--Try and get in the suitcase
-You run past Miki and attempt to clamber into the large suitcase. You fit perfectly, even standing upright.
-s3_mc "Woah, this thing is huge."
-aj "Yeah, how did they get you on the plane in that thing?"
-Mikiona "I didn't ride in it on the plane, hun. I only just got in it."
-aj "Oh right. Yeah, of course."
+    "The boys go into a huddle."
+    elladine "Oh my gosh, which of you is this about?"
+    "You look around the group. Nobody says anything."
+    aj "Come on, girls. It has to be one of us."
+    "It quickly becomes clear that the clue isn't about any of you."
 
--Roll your eyes and ignore her
+    # IF STATEMENT
+    if s3_coupled_up_with[-1] == "Bill":
+        genevieve "I don't get it. Who could it be?"
+        iona "It's got to be one of us."
+        "A clatter and rattle of wheels grabs everyone's attention as a large suitcase wheels out onto the platform."
+        aj "Oh, wow."
+        aj "That's one huge suitcase."
+        genevieve "I've never seen one that big before..."
+        bill "I got a text!"
+    elif s3_coupled_up_with[-1] == "Camilo":
+        genevieve "I don't get it. Who could it be?"
+        miki "It's got to be one of us."
+        "A clatter and rattle of wheels grabs everyone's attention as a large suitcase wheels out onto the platform."
+        aj "Oh, wow."
+        aj "That's one huge suitcase."
+        genevieve "I've never seen one that big before..."
+        camilo "I got a text!"
+    elif s3_coupled_up_with[-1] == "Harry":
+        miki "I don't get it. Who could it be?"
+        iona "It's got to be one of us."
+        "A clatter and rattle of wheels grabs everyone's attention as a large suitcase wheels out onto the platform."
+        aj "Oh, wow."
+        aj "That's one huge suitcase."
+        miki "I've never seen one that big before..."
+        harry "I got a text!"
+    
 
-aj "Wait, we just had a clue, right? Miki, was it about you?"
-aj "Have you really only ever had sex on water?"
-genevieve "How does that even work?"
-Miki smiles.
-M: I guess we'll have to wait for the boys to guess before we find out, won't we?
-bill "Well, I think I can guess who to kiss now..."
-He takes a step toward her.
+    # TEXT MESSAGE
+    "Islanders, there is an unexpected item in your bagging area. [s3_current_partner], please unzip the case."
+    elladine "Oh my gosh, [s3_current_partner]! Open up the case already!"
+    "[s3_current_partner] tentatively unzips the suitcase."
+    "A stunning woman steps out."
 
-Choiceseb "Miki and Bill are going to kiss"
--Cheer them on
+    # IF STATEMENT
+    if s3_coupled_up_with[-1] == "Bill":
+        miki "Hey, you lot. I'm Miki."
 
--Scream internally, but pretend to be fine
-thought "..."
-thought "This is a disaster!"
-Bill walks over to Miki.
-thought "Why me?"
-iona "You OK hun? You look like you're gritting your teeth a bit..."
-s3_mc "I'm fine! Totally fine."
+        # Profile shot of Miki
+        "Miki\n
+        -21, from Cambridge\n
+        -Lifestyle vlogger\n
+        -Loves it when you smash the subscribe button"
 
--Give her the stink eye
+        "She nods at Bill."
+        miki "Thanks for getting me out of there, Bill."
+        "Genevieve splutters in shock."
+        genevieve "Wait... what? But..."
+        iona "It's a new girl!"
+        "Elladine and Iona run over to hug Miki."
+        elladine "Welcome to the Villa, hun."
+        nicky "Yeah, hey. I hope you weren't stuck in there for long, babe."
+        miki "Nah, just a few minutes."
+    elif s3_coupled_up_with[-1] == "Camilo":
+        Iona "Hey, you lot. I'm Iona."
 
-Bill quickly walks over to Miki and kisses her on the lips tentatively.
-seb "How was it, mate?"
-bill "I'd say that was...maybe the third best kiss I've had today?"
-seb "Wow. You're really cracking on, huh."
-elladine "So, was he right?"
-M: Yeah, it's true.
-M: I love the water.
-M: Oh, I got a text! That was quick.
-Text: Islanders, that's the end of the challenge. Hopefully you've all learnt a little bit more about your fellow Islanders. Now all the dirt is dished, it's time for Miki to go and get to know you all.
-M: Alright! Let's go, huns!
-Miki struts off towards the Villa, and everyone else follows.
-thought "So, now this Miki person is in the mix."
-thought "I should think about how I want to play things with her."
-thought "Do I want to get in her good books early?"
-thought "Or find out her priorities?"
-thought "Maybe I should get to her before the other Islanders do, and get the gossip."
-Choiceseb "Should I get Miki over for a private chat?"
--Spend some time with the new girl (gem choice)
+        # Profile shot of Iona
+        "Iona\n
+        -23, from Aberdeen\n
+        -Apprentice pylon rigger\n
+        -Spends all day making sparks fly"
 
--Don't talk to her
-You watch her walk off with the others.
-thought "Am I sure about this? It might be my last chance..."
-Choiceseb "Should I get to know Miki before the others do?"
--Spend some time with the new girl (gem choice)
+        "She nods at Camilo."
+        iona "Thanks for getting me out of there, Camilo."
+        "miki splutters in shock."
+        miki "Wait... what? But..."
+        genevieve "It's a new girl!"
+        "Elladine and Genevieve run over to hug Iona."
+        elladine "Welcome to the Villa, hun."
+        nicky "Yeah, hey. I hope you weren't stuck in there for long, babe."
+        iona "Nah, just a few minutes."
+    elif s3_coupled_up_with[-1] == "Harry":
+        genevieve "Hey, you lot. I'm Genevieve."
 
--Don't talk to her
-thought "Nah, I'm not bothered."
-thought "I'll just get to know her with the others."
+        # Profile shot of Genevieve
+        "Genevieve\n
+        -26, from Gastonbury\n
+        -Junior doctor\n
+        -Wants to crowd surf into your heart"
 
-You and the other Islanders are lounging by the pool.
-bill "By the way. I never got the chance to say it earlier, but I absolutely love the swimsuit. "
-bill "It looks so good on you. (you get 🤩 with Bill)"
-s3_mc "Thanks!"
-iona "So, everyone's dirties are out now..."
-iona "And now Miki is here."
-Miki does a little wave.
-M: Yeah, it's me.
-harry "So much has happened, in so little time!"
-harry "I feel like we're already a solid group."
-iona "I know, right? It's all going down."
-iona "Pretending to be a waitress..."
-nicky "I can't believe Miki's secret."
-bill "Yeah, did you, like, live on a boat or something?"
-M: Yeah, I do actually.
-bill "Oh, woah. That makes more sense now."
-nicky "I thought it was a great clue."
-seb "Yeah, same."
-seb "Shows you've got good life experiences and all that."
+        "She nods at Harry."
+        genevieve "Thanks for getting me out of there, Harry."
+        "Miki splutters in shock."
+        miki "Wait... what? But..."
+        iona "It's a new girl!"
+        "Elladine and Iona run over to hug Genevieve."
+        elladine "Welcome to the Villa, hun."
+        nicky "Yeah, hey. I hope you weren't stuck in there for long, babe."
+        genevieve "Nah, just a few minutes."
 
-Choiceseb "What do I think about Miki's clue?"
--I can't wait to get to know Miki!
-s3_mc "You sound right up my street, Miki."
-s3_mc "I can't wait to get to know you!"
-M: Aw, thanks, MC.
--It doesn't say much about her
--I don't believe Miki at all
+    # CHOICE
+    menu:
+        "There's a new girl in the Villa..."
+        "Welcome her with a hug":
+            if s3_coupled_up_with[-1] == "Bill":
+                "You walk over and hug Miki."
+                miki "Aw, thanks girls!"
+                miki "It's so nice to be so welcomed."
+            elif s3_coupled_up_with[-1] == "Camilo":
+                "You walk over and hug Iona."
+                iona "Aw, thanks girls!"
+                iona "It's so nice to be so welcomed."
+            elif s3_coupled_up_with[-1] == "Harry":
+                "You walk over and hug Genevieve."
+                genevieve "Aw, thanks girls!"
+                genevieve "It's so nice to be so welcomed."
+            
+        "Try and get in the suitcase":
+            if s3_coupled_up_with[-1] == "Bill":
+                "You run past Miki and attempt to clamber into the large suitcase. You fit perfectly, even standing upright."
+                s3_mc "Woah, this thing is huge."
+                aj "Yeah, how did they get you on the plane in that thing?"
+                miki "I didn't ride in it on the plane, hun. I only just got in it."
+                aj "Oh right. Yeah, of course."
+            elif s3_coupled_up_with[-1] == "Camilo":
+                "You run past Iona and attempt to clamber into the large suitcase. You fit perfectly, even standing upright."
+                s3_mc "Woah, this thing is huge."
+                aj "Yeah, how did they get you on the plane in that thing?"
+                iona "I didn't ride in it on the plane, hun. I only just got in it."
+                aj "Oh right. Yeah, of course."
+            elif s3_coupled_up_with[-1] == "Harry":
+                "You run past Genevieve and attempt to clamber into the large suitcase. You fit perfectly, even standing upright."
+                s3_mc "Woah, this thing is huge."
+                aj "Yeah, how did they get you on the plane in that thing?"
+                genevieve "I didn't ride in it on the plane, hun. I only just got in it."
+                aj "Oh right. Yeah, of course."
 
-iona "For real though Miki, you definitely made an entrance."
-iona "Maybe we should all arrive in suitcases next time!"
-M: Yeah, I thought it was a bit out there at first but it was actually really fun.
-genevieve "It worked really well."
-M: I can't believe all this.
-She gestures to the Villa.
-M: It's amazing, isn't it?
-aj "Yeah, I'm still getting used to all this."
-elladine "We'll all settle in soon enough."
-camilo "Once we have, like, proper meal together."
-camilo "Then it'll feel like home."
-camilo "Food is the way to my heart..."
-aj "As long as I haven't cooked it, then a good meal is exactly what we need."
-genevieve "Yeah, and hopefully Elladine doesn't burn the kitchen down!"
+        "Roll your eyes and ignore her":
+            "You roll your eyes. "
+            thought "I totally didn't see that coming."
+            "You stare at the ground as the other girls crowd around her."
 
-Choiceseb "Is food the way to my heart?"
--Of course! Food makes the heart grow fonder
--Nah, I'm more of a drinks gal
+    # IF STATEMENT
+    if s3_coupled_up_with[-1] == "Bill":
+        aj "Wait, we just had a clue, right? Miki, was it about you?"
+        aj "Have you really only ever had sex on water?"
+        genevieve "How does that even work?"
+        "Miki smiles."
+        miki "I guess we'll have to wait for the boys to guess before we find out, won't we?"
+        bill "Well, I think I can guess who to kiss now..."
+        "He takes a step toward her."
+        # CHOICE
+        menu:
+            "Miki and Bill are going to kiss"
+            "Cheer them on":
+                s3_mc "Woo! Get in there, [s3_current_partner]."
+                "He smiles at you."
+            "Scream internally, but pretend to be fine":
+                thought "..."
+                thought "This is a disaster!"
+                "Bill walks over to Miki."
+                thought "Why me?"
+                iona "You OK hun? You look like you're gritting your teeth a bit..."
+                s3_mc "I'm fine! Totally fine."
+            "Give her the stink eye":
+                "You glare at Miki with menacing eyes."
+                bill "Chill out, [s3_mc_name]."
+                bill "It's just a kiss."
 
--As long as I'm eating it off Bill's body
-elladine "Woha, MC!"
-thought "Did I say that out loud?"
-Bill blushes, but grins excitedly.
-bill "You sure did..."
-M: Oh, that's mine.
-Text: Miki, it's time for you to decide who to couple up with. All Islanders, please gather at the fire pit for the recoupling.
-#chooseyourmatch #dontlookback
-Miki looks around the group with a cheeky glint in her eye.
-elladine "Who are you going to choose?"
+        # IF STATEMENT
+        if s3e1p1_cheeky_snog:
+            "Bill quickly walks over to Miki and kisses her on the lips tentatively."
+            seb "How was it, mate?"
+            bill "I'd say that was...maybe the third best kiss I've had today?"
+            seb "Wow. You're really cracking on, huh."
+        else:
+            "Bill and Miki kiss. It feels like it lasts forever."
+            "They finally pull away."
 
-"Who knows, Elladine?"
-"Who knows...?"
-"Well, I guess Miki does."
-"Remind me not to let those lot in the kitchen."
-" Especially that Elladine and AJ. They're fire hazards."
-"I don't know how I'd actually stop them. I can't leave this shed."
-"Maybe if I shout loud enough."
-"Coming up..."
-"The Islanders get their graft on."
-genevieve "Single and ready to mingle, eh?"
-iona "Guess we'll need to keep a close eye on you."
-"And the power is in Miki's hands."
-M: But, ultimately, I do have to make a choice and so...
+        elladine "So, was he right?"
+        miki "Yeah, it's true."
+        miki "I love the water."
+        miki "Oh, I got a text! That was quick."
+        # Text Message 
+        "Islanders, that's the end of the challenge. Hopefully you've all learnt a little bit more about your fellow Islanders. Now all the dirt is dished, it's time for Miki to go and get to know you all."
+        miki "Alright! Let's go, huns!"
+    elif s3_coupled_up_with[-1] == "Camilo":
+        aj "Wait, we just had a clue, right? Iona, was it about you?"
+        aj "Did you really get proposed six times?"
+        miki "Juicy!"
+        "Iona smiles."
+        iona "I guess we'll have to wait for the boys to guess before we find out, won't we?"
+        camilo "Well, I think I can guess who to kiss now..."
+        "He takes a step toward her."
+        # CHOICE
+        menu:
+            "Iona and Camilo are going to kiss"
+            "Cheer them on":
+                s3_mc "Woo! Get in there, [s3_current_partner]."
+                "He smiles at you."
+            "Scream internally, but pretend to be fine":
+                thought "..."
+                thought "This is a disaster!"
+                "Camilo walks over to Iona."
+                thought "Why me?"
+                genevieve "You OK hun? You look like you're gritting your teeth a bit..."
+                s3_mc "I'm fine! Totally fine."
+            "Give her the stink eye":
+                "You glare at Iona with menacing eyes."
+                camilo "Chill out, [s3_mc_name]."
+                camilo "It's just a kiss."
+        # IF STATEMENT
+        if s3e1p1_cheeky_snog:
+            "Camilo quickly walks over to Iona and kisses her on the lips tentatively."
+            seb "How was it, mate?"
+            camilo "I'd say that was...maybe the third best kiss I've had today?"
+            seb "Wow. You're really cracking on, huh."
+        else:
+            "Camilo and Iona kiss. It feels like it lasts forever."
+            "They finally pull away."
+        elladine "So, was he right?"
+        iona "Yeah, it's true."
+        iona "I can't help it, people just always seem to want to marry me."
+        iona "Oh, I got a text! That was quick."
+        # Text Message 
+        "Islanders, that's the end of the challenge. Hopefully you've all learnt a little bit more about your fellow Islanders. Now all the dirt is dished, it's time for Iona to go and get to know you all."
+        iona "Alright! Let's go, huns!"
+    elif s3_coupled_up_with[-1] == "Harry":
+        aj "Wait, we just had a clue, right? Miki, was it about you?"
+        aj "Have you really never ever had sex with the lights off?"
+        aj "Do you only do it in the day or something?"
+        "Genevieve smiles."
+        genevieve "I guess we'll have to wait for the boys to guess before we find out, won't we?"
+        harry "Well, I think I can guess who to kiss now..."
+        "He takes a step toward her."
+        # CHOICE
+        menu:
+            "Genevieve and Harry are going to kiss"
+            "Cheer them on":
+                s3_mc "Woo! Get in there, [s3_current_partner]."
+                "He smiles at you."
+            "Scream internally, but pretend to be fine":
+                thought "..."
+                thought "This is a disaster!"
+                "Harry walks over to Genevieve."
+                thought "Why me?"
+                iona "You OK hun? You look like you're gritting your teeth a bit..."
+                s3_mc "I'm fine! Totally fine."
+            "Give her the stink eye":
+                "You glare at Genevieve with menacing eyes."
+                harry "Chill out, [s3_mc_name]."
+                harry "It's just a kiss."
+
+        # IF STATEMENT
+        if s3e1p1_cheeky_snog:
+            "Harry quickly walks over to Genevieve and kisses her on the lips tentatively."
+            seb "How was it, mate?"
+            harry "I'd say that was...maybe the third best kiss I've had today?"
+            seb "Wow. You're really cracking on, huh."
+        else:
+            "Harry and Genevieve kiss. It feels like it lasts forever."
+            "They finally pull away."
+        elladine "So, was he right?"
+        genevieve "Yeah, it's true."
+        genevieve "What can I say."
+        genevieve "I like to be able to see the action..."
+        genevieve "Oh, I got a text! That was quick."
+        # Text Message 
+        "Islanders, that's the end of the challenge. Hopefully you've all learnt a little bit more about your fellow Islanders. Now all the dirt is dished, it's time for Genevieve to go and get to know you all."
+        genevieve "Alright! Let's go, huns!"
+
+    "[s3_3rd_girl[s3_current_partner]] struts off towards the Villa, and everyone else follows."
+    thought "So, now this [s3_3rd_girl[s3_current_partner]] person is in the mix."
+    thought "I should think about how I want to play things with her."
+    thought "Do I want to get in her good books early?"
+    thought "Or find out her priorities?"
+    thought "Maybe I should get to her before the other Islanders do, and get the gossip."
+    
+    # CHOICE
+    menu:
+    "Should I get [s3_3rd_girl[s3_current_partner]] over for a private chat?"
+    "Spend some time with the new girl":
+        $ s3e1p2_talk_to_new_girl = True
+        call s3e1p2_talk_to_new_girl
+    "Don't talk to her":
+        $ s3e1p2_talk_to_new_girl = False
+        "You watch her walk off with the others."
+        thought "Nah, I'm not bothered."
+        thought "I'll just get to know her with the others."
+
+    "You and the other Islanders are lounging by the pool."
+    # IF STATEMENT
+    if s3_current_outfit in s3_npc_preferred_outfits:
+        if s3_coupled_up_with[-1] == "Bill":
+            bill "By the way. I never got the chance to say it earlier, but I absolutely love the swimsuit."
+            bill "It looks so good on you."
+        elif s3_coupled_up_with[-1] == "Camilo":
+            camilo "By the way. I never got the chance to say it earlier, but I absolutely love the swimsuit."
+            camilo "It looks so good on you."
+        elif s3_coupled_up_with[-1] == "Harry":
+            harry "By the way. I never got the chance to say it earlier, but I absolutely love the swimsuit."
+            harry "It looks so good on you."
+    else:
+        if s3_coupled_up_with[-1] == "Bill":
+            bill "Call me shallow, but I love how good you look, [s3_mc_name]."
+            bill "Even in your lowkey getup."
+        elif s3_coupled_up_with[-1] == "Camilo":
+            camilo "Call me shallow, but I love how good you look, [s3_mc_name]."
+            camilo "Even in your lowkey getup."
+        elif s3_coupled_up_with[-1] == "Harry":
+            harry "Call me shallow, but I love how good you look, [s3_mc_name]."
+            harry "Even in your lowkey getup."
+
+    s3_mc "Thanks!"
+
+    # IF STATEMENT
+    if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Harry":
+        iona "So, everyone's dirties are out now..."
+        iona "And now [s3_3rd_girl[s3_current_partner]] is here."
+    elif s3_coupled_up_with[-1] == "Camilo":
+        genevieve "So, everyone's dirties are out now..."
+        genevieve "And now [s3_3rd_girl[s3_current_partner]] is here."
+
+    "[s3_3rd_girl[s3_current_partner]] does a little wave."
+
+    # IF STATEMENT
+    if s3_coupled_up_with[-1] == "Bill":
+        miki "Yeah, it's me."
+    elif s3_coupled_up_with[-1] == "Camilo":
+        iona "Yeah, it's me."
+    elif s3_coupled_up_with[-1] == "Harry":
+        genevieve "Yeah, it's me."
+
+    harry "So much has happened, in so little time!"
+    harry "I feel like we're already a solid group."
+
+    # IF STATEMENT
+    if s3_coupled_up_with[-1] == "Bill":
+        iona "I know, right? It's all going down."
+        iona "Pretending to be a waitress..."
+        if s3e1p2_camilos_clue:
+            "She winks at you and Genevieve."
+    elif s3_coupled_up_with[-1] == "Camilo" or s3_coupled_up_with[-1] == "Harry":
+        genevieve "I know, right? It's all going down."
+        genevieve "Embarrassing sexy dances..."
+        if s3e1p2_camilos_clue:
+            "She winks at you and Miki."
+
+    # IF STATEMENT
+    if s3_coupled_up_with[-1] == "Bill":
+        nicky "I can't believe Miki's secret."
+        bill "Yeah, did you, like, live on a boat or something?"
+        miki "Yeah, I do actually."
+        bill "Oh, woah. That makes more sense now."
+    elif s3_coupled_up_with[-1] == "Camilo":
+        nicky "I can't believe Iona's secret."
+        camilo "You must have seen, like, all the cheesy proposals."
+        iona "Yeah, I've seen them all."
+        iona "One guy even flew a plane with a message on a banner."
+        camilo "Oh, wow."
+        "She shrugs."
+        iona "He flew the wrong way."
+        iona "So my name read 'ANOI'. He was so embarrassed."
+    elif s3_coupled_up_with[-1] == "Harry":
+        nicky "I can't believe Genevieve's secret."
+        harry "Yeah, like you've never turned off the lights?"
+        genevieve "Nope... never."
+        genevieve "I like to be able to see what's happening."
+        
+    nicky "I thought it was a great clue."
+    seb "Yeah, same."
+    seb "Shows you've got good life experiences and all that."
+
+    # CHOICE
+    menu:
+        "What do I think about [s3_3rd_girl[s3_current_partner]]'s clue?"
+        "I can't wait to get to know [s3_3rd_girl[s3_current_partner]]!":
+            s3_mc "You sound right up my street, [s3_3rd_girl[s3_current_partner]]."
+            s3_mc "I can't wait to get to know you!"
+            if s3_coupled_up_with[-1] == "Bill":
+                miki "Aw, thanks, [s3_mc_name]."
+            elif s3_coupled_up_with[-1] == "Camilo":
+                iona "Aw, thanks, [s3_mc_name]."
+            elif s3_coupled_up_with[-1] == "Harry":
+                genevieve "Aw, thanks, [s3_mc_name]."
+        "It doesn't say much about her":
+            s3_mc "Is it, like, the best reflection of your personality?"
+            if s3_coupled_up_with[-1] == "Bill":
+                miki "Um... no, probably not."
+            elif s3_coupled_up_with[-1] == "Camilo":
+                iona "Um... no, probably not."
+            elif s3_coupled_up_with[-1] == "Harry":
+                genevieve "Um... no, probably not."
+            nicky "I think it's a proper funny place to start though."
+        "I don't believe [s3_3rd_girl[s3_current_partner]] at all":
+            s3_mc "I don't believe you, [s3_3rd_girl[s3_current_partner]]."
+            nicky "Why would she make that up?"
+            "You shrug."
+            s3_mc "It's a game."
+            if s3_coupled_up_with[-1] == "Bill":
+                genevieve "Yeah you've got to stand out."
+            elif s3_coupled_up_with[-1] == "Camilo" or s3_coupled_up_with[-1] == "Harry":
+                miki "Yeah you've got to stand out."
+            nicky "Yeah, authentically."
+            if s3_coupled_up_with[-1] == "Bill":
+                miki "It's also a bit of a specific thing to lie about..."
+            elif s3_coupled_up_with[-1] == "Camilo":
+                iona "It's also a bit of a specific thing to lie about..."
+            elif s3_coupled_up_with[-1] == "Harry":
+                genevieve "It's also a bit of a specific thing to lie about..."
+            s3_mc "Hmm..."
+
+    # IF STATEMENT
+    if s3_coupled_up_with[-1] == "Bill":
+        iona "For real though Miki, you definitely made an entrance."
+        iona "Maybe we should all arrive in suitcases next time!"
+        miki "Yeah, I thought it was a bit out there at first but it was actually really fun."
+        miki "I can't believe all this."
+        "She gestures to the Villa."
+        miki "It's amazing, isn't it?"
+    elif s3_coupled_up_with[-1] == "Camilo":
+        genevieve "For real though Miki, you definitely made an entrance."
+        genevieve "Maybe we should all arrive in suitcases next time!"
+        iona "Yeah, I thought it was a bit out there at first but it was actually really fun."
+        iona "This place is bigger than I thought it would be!"
+    elif s3_coupled_up_with[-1] == "Harry":
+        iona "For real though Miki, you definitely made an entrance."
+        iona "Maybe we should all arrive in suitcases next time!"
+        genevieve "It worked really well."
+        genevieve "It's so cool to be finally here."
+        genevieve "I really needed a holiday."
+
+    aj "Yeah, I'm still getting used to all this."
+    elladine "We'll all settle in soon enough."
+    camilo "Once we have, like, proper meal together."
+    camilo "Then it'll feel like home."
+    camilo "Food is the way to my heart..."
+    aj "As long as I haven't cooked it, then a good meal is exactly what we need."
+
+    if s3e1p2_set_fire:
+        genevieve "Yeah, and hopefully [s3_mc_name] doesn't burn the kitchen down!"
+    else:
+        genevieve "Yeah, and hopefully Elladine doesn't burn the kitchen down!"
+
+    # CHOICE
+    menu:
+        "Is food the way to my heart?"
+    "Of course! Food makes the heart grow fonder":
+        harry "I'm pretty sure it's absence makes the heart fonder."
+        bill "Come on, [s3_mc_name] is right."
+        bill "Food is the real key to it."
+    "Nah, I'm more of a drinks gal":
+        s3_mc "Give me a good bottle and I'm happy."
+        bill "Nah, you can't beat a good piece of toast."
+    "As long as I'm eating it off [s3_current_partner]'s body"
+        elladine "Woah, [s3_mc_name]!"
+        thought "Did I say that out loud?"
+        if s3_coupled_up_with[-1] == "Bill":
+            "Bill blushes, but grins excitedly."
+            bill "You sure did..."
+        elif s3_coupled_up_with[-1] == "Camilo":
+            "Camilo blushes, but grins excitedly."
+            camilo "You sure did..."
+        elif s3_coupled_up_with[-1] == "Harry":
+            "Harry blushes, but grins excitedly."
+            harry "You sure did..."
+
+    # IF STATEMENT
+    if s3_coupled_up_with[-1] == "Bill":
+        miki "Oh, that's mine."
+    elif s3_coupled_up_with[-1] == "Camilo":
+        iona "Oh, that's mine."
+    elif s3_coupled_up_with[-1] == "Harry":
+        genevieve "Oh, that's mine."
+    
+    # Text Message
+    "[s3_3rd_girl[s3_current_partner]], it's time for you to decide who to couple up with. All Islanders, please gather at the fire pit for the recoupling. #chooseyourmatch #dontlookback"
+    "[s3_3rd_girl[s3_current_partner]] looks around the group with a cheeky glint in her eye."
+    elladine "Who are you going to choose?"
+
+    "Who knows, Elladine?"
+    "Who knows...?"
+    if s3e1p2_talk_to_new_girl:
+        "Well, I guess [s3_mc_name] does."
+    else:
+        "Well, I guess [s3_3rd_girl[s3_current_partner]] does."
+    "Remind me not to let those lot in the kitchen."
+    if s3e1p2_set_fire:
+    "Especially that [s3_mc_name] and AJ. They're fire hazards."
+    else:
+        "Especially that Elladine and AJ. They're fire hazards."
+    "I don't know how I'd actually stop them. I can't leave this shed."
+    "Maybe if I shout loud enough."
+    "Coming up..."
+    "The Islanders get their graft on."
+    if s3_coupled_up_with[-1] == "Bill":
+        genevieve "Single and ready to mingle, eh?"
+        iona "Guess we'll need to keep a close eye on you."
+        "And the power is in Miki's hands."
+        miki "But, ultimately, I do have to make a choice and so..."
+    elif s3_coupled_up_with[-1] == "Camilo":
+        miki "Single and ready to mingle, eh?"
+        genevieve "Guess we'll need to keep a close eye on you."
+        "And the power is in Miki's hands."
+        iona "But, ultimately, I do have to make a choice and so..."
+    elif s3_coupled_up_with[-1] == "Harry":
+        miki "Single and ready to mingle, eh?"
+        iona "Guess we'll need to keep a close eye on you."
+        "And the power is in Miki's hands."
+        genevieve "But, ultimately, I do have to make a choice and so..."
+
+label s3e1p2_talk_to_new_girl:
+    thought "Yeah, I'll call her over for a chat."
+    s3_mc "Hey [s3_3rd_girl[s3_current_partner]]."
+    "She peels away from the others and walks over to you."
+    if s3_coupled_up_with[-1] == "Bill":
+        miki "Hey, hun."
+        miki "You all right?"
+        s3_mc "Yeah, I thought I'd see if you wanted to have a chat?"
+        s3_mc "Girl to girl."
+        miki "I'd love to."
+        miki "Roof terrace? I've been dying to check it out."
+        s3_mc "Great idea."
+        "You and [s3_3rd_girl[s3_current_partner]] sit beside each other on the roof."
+        miki "Thanks for this."
+        miki "Like, I was so worried coming in later."
+        miki "Because everyone else has had a chance to couple up and meet each other first."
+        # CHOICE
+        menu:
+        "[s3_3rd_girl[s3_current_partner]] was worried about coming in late..."
+        "You don't need to worry":
+            s3_mc "Everyone seems pretty chill."
+            s3_mc "Plus, we've only been here for a few hours!"
+            miki "That's true, yeah."
+            miki "You're so right."
+        "I've got your back":
+            miki "Really?"
+            s3_mc "Always."
+        "I would have been terrified":
+            miki "I was proper worried."
+
+        miki "I literally live on a boat, but when I got out of that suitcase I felt so unsteady on my legs."
+        s3_mc "Yeah, it's a pretty surreal experience."
+        s3_mc "But it'll be fun, you'll see."
+        miki "For sure."
+        miki "I'm so glad you called me over."
+        miki "I wanted to talk to you about who I'm crushing on right now."
+        s3_mc "Oh, yeah?"
+        miki "Yeah, you see..."
+        "She looks down, then up again."
+        miki "I'm actually really attracted to Bill."
+        
+        # CHOICE
+        menu:
+        "[s3_3rd_girl[s3_current_partner]] is into [s3_current_partner]!"
+        "I totally saw that coming":
+            miki "You did?"
+            s3_mc "Yeah, I had a hunch."
+        "Yeah, I don't blame you! He's gorgeous":
+            miki "He is, isn't he?"
+            miki "And a sweetheart as well."
+        "But I'm with him!":
+            miki "I know, I know."
+
+        miki "That's why I wanted to talk to you."
+        miki "Right now, if I had to couple up with someone, I'd for sure pick Camilo/Harry/Bill."
+        miki "I've got to choose someone so I wanted to be super upfront with you about it."
+        miki "I know it's early days..."
+        s3_mc "It's only been a few hours."
+        miki "...but feelings get so magnified in here."
+
+        # CHOICE
+        menu:
+        "How do I feel about the idea of [s3_3rd_girl[s3_current_partner]] picking [s3_current_partner]?"
+        "I'd be OK about it":
+            miki "Really?"
+            s3_mc "Yeah, like you said, early days."
+        "At least you told me":
+            miki "I thought it was the best thing to do."
+        "I'd be annoyed":
+            miki "Oh, really?"
+            s3_mc "Yeah."
+            miki "Well, I'm sorry you feel like that."
+            miki "I hope we can move past, like, whatever happens."
+            miki "If it happens."
+
+        miki "I've got no clue whatsoever how he feels about me."
+        miki "But I really wanted to talk to you about it."
+        miki "So, thank you for taking the time to talk to me..."
+        miki "It means a lot."
+        miki "We should get back to the others."
+        "You both head down from the roof terrace."
+    elif s3_coupled_up_with[-1] == "Camilo":
+        iona "Hey, hun."
+        iona "You all right?"
+        s3_mc "Yeah, I thought I'd see if you wanted to have a chat?"
+        s3_mc "Girl to girl."
+        iona "I'd love to."
+        iona "Roof terrace? I've been dying to check it out."
+        s3_mc "Great idea."
+        "You and [s3_3rd_girl[s3_current_partner]] sit beside each other on the roof."
+        iona "Thanks for this."
+        iona "Like, I was so worried coming in later."
+        iona "Because everyone else has had a chance to couple up and meet each other first."
+        # CHOICE
+        menu:
+        "[s3_3rd_girl[s3_current_partner]] was worried about coming in late..."
+        "You don't need to worry":
+            s3_mc "Everyone seems pretty chill."
+            s3_mc "Plus, we've only been here for a few hours!"
+            iona "That's true, yeah."
+            iona "You're so right."
+        "I've got your back":
+            iona "Really?"
+            s3_mc "Always."
+        "I would have been terrified":
+            iona "I was proper worried."
+
+        iona "I work on pylons, like, they're proper high and it can get kinda windy."
+        iona "But that doesn't scare me."
+        iona "But coming onto this..."
+        iona "Mate, I was terrified."
+        s3_mc "Yeah, it's a pretty surreal experience."
+        s3_mc "But it'll be fun, you'll see."
+        iona "For sure."
+        iona "I'm so glad you called me over."
+        iona "I actually really wanted to chat with you about who I'm keen on."
+        s3_mc "Oh, yeah?"
+        iona "Yeah, you see..."
+        "She looks down, then up again."
+        iona "When I look at the boys, the one who really makes me go 'he's my type' is Camilo."
+        iona "He's banging."
+        
+        # CHOICE
+        menu:
+        "[s3_3rd_girl[s3_current_partner]] is into [s3_current_partner]!"
+        "I totally saw that coming":
+            iona "You did?"
+            s3_mc "Yeah, I had a hunch."
+        "Yeah, I don't blame you! He's gorgeous":
+            iona "He is, isn't he?"
+            iona "And a sweetheart as well."
+        "But I'm with him!":
+            iona "I know, I know."
+
+        iona "That's why I wanted to talk to you."
+        iona "Right now, if I had to couple up with someone, I'd for sure pick Camilo/Harry/Bill."
+        iona "I've got to choose someone so I wanted to be super upfront with you about it."
+        iona "I know it's early days..."
+        s3_mc "It's only been a few hours."
+        iona "...but feelings get so magnified in here."
+
+        # CHOICE
+        menu:
+        "How do I feel about the idea of [s3_3rd_girl[s3_current_partner]] picking [s3_current_partner]?"
+        "I'd be OK about it":
+            iona "Really?"
+            s3_mc "Yeah, like you said, early days."
+        "At least you told me":
+            iona "I thought it was the best thing to do."
+        "I'd be annoyed":
+            iona "Oh, really?"
+            s3_mc "Yeah."
+            iona "Well, I'm sorry you feel like that."
+            iona "I hope we can move past, like, whatever happens."
+            iona "If it happens."
+
+        iona "And also, I don't know if he likes me the same way."
+        iona "But I really wanted to talk to you about it."
+        iona "So, thank you for taking the time to talk to me..."
+        iona "It means a lot."
+        iona "We should get back to the others."
+        "You both head down from the roof terrace."
+    elif s3_coupled_up_with[-1] == "Harry":
+        genevieve "Hey, hun."
+        genevieve "You all right?"
+        s3_mc "Yeah, I thought I'd see if you wanted to have a chat?"
+        s3_mc "Girl to girl."
+        genevieve "I'd love to."
+        genevieve "Roof terrace? I've been dying to check it out."
+        s3_mc "Great idea."
+        "You and [s3_3rd_girl[s3_current_partner]] sit beside each other on the roof."
+        genevieve "Thanks for this."
+        genevieve "Like, I was so worried coming in later."
+        genevieve "Because everyone else has had a chance to couple up and meet each other first."
+        # CHOICE
+        menu:
+        "[s3_3rd_girl[s3_current_partner]] was worried about coming in late..."
+        "You don't need to worry":
+            s3_mc "Everyone seems pretty chill."
+            s3_mc "Plus, we've only been here for a few hours!"
+            genevieve "That's true, yeah."
+            genevieve "You're so right."
+        "I've got your back":
+            genevieve "Really?"
+            s3_mc "Always."
+        "I would have been terrified":
+            genevieve "I was proper worried."
+
+        
+        genevieve "I mean, I'm used to huge crowds and dealing with sick people and all this intense stuff, from work."
+        genevieve "But this was so beyond that."
+        genevieve "Also that suitcase was kinda dark which freaked me out a bit."
+        genevieve "Luckily I wasn't in there for long."
+        s3_mc "Yeah, it's a pretty surreal experience."
+        s3_mc "But it'll be fun, you'll see."
+        genevieve "For sure."
+        genevieve "I'm so glad you called me over."
+        genevieve "I wanted to say, I'm actually low-key into someone already."
+        s3_mc "Oh, yeah?"
+        genevieve "Yeah, you see..."
+        "She looks down, then up again."
+        genevieve "Harry is definitely a bit of me."
+    
+        # CHOICE
+        menu:
+        "[s3_3rd_girl[s3_current_partner]] is into [s3_current_partner]!"
+        "I totally saw that coming":
+            genevieve "You did?"
+            s3_mc "Yeah, I had a hunch."
+        "Yeah, I don't blame you! He's gorgeous":
+            genevieve "He is, isn't he?"
+            genevieve "And a sweetheart as well."
+        "But I'm with him!":
+            genevieve "I know, I know."
+
+        genevieve "That's why I wanted to talk to you."
+        genevieve "Right now, if I had to couple up with someone, I'd for sure pick Camilo/Harry/Bill."
+        genevieve "I've got to choose someone so I wanted to be super upfront with you about it."
+        genevieve "I know it's early days..."
+        s3_mc "It's only been a few hours."
+        genevieve "...but feelings get so magnified in here."
+
+        # CHOICE
+        menu:
+        "How do I feel about the idea of [s3_3rd_girl[s3_current_partner]] picking [s3_current_partner]?"
+        "I'd be OK about it":
+            genevieve "Really?"
+            s3_mc "Yeah, like you said, early days."
+        "At least you told me":
+            genevieve "I thought it was the best thing to do."
+        "I'd be annoyed":
+            genevieve "Oh, really?"
+            s3_mc "Yeah."
+            genevieve "Well, I'm sorry you feel like that."
+            genevieve "I hope we can move past, like, whatever happens."
+            genevieve "If it happens."
+
+        genevieve "I've no idea how he feels, like."
+        genevieve "But I really wanted to talk to you about it."
+        genevieve "So, thank you for taking the time to talk to me..."
+        genevieve "It means a lot."
+        genevieve "We should get back to the others."
+        "You both head down from the roof terrace."
 
 
 
@@ -2313,209 +3228,552 @@ M: But, ultimately, I do have to make a choice and so...
 ## Episode 1, Part 3
 #########################################################################
 label s3e1p3:
-Stick the Landing - New Rules  Day 1 Part  3/3
-"Welcome back..."
-"To Love Island!"
-"In an absolutely shocking twist that literally no one could have predicted..."
-"Another girl has already entered the Villa!"
-M: Hey, you lot. I'm Miki.
-M: Thanks for getting me out of there.
-"Ladies, hide your men, this one's coming for them..."
-"Though it'll be hard to hide them in a Villa covered in cameras..."
-"Maybe if they put the sheets over their heads and pretend to be ghosts?"
-"Or stand really still and pretend to be statues?"
-"I don't know. I've never played a game of Hide and Seek in my life."
-"Coming up!"
-"Bill gets cheesy..."
-bill "I don't know about the rest of you, but I'm cream-crackered."
-"And Miki takes her pick..."
-M: The guy I'd like to couple up with is...
+    "Welcome back..."
+    "To Love Island!"
+    "In an absolutely shocking twist that literally no one could have predicted..."
+    "Another girl has already entered the Villa!"
+    if s3_coupled_up_with[-1] == "Bill":
+        miki "Hey, you lot. I'm Miki."
+        miki "Thanks for getting me out of there."
+    elif s3_coupled_up_with[-1] == "Camilo":
+        iona "Hey, you lot. I'm Miki."
+        iona "Thanks for getting me out of there."
+    elif s3_coupled_up_with[-1] == "Harry":
+        genevieve "Hey, you lot. I'm Miki."
+        genevieve "Thanks for getting me out of there."
+    "Ladies, hide your men, this one's coming for them..."
+    "Though it'll be hard to hide them in a Villa covered in cameras..."
+    "Maybe if they put the sheets over their heads and pretend to be ghosts?"
+    "Or stand really still and pretend to be statues?"
+    "I don't know. I've never played a game of Hide and Seek in my life."
+    "Coming up!"
+    "Bill gets cheesy..."
+    bill "I don't know about the rest of you, but I'm cream-crackered."
+    if s3_coupled_up_with[-1] == "Bill":
+        "And Miki takes her pick..."
+        miki "The guy I'd like to couple up with is..."
+    elif s3_coupled_up_with[-1] == "Camilo":
+        "And Iona takes her pick..."
+        iona "The guy I'd like to couple up with is..."
+    elif s3_coupled_up_with[-1] == "Harry":
+        "And Genevieve takes her pick..."
+        genevieve "The guy I'd like to couple up with is..."
 
-The dressing room is a flurry of activity as the girls ready themselves for Miki's decision.
-iona "It's so weird knowing that Miki's just stood by the firepit waiting for us."
-genevieve "Waiting for the guys more like."
-elladine "Yeah. It really didn't take long for the drama to start."
-genevieve "Tell me about it! I thought we'd at least have a day or something."
-iona "Well, we kind of did."
-aj "Can you pass me my lipstick, Ella, babes."
-elladine "Of course hun."
-aj "Thanks! Miki's super fit, don't you think?"
+    "The dressing room is a flurry of activity as the girls ready themselves for [s3_3rd_girl[s3_current_partner]]'s decision."
+    # IF STATEMENT
+    if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Harry":
+        iona "It's so weird knowing that [s3_3rd_girl[s3_current_partner]]'s just stood by the firepit waiting for us."
+    elif s3_coupled_up_with[-1] == "Camilo":
+        genevieve "It's so weird knowing that [s3_3rd_girl[s3_current_partner]]'s just stood by the firepit waiting for us."
+    
+    if s3_coupled_up_with[-1] == "Bill":
+        genevieve "Waiting for the guys more like."
+        elladine "Yeah. It really didn't take long for the drama to start."
+        genevieve "Tell me about it! I thought we'd at least have a day or something."
+    elif s3_coupled_up_with[-1] == "Camilo" or s3_coupled_up_with[-1] == "Harry":
+        miki "Waiting for the guys more like."
+        elladine "Yeah. It really didn't take long for the drama to start."
+        miki "Tell me about it! I thought we'd at least have a day or something."
 
-Choiceseb "Miki is..."
--Almost too good looking
-elladine "Yeah..."
+    if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Harry":
+        iona "Well, we kind of did."
+    elif s3_coupled_up_with[-1] == "Camilo":
+        genevieve "Well, we kind of did."
+    
+    aj "Can you pass me my lipstick, Ella, babes."
+    elladine "Of course hun."
+    aj "Thanks! [s3_3rd_girl[s3_current_partner]]'s super fit, don't you think?"
 
--Not really all that
+    # CHOICE
+    menu:
+        "[s3_3rd_girl[s3_current_partner]] is..."
+        "Almost too good looking":
+            elladine "Yeah..."
+        "Not really all that":
+            elladine "I don't know how you can say that?"
+        "Not as fit as me":
+            elladine "You're both gorgeous."
 
--Not as fit as me
-elladine "You're both gorgeous."
+    elladine "She's definitely some fierce competition."
+    aj "That's why I want to make a special effort."
+    thought "Everyone's going all out. I guess if there was a night for it, now's the time..."
 
-elladine "She's definitely some fierce competition."
-aj "That's why I want to make a special effort."
-thought "Everyone's going all out. I guess if there was a night for it, now's the time..."
-(If you chose 'grab a handful of condoms' in Episode 1:)
-You absent-mindedly undo your bra, then hear the telltale sound of plastic wrappers hitting the floor.
-s3_mc "The condoms!"
-Different coloured wrappers indicating flavours spill across the room. Cherry red, banana yellow, and wheatgrass green.
-aj "Woah, MC!"
-s3_mc "Whoops..."
-aj "Someone's looking to get busy."
-s3_mc "Better to be safe than sorry."
-elladine "Damn right."
+    # IF STATEMENT
+    if s3e1p1_grab_some_condom:
+        "You absent-mindedly undo your bra, then hear the telltale sound of plastic wrappers hitting the floor."
+        s3_mc "The condoms!"
+        "Different coloured wrappers indicating flavours spill across the room. Cherry red, banana yellow, and wheatgrass green."
+        aj "Woah, [s3_mc_name]!"
+        s3_mc "Whoops..."
+        aj "Someone's looking to get busy."
+        s3_mc "Better to be safe than sorry."
+        elladine "Damn right."
 
-MC outfit change to evening wear
+    # Evening wear outfit selector
 
-thought "Oh yeah, this is going to blow some minds."
-Elladine looks over to you. Her eyes go wide.
-elladine "Damn! MC, you're a real heart-stealer in that! (you get 🤩 with Elladine)"
-s3_mc "That's the idea."
-Iona turns to you.
-iona "Are you worried about tonight, babe?"
+    # IF STATEMENT
+    if s3_current_outfit in s3_npc_preferred_outfits["Elladine"]:
+        thought "Oh yeah, this is going to blow some minds."
+        "Elladine looks over to you. Her eyes go wide."
+        elladine "Damn! [s3_mc_name], you're a real heart-stealer in that!"
+        s3_mc "That's the idea."
+    else:
+        s3_mc "Or, I could just wear this I guess..."
+        elladine "Not going to push the boat out a bit? You must be confident."
 
-Choiceseb "Am I worried about who Miki will pick?"
--I'd be lying if I said no
-iona "Yeah, I know what you mean."
 
--No, of course I'm not
+    if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Harry":
+        "Iona turns to you."
+        iona "Are you worried about tonight, babe?"
+    elif s3_coupled_up_with[-1] == "Camilo":
+        "Genevieve turns to you."
+        genevieve "Are you worried about tonight, babe?"
 
--How could I when I look this good?
+    # CHOICE
+    menu:
+        "Am I worried about who Miki will pick?"
+        "I'd be lying if I said no":
+            if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Harry":
+                iona "Yeah, I know what you mean."
+                iona "Why am I so nervous?"
+            elif s3_coupled_up_with[-1] == "Camilo":
+                genevieve "Yeah, I know what you mean."
+                genevieve "Why am I so nervous?"
+        "No, of course I'm not":
+            if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Harry":
+                iona "Yeah..."
+                iona "I don't know. I feel surprisingly nervous myself."
+            elif s3_coupled_up_with[-1] == "Camilo":
+                genevieve "Yeah..."
+                genevieve "I don't know. I feel surprisingly nervous myself."
+        "How could I when I look this good?":
+            elladine "Wow, hun. I wish I had your confidence!"
+            aj "She's not wrong, though."
+            if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Harry":
+                iona "Hearing that actually made me feel a little better myself."
+            elif s3_coupled_up_with[-1] == "Camilo":
+                genevieve "Hearing that actually made me feel a little better myself."
+        "Actually, I know she's going to pick [ss3_current_partner]." if s3e1p2_talk_to_new_girl == True:
+            if s3_coupled_up_with[-1] == "Bill" or s3_coupled_up_with[-1] == "Harry":
+                iona "Really? How?"
+                s3_mc "She told me."
+                iona "Oh..."
+            elif s3_coupled_up_with[-1] == "Camilo":
+                genevieve "Really? How?"
+                s3_mc "She told me."
+                genevieve "Oh..."
+            elladine "At least she was honest, I guess?"
 
-iona "Why am I so nervous?"
-Genevieve takes a deep breath, and gives herself one last look-over in the mirror.
-genevieve "Well, girls, I guess this is it..."
+    if s3_coupled_up_with[-1] == "Bill":
+        "Genevieve takes a deep breath, and gives herself one last look-over in the mirror."
+        genevieve "Well, girls, I guess this is it..."
+    elif s3_coupled_up_with[-1] == "Camilo" or s3_coupled_up_with[-1] == "Harry":
+        "Miki takes a deep breath, and gives herself one last look-over in the mirror."
+        miki "Well, girls, I guess this is it..."
 
-Miki stands in front of the Islanders sat around the firepit.
+    "[s3_3rd_girl[s3_current_partner]] stands in front of the Islanders sat around the firepit."
 
-Choiceseb "We only just arrived and already I might get separated from Bill..."
--Hold his hand
-You reach over and take a hold of Bill's hand. He turns and smiles at you.
-bill "Your hands are so soft. (you get 😍 with Bill)"
-You blush
-bill "Seriously, it's like holding a warm loaf of bread or something..."
-s3_mc "Huh?"
-B:...I don't know. Ignore me. My mind's all over the place.
-He shifts in his seat.
+    # CHOICE
+    menu:
+        "We only just arrived and already I might get separated from [s3_current_partner]..."
+        "Hold his hand":
+            if s3_coupled_up_with[-1] == "Bill":
+                "You reach over and take a hold of [s3_current_partner]'s hand. He turns and smiles at you."
+                bill "Your hands are so soft."
+                "You blush"
+                bill "Seriously, it's like holding a warm loaf of bread or something..."
+                s3_mc "Huh?"
+                bill "...I don't know. Ignore me. My mind's all over the place."
+                "He shifts in his seat."
+            elif s3_coupled_up_with[-1] == "Camilo":
+                "You reach over and take a hold of [s3_current_partner]'s hand. He turns and smiles at you."
+                camilo "Your hands are so soft."
+                "You blush"
+                camilo "Seriously, it's like holding a warm loaf of bread or something..."
+                s3_mc "Huh?"
+                camilo "...I don't know. Ignore me. My mind's all over the place."
+                "He shifts in his seat."
+            elif s3_coupled_up_with[-1] == "Harry":
+                "You reach over and take a hold of [s3_current_partner]'s hand. He turns and smiles at you."
+                harry "Your hands are so soft."
+                "You blush"
+                harry "Seriously, it's like holding a warm loaf of bread or something..."
+                s3_mc "Huh?"
+                harry "...I don't know. Ignore me. My mind's all over the place."
+                "He shifts in his seat."
 
--Glare at Miki
+        "Glare at [s3_3rd_girl[s3_current_partner]]":
+            "You frown at [s3_3rd_girl[s3_current_partner]]. She doesn't look at you."
+            s3_mc "Dammit, she didn't see me!"
+            "You squint harder and lean in closer."
+            thought "She has to notice me now."
+            "Just then, you hear [s3_current_partner]'s voice whispering in your ear."
+            if s3_coupled_up_with[-1] == "Bill":
+                bill "Um, what are you doing?"
+                s3_mc "Huh?"
+                bill "Do you need glasses or something?"
+            elif s3_coupled_up_with[-1] == "Camilo":
+                camilo "Um, what are you doing?"
+                s3_mc "Huh?"
+                camilo "Do you need glasses or something?"
+            elif s3_coupled_up_with[-1] == "Harry":
+                harry "Um, what are you doing?"
+                s3_mc "Huh?"
+                harry "Do you need glasses or something?"
+            s3_mc "No..."
 
--Look at the other Islanders
+        "Look at the other Islanders":
+            "You look around to see how the others are handling [s3_3rd_girl[s3_current_partner]]'s arrival."
+            thought "If those girls are nervous, they're doing a banging job of hiding it."
+            "The only one who seems a little off is Elladine, who occasionally glances at her hands."
+            "The boys seem calm, too. But you look harder, you notice that Seb's chewing his cheek."
+            if s3_coupled_up_with[-1] == "Bill":
+                "Harry can't keep his eyes off of Miki."
+                "Camilo's eyes are fixed on Genevieve's face. He bites his lips."
+            elif s3_coupled_up_with[-1] == "Camilo":
+                "Harry can't keep his eyes off of Miki."
+            elif s3_coupled_up_with[-1] == "Harry":
+                "Camilo's eyes are fixed on Genevieve's face. He bites his lips."
+            thought "Any of these guys would probably jump at the chance to be with [s3_3rd_girl[s3_current_partner]]..."
 
-Miki clears her throat, then speaks.
-M: I didn't know how to feel on the way here.
-M: I was excited, obviously, but I knew I'd be taking a guy away from another girl.
-M: I thought I'd be OK with that as you've only been together since this morning...
-M: But looking at you all now, you already seem like such cute couples.
-M: But at first glance, this boy seems like my type on paper.
-M: He's smart, funny, and just dreamy.
-M: And although I don't want to break a promising couple up so early on...
-M: I'm here to make a choice and so...
-Everyone tenses.
-thought "She better not pick Bill."
-M: The boy I'd like to couple up with is...
-thought "Maybe she won't?"
-M: Bill.
+    "[s3_3rd_girl[s3_current_partner]] clears her throat, then speaks."
 
-Choiceseb "Miki picked Bill!"
--I called it
+    if s3_coupled_up_with[-1] == "Bill":
+        miki "I didn't know how to feel on the way here."
+        miki "I was excited, obviously, but I knew I'd be taking a guy away from another girl."
+        miki "I thought I'd be OK with that as you've only been together since this morning..."
+        miki "But looking at you all now, you already seem like such cute couples."
+        miki "But at first glance, this boy seems like my type on paper."
+        miki "He's smart, funny, and just dreamy."
+        miki "And although I don't want to break a promising couple up so early on..."
+        miki "I'm here to make a choice and so..."
+        "Everyone tenses."
 
--No, dammit!
+        if s3e1p2_talk_to_new_girl:
+            thought "Here she goes. About to pick [s3_current_partner]..."
+        else:
+            thought "She better not pick [s3_current_partner]."
+        miki "The boy I'd like to couple up with is..."
+        thought "Maybe she won't?"
+        miki "[s3_current_partner]."
+    elif s3_coupled_up_with[-1] == "Camilo":
+        iona "I didn't know how to feel on the way here."
+        iona "I was excited, obviously, but I knew I'd be taking a guy away from another girl."
+        iona "I thought I'd be OK with that as you've only been together since this morning..."
+        iona "But looking at you all now, you already seem like such cute couples."
+        iona "But at first glance, this boy seems like my type on paper."
+        iona "He's smart, funny, and just dreamy."
+        iona "And although I don't want to break a promising couple up so early on..."
+        iona "I'm here to make a choice and so..."
+        "Everyone tenses."
+        if s3e1p2_talk_to_new_girl:
+            thought "Here she goes. About to pick [s3_current_partner]..."
+        else:
+            thought "She better not pick [s3_current_partner]."
+        iona "The boy I'd like to couple up with is..."
+        thought "Maybe she won't?"
+        iona "[s3_current_partner]."
+    elif s3_coupled_up_with[-1] == "Harry":
+        genevieve "I didn't know how to feel on the way here."
+        genevieve "I was excited, obviously, but I knew I'd be taking a guy away from another girl."
+        genevieve "I thought I'd be OK with that as you've only been together since this morning..."
+        genevieve "But looking at you all now, you already seem like such cute couples."
+        genevieve "But at first glance, this boy seems like my type on paper."
+        genevieve "He's smart, funny, and just dreamy."
+        genevieve "And although I don't want to break a promising couple up so early on..."
+        genevieve "I'm here to make a choice and so..."
+        "Everyone tenses."
+        if s3e1p2_talk_to_new_girl:
+                thought "Here she goes. About to pick [s3_current_partner]..."
+            else:
+                thought "She better not pick [s3_current_partner]."
+        genevieve "The boy I'd like to couple up with is..."
+        thought "Maybe she won't?"
+        genevieve "[s3_current_partner]."
 
--Well, this sucks (no further reaction)
+    # CHOICE
+    menu:
+        "Miki picked Bill!"
+        "I called it" if s3e1p2_talk_to_new_girl == True:
+            pass
+        "At least she told me" if s3e1p2_talk_to_new_girl == False:
+            pass
+        "No, dammit!":
+            pass
+        "Well, this sucks":
+            pass
 
-You hear sighs of relief and murmurs coming from the others.
-elladine "Oh no! Poor MC..."
-seb "Wow, that's brutal."
-nicky "Yeah, that's rough, man."
+    if s3_current_partner == "Harry":
+        "Genevieve looks at you apologetically."
+        genevieve "I'm so sorry, babe."
+    "You hear sighs of relief and murmurs coming from the others."
+    elladine "Oh no! Poor [s3_mc_name]..."
+    seb "Wow, that's brutal."
+    nicky "Yeah, that's rough, man."
 
-Choiceseb "Miki's taken my guy..."
--It is what it is
+    # CHOICE
+    menu:
+        "[s3_3rd_girl[s3_current_partner]]'s taken my guy..."
+        "It is what it is":
+            if s3_coupled_up_with[-1] == "Bill":
+                "Miki smiles."
+                miki "Thanks for understanding, [s3_mc_name]."
+            elif s3_coupled_up_with[-1] == "Camilo":
+                "Iona smiles."
+                iona "Thanks for understanding, [s3_mc_name]."
+            elif s3_coupled_up_with[-1] == "Harry":
+                "Genevieve smiles."
+                genevieve "Thanks for understanding, [s3_mc_name]."
+        "How could you?":
+            if s3_coupled_up_with[-1] == "Bill":
+                "Miki's face drops."
+                miki "It was a really hard decision, babe. I didn't want to make it..."
+            elif s3_coupled_up_with[-1] == "Camilo":
+                "Iona's face drops."
+                iona "It was a really hard decision, babe. I didn't want to make it..."
+            elif s3_coupled_up_with[-1] == "Harry":
+                "Genevieve's face drops."
+                genevieve "It was a really hard decision, babe. I didn't want to make it..."
+        "I'll be coming for him":
+            if s3_coupled_up_with[-1] == "Bill":
+                miki "Good."
+                miki "I'm looking forward to the competition."
+            elif s3_coupled_up_with[-1] == "Camilo":
+                iona "Good."
+                iona "I'm looking forward to the competition."
+            elif s3_coupled_up_with[-1] == "Harry":
+                genevieve "Good."
+                genevieve "I'm looking forward to the competition."
+        "At least you told me " if s3e1p2_talk_to_new_girl == True:
+            if s3_coupled_up_with[-1] == "Bill":
+                miki "I really didn't want it to be a surprise for you..."
+            elif s3_coupled_up_with[-1] == "Camilo":
+                iona "I really didn't want it to be a surprise for you..."
+            elif s3_coupled_up_with[-1] == "Harry":
+                genevieve "I really didn't want it to be a surprise for you..."
 
--How could you?
+    if s3_current_partner == "Harry":
+        "Harry puts a hand on your back."
+    else:
+        "[s3_current_partner] puts a hand on your back."
 
--I'll be coming for him
-M: Good
-M: I'm looking forward to the competition
+    if s3_coupled_up_with[-1] == "Bill":
+        bill "I can't believe this."
+        bill "I was blown away when you picked me. It's like I'd won the jackpot."
+        bill "And now we're not a couple, less than a day after that..."
+    elif s3_coupled_up_with[-1] == "Camilo":
+        camilo "I can't believe this."
+        camilo "I was blown away when you picked me. It's like I'd won the jackpot."
+        camilo "And now we're not a couple, less than a day after that..."
+    elif s3_coupled_up_with[-1] == "Harry":
+        harry "I can't believe this."
+        harry "I was blown away when you picked me. It's like I'd won the jackpot."
+        harry "And now we're not a couple, less than a day after that..."
+    "He stands to walk over to [s3_3rd_girl[s3_current_partner]]."
 
-Bill puts a hand on your back.
-bill "I can't believe this."
-bill "I was blown away when you picked me. It's like I'd won the jackpot."
-bill "And now we're not a couple, less than a day after that..."
-He stands to walk over to Miki.
+    # CHOICE
+    menu:
+        "Bill's getting up to leave..."
+        "Squeeze his hand":
+            if s3_coupled_up_with[-1] == "Bill":
+                "You reach out, grab his hand, and give it a gentle squeeze. He stops in his tracks and turns back to you."
+                bill "Don't worry. I'll only be over there."
+                s3_mc "But that's not here."
+                bill "Yeah..."
+                "He sighs, then continues over to [s3_3rd_girl[s3_current_partner]]."
+            elif s3_coupled_up_with[-1] == "Camilo":
+                "You reach out, grab his hand, and give it a gentle squeeze. He stops in his tracks and turns back to you."
+                camilo "Don't worry. I'll only be over there."
+                s3_mc "But that's not here."
+                camilo "Yeah..."
+                "He sighs, then continues over to [s3_3rd_girl[s3_current_partner]]."
+            elif s3_coupled_up_with[-1] == "Harry":
+                "You reach out, grab his hand, and give it a gentle squeeze. He stops in his tracks and turns back to you."
+                harry "Don't worry. I'll only be over there."
+                s3_mc "But that's not here."
+                harry "Yeah..."
+                "He sighs, then continues over to [s3_3rd_girl[s3_current_partner]]."
+        "Drag him back":
+            if s3_coupled_up_with[-1] == "Bill":
+                "You reach out, wrap your fingers around his arm, and pull."
+                bill "Agh!"
+                "He lurches back, loses his balance and falls hard onto the seat."
+                "Seb and Nicky let out a laugh. Elladine raises an eyebrow at you."
+                bill "Ow, my bum!"
+                bill "These cushions are weirdly firm."
+                "He looks at you with a puzzled expression."
+                s3_mc "Sorry…"
+                bill "Don't worry. Look, I'm only going to be over there."
+                s3_mc "But that's not here."
+                "He gets back up and makes his way over to [s3_3rd_girl[s3_current_partner]]."
+            elif s3_coupled_up_with[-1] == "Camilo":
+                "You reach out, wrap your fingers around his arm, and pull."
+                iona "Agh!"
+                "He lurches back, loses his balance and falls hard onto the seat."
+                "Seb and Nicky let out a laugh. Elladine raises an eyebrow at you."
+                iona "Ow, my bum!"
+                iona "These cushions are weirdly firm."
+                "He looks at you with a puzzled expression."
+                s3_mc "Sorry…"
+                iona "Don't worry. Look, I'm only going to be over there."
+                s3_mc "But that's not here."
+                "He gets back up and makes his way over to [s3_3rd_girl[s3_current_partner]]."
+            elif s3_coupled_up_with[-1] == "Harry":
+                "You reach out, wrap your fingers around his arm, and pull."
+                harry "Agh!"
+                "He lurches back, loses his balance and falls hard onto the seat."
+                "Seb and Nicky let out a laugh. Elladine raises an eyebrow at you."
+                harry "Ow, my bum!"
+                harry "These cushions are weirdly firm."
+                "He looks at you with a puzzled expression."
+                s3_mc "Sorry…"
+                harry "Don't worry. Look, I'm only going to be over there."
+                s3_mc "But that's not here."
+                "He gets back up and makes his way over to [s3_3rd_girl[s3_current_partner]]."
+        "Wave goodbye":
+            "You slowly wave at [s3_current_partner] as he makes his way over to [s3_3rd_girl[s3_current_partner]]."
+            "He turns, sees you, and does a small, reassuring wink."
+            thought "There he goes…"
+            "[s3_current_partner] nods at [s3_3rd_girl[s3_current_partner]]."
 
-Choiceseb "Bill's getting up to leave..."
--Squeeze his hand
-You reach out, grab his hand, and give it a gentle squeeze. He stops in his tracks and turns back to you.
-bill "Don't worry. I'll only be over there (you get 😍 with Bill)"
-s3_mc "But that's not here."
-bill "Yeah..."
-He sighs, then continues over to Miki.
+    if s3_coupled_up_with[-1] == "Bill":
+        bill "Alright, girl?"
+        miki "I'm good, you?"
+    elif s3_coupled_up_with[-1] == "Camilo":
+        camilo "Hiya, you alright?"
+        iona "I'm good, you?"
+    elif s3_coupled_up_with[-1] == "Harry":
+        harry "Hey! How are you doing?"
+        genevieve "I'm good, you?"
 
--Drag him back
+    "[s3_current_partner] shrugs. He and [s3_3rd_girl[s3_current_partner]] share a clumsy hug."
+    s3_mc "I got a text..."
+    s3_mc "I swear, if this is me getting dumped already I'm gonna be livid."
+    aj "That wouldn't happen already, right?"
+    seb "It isn't unheard of."
+    elladine "Read it out, hun."
 
--Wave goodbye
+    # Text Message
+    "[s3_mc_name], [s3_3rd_girl[s3_current_partner]] has taken your partner, leaving you single..."
 
-bill "Alright, girl?"
-M: I'm good, you?
-Bill shrugs. He and Miki share a clumsy hug.
-s3_mc "I got a text..."
-s3_mc "I swear, if this is me getting dumped already I'm gonna be livid."
-aj "That wouldn't happen already, right?"
-seb "It isn't unheard of."
-elladine "Read it out, hun."
-Text: MC, Miki has taken your partner, leaving you single...
-s3_mc "Ugh."
-Text: ...so get ready to mingle.
-#getthatgrafton #the singlelife
-aj "What's that all mean?"
-s3_mc "I'm...safe?"
-elladine "Phew! Not gonna lie but that would have been proper cruel."
-aj "Yay!"
-genevieve "Single and ready to mingle, eh?"
-genevieve "Guess we'll need to keep a close eye on you."
-Nicky gets up and stretches.
-nicky "I don't know about you lot, but my bum's gone numb."
-He makes his way over to Miki.
+    s3_mc "Ugh."
 
-Choiceseb "Should I go and talk to Miki?"
--Walk over to Miki
+    # Text Message
+    "...so get ready to mingle. #getthatgrafton #the singlelife"
 
--Stay where you are
+    aj "What's that all mean?"
+    s3_mc "I'm...safe?"
+    elladine "Phew! Not gonna lie but that would have been proper cruel."
 
--Walk away from the others
-You get up, leaving the rest of the Islanders to form their own little groups.
-The night is surprisingly chilly. You rub your arms for some warmth.
-The sound of laughter drifts over from the other Islanders.
-M: Cold?
-You turn and see Miki standing in front of you. A concerned look on her face.
-M: Me too. And I thought Cambridge could get chilly!
-M: Sometimes the boat's little heater isn't enough, you know?
-She rubs her arm.
+    # IF STATEMENT
+    if s3_mc_attr["Bisexual"] == True:
+        aj "Yay!"
+        aj "Single and ready to mingle, eh?"
+        aj "Guess we'll need to keep a close eye on you."
+    else:
+        aj "Ooh..."
+        genevieve "Single and ready to mingle, eh?"
+        genevieve "Guess we'll need to keep a close eye on you."
 
-M: Um, I'd like to clear the air with you.
+    "Nicky gets up and stretches."
+    nicky "I don't know about you lot, but my bum's gone numb."
+    "He makes his way over to [s3_3rd_girl[s3_current_partner]]."
+
+# CHOICE
+menu:
+    "Should I go and talk to [s3_3rd_girl[s3_current_partner]]?"
+    "Walk over to [s3_3rd_girl[s3_current_partner]]":
+        if s3_coupled_up_with[-1] == "Bill":
+            "You make your way over to [s3_3rd_girl[s3_current_partner]] along with Nicky, Genevieve and Iona."
+            genevieve "Hey, girl!"
+            miki "Hi!"
+            nicky "Thought we'd come over and chat properly."
+            "Iona gives you a sympathetic look before turning to [s3_3rd_girl[s3_current_partner]]."
+            iona "I hope you're alright. That was a tough decision for anyone to make."
+            genevieve "Yeah, I'm so glad it wasn't me doing it."
+            "[s3_3rd_girl[s3_current_partner]] goes to speak, but looks at you instead."
+            miki "Sorry, all. Can I have a quick word with [s3_mc_name] first?"
+        elif s3_coupled_up_with[-1] == "Camilo":
+            "You make your way over to [s3_3rd_girl[s3_current_partner]] along with Nicky, Miki and Genevieve."
+            miki "Hey, girl!"
+            iona "Hi!"
+            nicky "Thought we'd come over and chat properly."
+            "Genevieve gives you a sympathetic look before turning to [s3_3rd_girl[s3_current_partner]]."
+            genevieve "I hope you're alright. That was a tough decision for anyone to make."
+            miki "Yeah, I'm so glad it wasn't me doing it."
+            "[s3_3rd_girl[s3_current_partner]] goes to speak, but looks at you instead."
+            iona "Sorry, all. Can I have a quick word with [s3_mc_name] first?"
+        elif s3_coupled_up_with[-1] == "Harry":
+            "You make your way over to [s3_3rd_girl[s3_current_partner]] along with Nicky, Miki and Iona."
+            miki "Hey, girl!"
+            genevieve "Hi!"
+            nicky "Thought we'd come over and chat properly."
+            "Iona gives you a sympathetic look before turning to [s3_3rd_girl[s3_current_partner]]."
+            iona "I hope you're alright. That was a tough decision for anyone to make."
+            miki "Yeah, I'm so glad it wasn't me doing it."
+            "[s3_3rd_girl[s3_current_partner]] goes to speak, but looks at you instead."
+            genevieve "Sorry, all. Can I have a quick word with [s3_mc_name] first?"
+
+        nicky "Oh yeah, no problem."
+        "Nicky winks at you as he ushers the others away… including [s3_current_partner]."
+
+# WORK WORK WORK WORK WORK WORK
+
+"Stay where you are":
+You stay back while everyone around you gets up and goes off in their own little groups.
+The flames of the fire flicker and twirl. You soon find yourself lost in thought.
+Choices: I can't stop thinking about…
+-How I'm single again
+MC's thoughts: Like, I literally came here to stop being single!
+
+
+All the mingling I'm going to do
+MC's thoughts: This is a blessing. It means I'll get to do as much grafting as I want.
+
+-Chinstrap penguins…
+MC's thoughts: They're just so silly! It's like they're wearing helmets all the time.
+Just then, a voice snaps you out of your thoughts.
+M/G/I: MC?
+MC: Huh?
+M/G/I: I'd like to try and clear the air a little…
+
+
+
+"Walk away from the others":
+"You get up, leaving the rest of the Islanders to form their own little groups."
+"The night is surprisingly chilly. You rub your arms for some warmth."
+"The sound of laughter drifts over from the other Islanders."
+miki "Cold?"
+"You turn and see Miki standing in front of you. A concerned look on her face."
+miki "Me too. And I thought Cambridge could get chilly!"
+miki "Sometimes the boat's little heater isn't enough, you know?"
+"She rubs her arm."
+
+miki "Um, I'd like to clear the air with you."
 s3_mc "Sure...let's talk."
-M: Thanks.
-M: I want you to know that it wasn't anything personal. I mean, obviously, I've only just met you.
-M: I wanted to tell you earlier, but we didn't get any time to chat.
-M: I didn't want it to come as a shock.
-M: At the end of the day, I had to pick someone.
-M: But I actually think this puts you in a really strong position. You're now free to chat and flirt with whoever you want.
-M: Even if that person is Bill. Like, all's fair. I won't make a fuss.
-M: Early days and all that.
+miki "Thanks."
+miki "I want you to know that it wasn't anything personal. I mean, obviously, I've only just met you."
+miki "I wanted to tell you earlier, but we didn't get any time to chat."
+miki "I didn't want it to come as a shock."
+miki "At the end of the day, I had to pick someone."
+miki "But I actually think this puts you in a really strong position. You're now free to chat and flirt with whoever you want."
+miki "Even if that person is Bill. Like, all's fair. I won't make a fuss."
+miki "Early days and all that."
 She pauses.
-M: So...friends?
+miki "So...friends?"
 
 Choiceseb "Should I forgive Miki for choosing Bill?"
 -Hey, it's fine. It was a tough call
 Miki's shoulders relax with relief. (you get 😍 with Miki)
-M: Thanks, babe! You have no idea how awkward I was feeling.
-M: You're so understanding.
+miki "Thanks, babe! You have no idea how awkward I was feeling."
+miki "You're so understanding."
 
 -I'm sorry, but I need some time
 
 -Relax, girl! I'd known him for two minutes
 
 She squeezes your arm lightly.
-M: Come on, then. We should get back to the others.
+miki "Come on, then. We should get back to the others."
 You walk back together.
 
 Seb, Nicky, Elladine and Genevieve are sat around the firepit chatting
@@ -2652,11 +3910,11 @@ genevieve "Means a lot, I'm not going to lie. (you get 😍 with Genevieve)"
 
 The sound of the other Islanders draws your attention away from Genevieve.
 bill "Right, I don't know about the rest of you, but I'm cream-crackered."
-M: You're a cream cracker?
+miki "You're a cream cracker?"
 camilo "Hah! He is now. That's brilliant."
 bill "What? No. I'm knackered."
-M: Oh!
-M: You mumble too much.
+miki "Oh!"
+miki "You mumble too much."
 iona "Who even likes cream crackers?"
 camilo "They're gross. Chocolate bourbons all the way, you get me?"
 bill "Wait, a cream cracker isn't a biscuit."
@@ -2731,7 +3989,7 @@ Genevieve lowers her voice into a harsh whisper.
 genevieve "Or maybe a ghost got her..."
 She wiggles her fingers dramatically.
 iona "Woah! Hey, guys, look at the moon."
-M: It looks massive.
+miki "It looks massive."
 genevieve "Come out onto the terrace with me. Let's get a proper look."
 You hear the others leave.
 bill "I'll be out there in a second!"
@@ -2769,7 +4027,7 @@ s3_mc "I'd like to see you try..."
 Before he can say anything else, the rest of the Islanders reappear, laughing.
 iona "Genevieve told us what you were up to, MC."
 nicky "It sounds like it worked."
-M: Just never spook me, yeah? I hate jump scares...
+miki "Just never spook me, yeah? I hate jump scares..."
 
 They start to get ready for bed.
 thought "That's enough excitement for one night. I'm going to go and get changed."

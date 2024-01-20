@@ -52,8 +52,11 @@ init python:
     ## General
     s3_coupled_up_with = []
     s3_current_partner = ""
+    s3_current_outfit = ""
     # add and remove keys and values when islanders are added or voted off
     s3_amount_npcs_like_mc = {"AJ":15, "Elladine":15, "Nicky":15, "Seb":15}
     s3_li_like_mc = {"Bill":15, "Camilo":15, "Harry":15, }
+    s3_3rd_girl = {"Bill":"Miki", "Camilo":"Iona", "Harry":"Genevieve"}
+    s3_npc_preferred_outfits = {"":""}
                         
     ## Episode 1, Part 1

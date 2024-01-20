@@ -1,0 +1,22 @@
+LITG Gameplay Variables
+Season 3
+Episode 1 Part 1
+s3e1p1_warning_here_to_win (bool)
+s3e1p1_feeling_hungry (bool)
+s3e1p1_grab_some_condoms (bool)
+s3e1p1_took_a_nap (bool)
+s3e1p1_strongest_couple ("Miki and Bill" "Iona and Camilo" "Genevieve and Harry")
+s3e1p1_li_wants_chat_response ("Positive" "Negative")
+s3e1p1_cheeky_snog (bool)
+
+Episode 1 Part 2
+s3e1p2_mc_secret ("Thunder" "Rollercoaster" "Dimples" "Fan Fiction")
+s3e1p2_spooned_a_badger ("Camilo" "Bill" "Harry" "Nicky" "Seb")
+s3e1p2_challenge_kiss (bool)
+s3e1p2_caught_having_sex ("Camilo" "Bill" "Harry" "Nicky" "Seb")
+s3e1p2_rescue_cat ("Camilo" "Bill" "Harry" "Nicky" "Seb")
+s3e1p2_asked_girl_out ("Camilo" "Bill" "Harry" "Nicky" "Seb")
+s3e1p2_set_fire (bool)
+s3e1p2_camilos_clue (bool)(bill:took job as waitress, camilo/harry: bday striptease)
+s3e1p2_ordered_sex_toys (bool)
+s3e1p2_talk_to_new_girl (bool)
