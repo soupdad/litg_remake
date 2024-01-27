@@ -2,6 +2,7 @@
 ## General
 ####################################################################
 define thought = Character(window_background = Image("bg_thought.png", xalign=0.5, yalign=1.0))
+define text = Character(window_background = Image("bg_text_message.png", xalign=0.5, yalign=1.0), color = "#ffffff")
 
 # init python:
 #     def little_jump(event, interact=True, **kwargs):
@@ -197,57 +198,68 @@ define s2w_mc = Character("s2w_mc_name", dynamic = True, image = "s2w_mc", windo
 ## Season 3
 ####################################################################
 ### MC
-define s3_mc = Character("s3_mc_name", dynamic = True)
+default s3_mc_name = "Larissa"
+define s3_mc = Character("s3_mc_name", dynamic = True, window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 define s3_mc_attr = {'Outfit':'orange_bathing_suit', 'Job':'Scientist', 'Bisexual':False, 
                     'Sweet':0, 'Bold':0, 'Funny':0}
 
 # UNCOMMENT AND/OR DELETE WHEN DEPLOYING CODE
 # define persistent.s03_mc_job = ""
 # define persistent.s03_mc_name = ""
-default s3_mc_name = "Filler Name"
+
 
 ### NPCs
 ## AJ
-define aj = Character("AJ")
+define aj = Character("AJ", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
+image aj = "season_03/npcs/aj.png"
 
 ## Bill
-define bill = Character("Bill")
+define bill = Character("Bill", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
+image bill = "season_03/npcs/bill.png"
 
 ## Camilo
-define camilo = Character("Camilo")
+define camilo = Character("Camilo", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
+image camilo = "season_03/npcs/camilo.png"
 
 ## Ciaran
-define ciaran = Character("Ciaran")
+define ciaran = Character("Ciaran", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 
 ## Elladine
-define elladine = Character("Elladine")
+define elladine = Character("Elladine", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
+image elladine = "season_03/npcs/elladine.png"
 
 ## Genevieve
-define genevieve = Character("Genevieve")
+define genevieve = Character("Genevieve", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
+image genevieve = "season_03/npcs/genevieve.png"
 
 ## Harry
-define harry = Character("Harry")
+define harry = Character("Harry", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
+image harry = "season_03/npcs/harry.png"
 
 ## Iona
-define iona = Character("Iona")
+define iona = Character("Iona", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
+image iona = "season_03/npcs/iona.png"
 
 ## Lily
-define lily = Character("Lily")
+define lily = Character("Lily", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 
 ## Miki
-define miki = Character("Miki")
+define miki = Character("Miki", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
+image miki = "season_03/npcs/miki.png"
 
 ## Nicky
-define nicky = Character("Nicky")
+define nicky = Character("Nicky", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
+image nicky = "season_03/npcs/nicky.png"
 
 ## Rafi
-define rafi = Character("Rafi")
+define rafi = Character("Rafi", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 
 ## Seb
-define seb = Character("Seb")
+define seb = Character("Seb", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
+image seb = "season_03/npcs/seb.png"
 
 ## Tai
-define tai = Character("Tai")
+define tai = Character("Tai", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 
 ## Yasmin
-define yasmin = Character("Yasmin")
+define yasmin = Character("Yasmin", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))

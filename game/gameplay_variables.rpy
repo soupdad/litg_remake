@@ -56,7 +56,10 @@ init python:
     # add and remove keys and values when islanders are added or voted off
     s3_amount_npcs_like_mc = {"AJ":15, "Elladine":15, "Nicky":15, "Seb":15}
     s3_li_like_mc = {"Bill":15, "Camilo":15, "Harry":15, }
-    s3_3rd_girl = {"Bill":"Miki", "Camilo":"Iona", "Harry":"Genevieve"}
+    s3_3rd_girl_options = {"Bill":"Miki", "Camilo":"Iona", "Harry":"Genevieve"}
+    s3_3rd_girl = ""
     s3_npc_preferred_outfits = {"":""}
+    s3_best_friend = ""
+    s3_character_profile = ""
                         
     ## Episode 1, Part 1

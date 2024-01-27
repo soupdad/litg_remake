@@ -1621,25 +1621,13 @@ style slider_slider:
 ################################################################################
 ## User Defined Screens
 ################################################################################
+#############################################
 ## General
-## S2 Wedding Choose Episode Screen
-screen s2w_select_episode:
-    image "season_02/backgrounds/edited_sandy_intro.png"
-
-    imagebutton idle "season_02/s2we1_button.png" align(0.2, 0.5) action Jump("s2w_set_up") at select_episode_button
-    imagebutton idle "season_02/s2we2_button.png" align(0.5, 0.5) action Call("episode_unavailable") at select_episode_button
-    imagebutton idle "season_02/s2we3_button.png" align(0.8, 0.5) action Call("episode_unavailable") at select_episode_button
 
 
 
-screen episode_unavailable:
-    image "season_02/backgrounds/edited_sandy_intro.png"
-
-    frame:
-        padding(20, 20)
-        margin(400, 20)
-        align(0.5, 0.5)
-        text "Sorry but that episode isn't available either due to it not being made yet or because you haven't completed the ones before it. Please select another episode." size 40 color "#000000" 
+#############################################
+## Season 1
 
 ## Season 1, Episode 1, Part 2
 screen s1e1p2_select_who_to_talk_to:
@@ -1672,6 +1660,77 @@ screen s1e1p2_select_who_to_talk_to:
     if "Talia" not in s1e1p2_who_have_i_talked_to:
         imagebutton idle "season_01/npc_map_icons/map-icon-talia.png" align(0.55, 0.2) action Call("s1e1p2_talk_to_talia_jake") at map_icon
         imagebutton idle "season_01/npc_map_icons/map-icon-jake.png" align(0.6, 0.2) action Call("s1e1p2_talk_to_talia_jake") at map_icon
+
+
+#############################################
+## Season 2
+
+## S2 Wedding Choose Episode Screen
+screen s2w_select_episode:
+    image "season_02/backgrounds/edited_sandy_intro.png"
+
+    imagebutton idle "season_02/s2we1_button.png" align(0.2, 0.5) action Jump("s2w_set_up") at select_episode_button
+    imagebutton idle "season_02/s2we2_button.png" align(0.5, 0.5) action Call("episode_unavailable") at select_episode_button
+    imagebutton idle "season_02/s2we3_button.png" align(0.8, 0.5) action Call("episode_unavailable") at select_episode_button
+
+screen episode_unavailable:
+    image "season_02/backgrounds/edited_sandy_intro.png"
+
+    frame:
+        padding(20, 20)
+        margin(400, 20)
+        align(0.5, 0.5)
+        text "Sorry but that episode isn't available either due to it not being made yet or because you haven't completed the ones before it. Please select another episode." size 40 color "#000000" 
+
+
+#############################################
+## Season 3
+
+## Character Profile Shots
+screen s3_character_profile:
+    
+    image "season_02/backgrounds/edited_sandy_intro.png"
+
+    if s3_character_profile == "AJ":
+        add "season_03/npcs/aj.png" at character_profile_zoom
+        text "{font=ReemKufi-Bold.ttf}AJ{/font}" size 100 color "#e5266c" align(0.5, 0.6)
+    elif s3_character_profile == "Bill":
+        add "season_03/npcs/bill.png" at character_profile_zoom
+        text "{font=ReemKufi-Bold.ttf}Bill{/font}" size 100 color "#e5266c" align(0.5, 0.6)
+    elif s3_character_profile == "Camilo":
+        add "season_03/npcs/camilo.png" at character_profile_zoom
+        text "{font=ReemKufi-Bold.ttf}Camilo{/font}" size 100 color "#e5266c" align(0.5, 0.6)
+    elif s3_character_profile == "Ciaran":
+        pass
+    elif s3_character_profile == "Elladine":
+        add "season_03/npcs/elladine.png" at character_profile_zoom
+        text "{font=ReemKufi-Bold.ttf}Elladine{/font}" size 100 color "#e5266c" align(0.5, 0.6)
+    elif s3_character_profile == "Genevieve":
+        add "season_03/npcs/genevieve.png" at character_profile_zoom
+        text "{font=ReemKufi-Bold.ttf}Genevieve{/font}" size 100 color "#e5266c" align(0.5, 0.6)
+    elif s3_character_profile == "Harry":
+        add "season_03/npcs/harry.png" at character_profile_zoom
+        text "{font=ReemKufi-Bold.ttf}Harry{/font}" size 100 color "#e5266c" align(0.5, 0.6)
+    elif s3_character_profile == "Iona":
+        add "season_03/npcs/iona.png" at character_profile_zoom
+        text "{font=ReemKufi-Bold.ttf}Iona{/font}" size 100 color "#e5266c" align(0.5, 0.6)
+    elif s3_character_profile == "Lily":
+        pass
+    elif s3_character_profile == "Miki":
+        add "season_03/npcs/miki.png" at character_profile_zoom
+        text "{font=ReemKufi-Bold.ttf}Miki{/font}" size 100 color "#e5266c" align(0.5, 0.6)
+    elif s3_character_profile == "Nicky":
+        add "season_03/npcs/nicky.png" at character_profile_zoom
+        text "{font=ReemKufi-Bold.ttf}Nicky{/font}" size 100 color "#e5266c" align(0.5, 0.6)
+    elif s3_character_profile == "Rafi":
+        pass
+    elif s3_character_profile == "Seb":
+        add "season_03/npcs/seb.png" at character_profile_zoom
+        text "{font=ReemKufi-Bold.ttf}Seb{/font}" size 100 color "#e5266c" align(0.5, 0.6)
+    elif s3_character_profile == "Tai":
+        pass
+    elif s3_character_profile == "Yasmin":
+        pass
 
 
 ## Season 3, Episode 1, Part 1

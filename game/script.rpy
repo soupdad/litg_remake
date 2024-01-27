@@ -24,6 +24,10 @@ transform little_hop:
 transform double_zoom:
     zoom 2.2
 
+transform zoomy:
+    zoom 1.5
+    xalign 0.5 yalign 0.5 
+
 transform half_size:
     zoom 0.5
 
@@ -42,6 +46,12 @@ transform select_episode_button:
         zoom 1.04
     on idle:
         zoom 1
+
+transform character_profile_zoom:
+    zoom 0.7
+    xalign 0.5 yalign 0.5
+    anchor(0.5, 0.5)
+    linear 3 zoom 0.8
 
 # ON SCREEN POSITIONS
 transform mc_spot:
@@ -65,6 +75,22 @@ transform npc_3:
 
 transform npc_exit:
     easeout 0.2 xalign 1.5
+
+# New NPC spots, closer up, no spot for mc
+transform npc_left:
+    zoom 1.2
+    anchor(0.5, 0.1)
+    easein 0.2 xalign 0.2
+
+transform npc_right:
+    zoom 1.2
+    anchor(0.5, 0.1)
+    easein 0.2 xalign 0.8
+
+transform npc_center:
+    zoom 1.2
+    anchor(0.5, 0.1)
+    easein 0.2 xalign 0.5 yalign 0.1
 
 
 label start:
