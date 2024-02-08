@@ -20,3 +20,10 @@ s3e1p2_set_fire (bool)
 s3e1p2_camilos_clue (bool)(bill:took job as waitress, camilo/harry: bday striptease)
 s3e1p2_ordered_sex_toys (bool)
 s3e1p2_talk_to_new_girl (bool)
+
+Episode 1 Part 3
+s3e1p3_prank (bool)
+s3e1p3_prankee ("AJ", "Bill", "Camilo", "Harry")
+s3_prankee_he_she ("he", "she")
+s3_prankee_him_her ("him", "her")
+s3_prankee_his_hers ("his", "hers")

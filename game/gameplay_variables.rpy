@@ -50,11 +50,35 @@ init python:
     ### Season 3
     ######################################################################
     ## General
+    def he_she():
+        if s3_current_partner in ["AJ", "Yasmin", "Elladine", "Genevieve", "Iona", "Miki", "Lily"]:
+            return "she"
+        else:
+            return "he"
+    def him_her():
+        if s3_current_partner in ["AJ", "Yasmin", "Elladine", "Genevieve", "Iona", "Miki", "Lily"]:
+            return "her"
+        else:
+            return "him"
+    def his_her():
+        if s3_current_partner in ["AJ", "Yasmin", "Elladine", "Genevieve", "Iona", "Miki", "Lily"]:
+            return "her"
+        else:
+            return "his"
     s3_coupled_up_with = []
     s3_current_partner = ""
     s3_current_outfit = ""
+    # Pronouns
+    s3_partner_he_she = ""
+    s3_partner_him_her = ""
+    s3_partner_his_hers = ""
+    
+    s3_bff_he_she = ""
+    s3_bff_him_her = ""
+    s3_bff_his_her = ""
+
     # add and remove keys and values when islanders are added or voted off
-    s3_amount_npcs_like_mc = {"AJ":15, "Elladine":15, "Nicky":15, "Seb":15}
+    s3_amount_npcs_like_mc = {"AJ":15, "Elladine":15, "Iona":15, "Genevieve":15, "Miki":15,"Nicky":15, "Seb":15}
     s3_li_like_mc = {"Bill":15, "Camilo":15, "Harry":15, }
     s3_3rd_girl_options = {"Bill":"Miki", "Camilo":"Iona", "Harry":"Genevieve"}
     s3_3rd_girl = ""

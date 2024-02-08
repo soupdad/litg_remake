@@ -74,7 +74,7 @@ transform npc_3:
     easein 0.2 xalign 0.95
 
 transform npc_exit:
-    easeout 0.2 xalign 1.5
+    easeout 0.2 xalign 1.75
 
 # New NPC spots, closer up, no spot for mc
 transform npc_left:
@@ -88,8 +88,8 @@ transform npc_right:
     easein 0.2 xalign 0.8
 
 transform npc_center:
-    zoom 1.2
-    anchor(0.5, 0.1)
+    zoom 1.5
+    anchor(0.5, -0.1)
     easein 0.2 xalign 0.5 yalign 0.1
 
 
