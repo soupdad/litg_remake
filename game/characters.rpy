@@ -4,6 +4,51 @@
 define thought = Character(window_background = Image("bg_thought.png", xalign=0.5, yalign=1.0))
 define text = Character(window_background = Image("bg_text_message.png", xalign=0.5, yalign=1.0), color = "#ffffff")
 
+init python:
+    on_screen = []
+
+    def move_character(event, interact=True, **kwargs):
+        """
+        Function to automatically move characters on and off the screen when they speak.
+
+        Works for 1 or 2 NPCs on screen.
+
+        Only issue is when declaring new scene also need to add this command after it. Or else characters from last scene will appear.
+        on_screen = []     
+        """
+        if not interact:
+            return
+        
+        character = renpy.get_say_image_tag()
+
+        if renpy.showing(character):
+            return
+
+        if event == "begin":
+            if len(on_screen) == 0:
+                renpy.show(character, [npc_center])
+                
+            elif len(on_screen) == 1:
+                renpy.show(on_screen[0], [move_left])
+                renpy.show(character, [npc_right])
+            elif len(on_screen) == 2:
+                leaving_npc = on_screen.pop(0)
+                leaving_npc_bounds = renpy.get_image_bounds(str(leaving_npc))
+
+                renpy.show(leaving_npc, [npc_exit])
+                renpy.pause(0.3)
+                renpy.hide(leaving_npc)
+                
+                if leaving_npc_bounds[0] < 500:
+                    # left
+                    renpy.show(character, [npc_left])
+                elif leaving_npc_bounds[0] > 700:
+                    # right
+                    renpy.show(character, [npc_right])
+
+            # at end of script
+            on_screen.append(character)
+
 # init python:
 #     def little_jump(event, interact=True, **kwargs):
 #         if not interact:
@@ -210,53 +255,53 @@ define s3_mc_attr = {'Outfit':'orange_bathing_suit', 'Job':'Scientist', 'Bisexua
 
 ### NPCs
 ## AJ
-define aj = Character("AJ", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 image aj = "season_03/npcs/aj.png"
+define aj = Character("AJ", image = "aj", callback = move_character, window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 
 ## Bill
-define bill = Character("Bill", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 image bill = "season_03/npcs/bill.png"
+define bill = Character("Bill", image = "bill", callback = move_character, window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 
 ## Camilo
-define camilo = Character("Camilo", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 image camilo = "season_03/npcs/camilo.png"
+define camilo = Character("Camilo", image = "camilo", callback = move_character, window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 
 ## Ciaran
 define ciaran = Character("Ciaran", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 
 ## Elladine
-define elladine = Character("Elladine", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 image elladine = "season_03/npcs/elladine.png"
+define elladine = Character("Elladine", image = "elladine", callback = move_character, window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 
 ## Genevieve
-define genevieve = Character("Genevieve", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 image genevieve = "season_03/npcs/genevieve.png"
+define genevieve = Character("Genevieve", image = "genevieve", callback = move_character, window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 
 ## Harry
-define harry = Character("Harry", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 image harry = "season_03/npcs/harry.png"
+define harry = Character("Harry", image = "harry", callback = move_character, window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 
 ## Iona
-define iona = Character("Iona", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 image iona = "season_03/npcs/iona.png"
+define iona = Character("Iona", image = "iona", callback = move_character, window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 
 ## Lily
 define lily = Character("Lily", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 
 ## Miki
-define miki = Character("Miki", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 image miki = "season_03/npcs/miki.png"
+define miki = Character("Miki", image = "miki", callback = move_character, window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 
 ## Nicky
-define nicky = Character("Nicky", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 image nicky = "season_03/npcs/nicky.png"
+define nicky = Character("Nicky", image = "nicky", callback = move_character, window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 
 ## Rafi
 define rafi = Character("Rafi", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 
 ## Seb
-define seb = Character("Seb", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 image seb = "season_03/npcs/seb.png"
+define seb = Character("Seb", image = "seb", callback = move_character, window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))
 
 ## Tai
 define tai = Character("Tai", window_background = Image("bg_dialog.png", xalign=0.5, yalign=1.0))

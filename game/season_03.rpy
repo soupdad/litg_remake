@@ -48,8 +48,6 @@ label s3e1p1:
     "A girl peeks her head out of the entrance."
     "She yells in excitement when she sees you."
 
-    show elladine at npc_center
-
     elladine "Hey! You made it!"
     elladine "It's so nice to meet you! I'm Elladine."
 
@@ -134,9 +132,7 @@ label s3e1p1:
     elladine "Come on. I'll introduce you."
 
     scene s3-bedroom-day
-
-    show elladine at npc_left
-    show aj at npc_right
+    $ on_screen = [] 
 
     "Elladine leads you into the bedroom, where another girl is waiting."
     "Her jaw drops when you walk in."
@@ -234,10 +230,11 @@ label s3e1p1:
     aj "I'll see you out there, guys."
     elladine "Good luck!"
 
-    show aj at npc_exit
-    show elladine at npc_center
-
     "AJ races out of the bedroom. Her heels clack all the way to the lawn."
+    show aj at npc_exit
+    pause 0.3
+    $ renpy.hide("aj")
+    $ on_screen.remove("aj")
     
     elladine "She's got a lot of energy, hasn't she?"
     elladine "I guess it's hard not to be excited when you know you're picking first."
@@ -299,9 +296,12 @@ label s3e1p1:
     "She gives you a quick hug before heading to the door."
     elladine "Good luck, [s3_mc_name]. I'll see you down there."
 
-    show elladine at npc_exit
-
     "She hurries towards the lawn, leaving you alone."
+    show elladine at npc_exit
+    pause 0.3
+    $ renpy.hide("elladine")
+    $ on_screen.remove("elladine")
+
     "There's still only three girls here!"
     "I wonder when the others will be arriving?"
     "You sit down on one of the beds. It's soft and springy."
@@ -334,24 +334,17 @@ label s3e1p1:
     thought "Alright, let's do this!"
 
     scene s3-lawn-day
+    $ on_screen = []
 
     "You step out into the brilliant sunshine."
     "Waiting on the lawn are three boys, standing in a line."
     "Elladine and AJ are off to the side, already paired up with their boys."
 
-    show elladine at npc_left
-    show aj at npc_right
-
     "Elladine shoots you an encouraging smile, and AJ gives you a thumbs up."
-
-    show elladine at npc_exit
-    show aj at npc_exit
 
     "Those two have already picked their boys..."
     "Which leaves these three for me to choose from."
     thought "I wonder which one I should pick?"
-
-    show bill at npc_center
 
     "The first boy steps forward with a cheeky smile."
 
@@ -387,11 +380,12 @@ label s3e1p1:
             "You roll your eyes at Bill and his face falls."
 
     show bill at npc_exit
+    pause 0.3
+    $ renpy.hide("bill")
 
     "You look down the line to the next boy."
 
     show camilo at npc_center
-
     camilo "Hola chica. Welcome to the Villa. Amazing, isn't it?"
     s3_mc " Is it?"
     camilo "Well, it is now you're here."
@@ -428,12 +422,13 @@ label s3e1p1:
             camilo "Oh..."
 
     show camilo at npc_exit
+    pause 0.3
+    $ renpy.hide("camilo")
 
     "The third and final boy in the line seems nervous."
     "You raise your eyebrows at him and he smiles, trying to puff out his chest a bit."
 
     show harry at npc_center
-
     harry "Hey, I'm Harry."
 
     # solo portrait shot of harry
@@ -466,8 +461,10 @@ label s3e1p1:
             $ s3_li_like_mc['Harry'] -= 5
             "You frown, leaving Harry looking embarrassed."
 
-    show bill at npc_left
-    show camilo at npc_right
+    show harry at npc_exit
+    pause 0.3
+    $ renpy.hide("harry")
+    $ on_screen = []
 
     "Alright, so these three guys are my options for now."
     "It seems like they're all keen."
@@ -484,9 +481,6 @@ label s3e1p1:
             $ s3_coupled_up_with.append("Bill")
             $ s3_li_like_mc['Bill'] += 5
             s3_mc "The boy I want to couple up with is... Bill!"
-            show camilo at npc_exit
-            show harry at npc_exit
-            show bill at npc_center
             "You stride over to Bill."
             "He grins like he can't hardly believe his luck."
             bill "Nice one."
@@ -495,9 +489,6 @@ label s3e1p1:
             $ s3_coupled_up_with.append("Camilo")
             $ s3_li_like_mc['Camilo'] += 5
             s3_mc "The boy I want to couple up with is... Camilo!"
-            show bill at npc_exit
-            show harry at npc_exit
-            show camilo at npc_center
             "You stride over to Camilo."
             "He grins like he can't hardly believe his luck."
             camilo "Nice one."
@@ -506,9 +497,6 @@ label s3e1p1:
             $ s3_coupled_up_with.append("Harry")
             $ s3_li_like_mc['Harry'] += 5
             s3_mc "The boy I want to couple up with is... Harry!"
-            show camilo at npc_exit
-            show bill at npc_exit
-            show harry at npc_center
             "You stride over to Harry."
             "He grins like he can't hardly believe his luck."
             harry "Nice one."
@@ -546,18 +534,10 @@ label s3e1p1:
         harry "Definitely. But I would say that, wouldn't I?"
 
     "The two of you go to stand next to the other couples."
-    
-    show bill at npc_exit
-    show camilo at npc_exit
-    show harry at npc_exit
-    show elladine at npc_center
 
     elladine "Hey girl! Congratulations!"
     elladine "You really  bagged yourself a hottie there."
     elladine "Um, no offence, Nicky."
-
-    show elladine at npc_left
-    show nicky at npc_right
 
     nicky "None taken."
     nicky "Hi, by the way."
@@ -577,14 +557,8 @@ label s3e1p1:
     elladine "As soon as I found out he was a musician, I was hooked."
     elladine "I've already got a really good feeling about this one."
 
-    show nicky at npc_exit
-    show aj at npc_right
-
     aj "Er, yeah. Me too."
     "AJ doesn't sound so convinced about her guy..."
-
-    show elladine at npc_exit
-    show seb at npc_left
 
     seb "Alright? My name's Seb. I'm coupled up with AJ."
 
@@ -610,14 +584,8 @@ label s3e1p1:
 
     aj "This is so nice, you guys! We're already learning so much about each other!"
 
-    show seb at npc_exit
-    show nicky at npc_left
-
     nicky "Whoa there."
     nicky "We're still waiting on two more new girls, right?"
-
-    show aj at npc_exit
-    show elladine at npc_right
 
     elladine " Yeah. I wonder what they'll be like?"
 
@@ -628,9 +596,6 @@ label s3e1p1:
             $ s3_mc_attr['Sweet'] += 1
             s3_mc "We're not a complete Villa crew until everyone's here."
 
-            show elladine at npc_exit
-            show aj at npc_right
-
             aj "Right! I'm so excited for them to get here!"
             nicky "You're not the only ones."
             "Nicky looks over at the two remaining single boys."
@@ -640,24 +605,16 @@ label s3e1p1:
             $ s3_li_like_mc[s3_current_partner] += 1
             nicky "Wow! So committed already, huh?"
 
-            show elladine at npc_exit
-
             # IF STATEMENT
             if s3_current_partner == "Bill":
-                show bill at npc_right
-
                 bill "I kinda like it."
                 bill "It's nice to know [s3_mc_name] is feeling it so strongly."
                 bill "I mean, if another boy came in right now and tried to couple up with her, I'd have a thing or two to say about it, as well."
             elif s3_current_partner == "Camilo":
-                show camilo at npc_right
-
                 camilo "I kinda like it."
                 camilo "It's nice to know [s3_mc_name] is feeling it so strongly."
                 camilo "I mean, if another boy came in right now and tried to couple up with her, I'd have a thing or two to say about it, as well."
             elif s3_current_partner == "Harry":
-                show harry at npc_right
-                
                 harry "I kinda like it."
                 harry "It's nice to know [s3_mc_name] is feeling it so strongly."
                 harry "I mean, if another boy came in right now and tried to couple up with her, I'd have a thing or two to say about it, as well."
@@ -667,73 +624,36 @@ label s3e1p1:
             s3_mc "This place isn't exactly well signposted."
             nicky "Bad news for the leftover boys if you're right."
 
-    show aj at npc_exit
-    show elladine at npc_exit
-
     # IF STATEMENT
     if s3_current_partner == "Bill":
-        show bill at npc_right
         bill "I wonder if they'd be open to coupling up with each other."
     elif s3_current_partner == "Camilo":
-        show camilo at npc_right
         camilo "I wonder if they'd be open to coupling up with each other."
     elif s3_current_partner == "Harry":
-        show harry at npc_right
         harry "I wonder if they'd be open to coupling up with each other."
 
     "[s3_current_partner] looks over at the two remaining single boys."
 
-    scene s3-lawn-day
     # IF STATEMENT
     if s3_current_partner == "Bill":
-        show camilo at npc_center
         "Camilo's smile is still dazzling, but it looks a little more nervous now."
-        show camilo at npc_exit
-        show harry at npc_center
         "Harry stands up straight, trying to look confident."
-        show harry at npc_exit
     elif s3_current_partner == "Camilo":
-        show bill at npc_center
         "Bill is masking his disappointment by concentrating on the grass between his toes."
-        show bill at npc_exit
-        show harry at npc_center
         "Harry stands up straight, trying to look confident."
-        show harry at npc_exit
     elif s3_current_partner == "Harry":
-        show bill at npc_center
         "Bill is masking his disappointment by concentrating on the grass between his toes."
-        show bill at npc_exit
-        show camilo at npc_center
         "Camilo's smile is still dazzling, but it looks a little more nervous now."
-        show camilo at npc_exit
-
-    show nicky at npc_exit
-    show aj at npc_left
 
     aj "I feel bad for them. Nobody wants to get picked last."
-
-    show bill at npc_exit
-    show camilo at npc_exit
-    show harry at npc_exit
-    show elladine at npc_right
-
     elladine "Yeah, and it's pretty obvious they both wanted to get picked by [s3_mc_name]..."
     aj "Well, maybe their perfect soulmates are about to walk out of that door any second."
-
-    show aj at npc_exit
-    show seb at npc_left
-
     seb "Let's not kid ourselves. That kind of thing never happens in the real world."
-
-    show elladine at npc_exit
-    show nicky at npc_right
-
     nicky "Alright, but this isn't exactly a normal situation, is it?"
     nicky "It's Love Island. Where dreams come true."
     seb "Wow, corny."
     nicky "Come on, mate. The magic only works if you believe in it."
     seb "Maybe that's why nothing magical ever happens to me."
-
 
     # CHOICE
     menu:
@@ -759,19 +679,16 @@ label s3e1p1:
     if s3_current_partner == "Harry":
         $ s3_amount_npcs_like_mc["Miki"] = 15
         call s3e1p1_meet_miki
-        show miki at npc_exit
         $ s3_amount_npcs_like_mc["Iona"] = 15
         call s3e1p1_meet_iona
     elif s3_current_partner == "Bill":
         $ s3_amount_npcs_like_mc["Iona"] = 15
         call s3e1p1_meet_iona
-        show iona at npc_exit
         $ s3_amount_npcs_like_mc["Genevieve"] = 15
         call s3e1p1_meet_genevieve
     elif s3_current_partner == "Camilo":
         $ s3_amount_npcs_like_mc["Miki"] = 15
         call s3e1p1_meet_miki
-        show miki at npc_exit
         $ s3_amount_npcs_like_mc["Genevieve"] = 15
         call s3e1p1_meet_genevieve
 
@@ -791,49 +708,21 @@ label s3e1p1:
             $ s3_mc_attr['Funny'] += 1
             thought "They make such a hot couple!"
 
-    show miki at npc_exit
-    show iona at npc_exit
-    show genevieve at npc_exit
-    show elladine at npc_left
-
     elladine "I think that's everyone."
-
-    show camilo at npc_exit
-    show harry at npc_exit
-    show bill at npc_right
-
     bill "Five great ladies, five great gents, five great couples. Makes sense to me."
-
-    show elladine at npc_exit
-    show aj at npc_left
-
     aj " Don't you think it's a bit early to say whether our couples are great or not?"
 
     # IF STATEMENT
     if s3_current_partner == "Bill":
         bill "I dunno. I've already got a pretty great feeling about this one."
-        show aj at npc_exit
-        show iona at npc_left
         iona "Well, it's not a competition."
     elif s3_current_partner == "Camilo":
-        show bill at npc_exit
-        show camilo at npc_right
         camilo "I dunno. I've already got a pretty great feeling about this one."
-        show aj at npc_exit
-        show miki at npc_left
         miki "Well, it's not a competition."
     elif s3_current_partner = "Harry":
-        show bill at npc_exit
-        show harry at npc_right
         harry "I dunno. I've already got a pretty great feeling about this one."
-        show aj at npc_exit
-        show miki at npc_left
         miki "Well, it's not a competition."
 
-    show bill at npc_exit
-    show camilo at npc_exit
-    show harry at npc_exit
-    show nicky at npc_right
     nicky "It sort of is, though. Only the strongest couple can win the fifty grand."
 
     # CHOICE
@@ -841,24 +730,17 @@ label s3e1p1:
         "Based on first impressions, I think the strongest couple here will be..."
         "Me and [s3_current_partner]":
             $ s3e1p1_strongest_couple = "MC"
-            show miki at npc_exit
-            show iona at npc_exit
             # IF STATEMENT
             if s3_current_partner == "Bill":
-                show bill at npc_left
                 $ s3_li_like_mc['Bill'] += 1
                 bill "Not to bang my own drum or anything, but hard agree."
             elif s3_current_partner == "Camilo":
-                show camilo at npc_left
                 $ s3_li_like_mc['Camilo'] += 1
                 camilo "Not to bang my own drum or anything, but hard agree."
             elif s3_current_partner = "Harry":
-                show harry at npc_left
                 $ s3_li_like_mc['Harry'] += 1
                 harry "Not to bang my own drum or anything, but hard agree."
 
-            show aj at npc_exit
-            show elladine at npc_left
 
             elladine " I can't lie, you two do look super cute together."
 
@@ -876,8 +758,6 @@ label s3e1p1:
             $ s3_amount_npcs_like_mc['Elladine'] += 1
             $ s3_amount_npcs_like_mc['Nicky'] += 1
 
-            show aj at npc_exit
-            show elladine at npc_left
             elladine "Aw, babes."
         
         "AJ and Seb":
@@ -886,42 +766,27 @@ label s3e1p1:
             $ s3_amount_npcs_like_mc['Seb'] += 1
 
             aj "Wow, really?"
-            show aj at npc_exit
-            show seb at npc_left
             seb "That's, um... sweet of you to say."
 
-    show miki at npc_exit
-    show iona at npc_exit
     # IF STATEMENT
     if s3e1p1_strongest_couple == "Miki and Bill" or s3e1p1_strongest_couple == "Iona and Camilo" or s3e1p1_strongest_couple == "Genevieve and Harry":
         if s3_current_partner == "Bill":
-            show bill at npc_left
             $ s3_li_like_mc['Bill'] -= 1
             bill "Stronger than you and me?"
         elif s3_current_partner == "Camilo":
-            show camilo at npc_left
             $ s3_li_like_mc['Camilo'] -= 1
             camilo "Stronger than you and me?"
         elif s3_current_partner == "Harry":
-            show harry at npc_left
             $ s3_li_like_mc['Harry'] -= 1
             harry "Stronger than you and me?"
 
         s3_mc "I'm just being honest."
 
-    show bill at npc_exit
-    show camilo at npc_exit
-    show harry at npc_exit
-    show aj at npc_exit
-    show elladine at npc_exit
-    show seb at npc_exit
     # IF STATEMENT
     if s3_current_partner == "Bill":
-        show iona at npc_left
         iona "All I meant was, it might be a competition, but it doesn't really matter who wins."
         iona "We're all just here to find love, right?"
     elif s3_current_partner == "Camilo" or s3_current_partner == "Harry":
-        show miki at npc_left
         miki "All I meant was, it might be a competition, but it doesn't really matter who wins."
         miki "We're all just here to find love, right?"
 
@@ -962,29 +827,19 @@ label s3e1p1:
             s3_mc "Love is great and winning is fine, but why put so much pressure on it?"
             s3_mc "If all I get from this is a few cool new friends, I'll count myself a winner."
 
-            show miki at npc_exit
-            show iona at npc_exit
-            show aj at npc_left
 
             aj "Wow, yes. [s3_mc_name] just said it better than I ever could."
 
-    show bill at npc_exit
-    show camilo at npc_exit
-    show harry at npc_exit
     # IF STATEMENT
     if s3_current_partner == "Harry":
-        show iona at npc_right
         iona "Oh my days, you guys!"
         iona "I've got a text!"
     elif s3_current_partner == "Camilo" or s3_current_partner == "Bill":
-        show genevieve at npc_right
         genevieve "Oh my days, you guys!"
         genevieve "I've got a text!"
 
     text "Islanders, it's time to get to know each other a little better. Please make your way to the challenge platform and get ready to unpack some secrets about your fellow Islanders! #excessbaggage #gettingtoknowyou"
 
-    show aj at npc_exit
-    show seb at npc_left
 
     seb "We've only just got here and we're already being challenged?"
     seb "I was hoping we could get a nap first."
@@ -997,53 +852,34 @@ label s3e1p1:
     elif s3e1p1_feeling_hungry:
         seb "I'm a little peckish too."
         s3_mc "Me too! I was saying to Elladine, I'd love some kind of snack."
-        show iona at npc_exit
-        show genevieve at npc_exit
         if s3_current_partner == "Bill":
-            show bill at npc_right
             bill "Maybe I'm the kind of snack you're after."
         elif s3_current_partner == "Camilo":
-            show camilo at npc_right
             camilo "Maybe I'm the kind of snack you're after."
         elif s3_current_partner == "Harry":
-            show harry at npc_right
             harry "Maybe I'm the kind of snack you're after."
         s3_mc "That's not the kind of snack I mean."
 
-    show seb at npc_exit
-    show nicky at npc_left
 
     nicky "I hate to sound like a stuck record, but it's Love Island."
     nicky "You have seen this show before, right? You didn't just get off at the wrong bus stop and end up here by mistake?"
     nicky "Because if that's what happened, the sooner you admit it, the less awkward it's going to be."
 
-    show bill at npc_exit
-    show camilo at npc_exit
-    show harry at npc_exit
-    show elladine at npc_right
 
     elladine "Aw, stop teasing him. He just needs a bit of time to get used to it, that's all."
 
-    show nicky at npc_exit
-    show camilo at npc_left
 
     camilo "The challenges are just a bit of fun! It'll help us all get closer as a group."
 
-    show elladine at npc_exit
-    show bill at npc_right
 
     bill "More importantly, we'll find out everyone's saucy secrets."
     camilo "Well, that too, I guess..."
     bill "Don't get me wrong. I've got nothing to hide."
     bill "But I'm excited to find out what the rest of you are holding back."
 
-    show camilo at npc_exit
-    show harry at npc_left
 
     harry "That's true, but we're not just here to mess around and relax, or dig up gossip on each other."
     
-    show bill at npc_exit
-    show aj at npc_right
 
     aj "We're not?"
     harry "No! We're here on an important mission! To find someone we love. It's serious business."
@@ -1071,46 +907,35 @@ label s3e1p1:
             s3_mc "Harry's right. We've all got to be on the ball if we want to make the most of our time here."
             s3_mc "This challenge sounds like a great way to get into the right mindset."
 
-    show harry at npc_exit
-    show elladine at npc_left
 
     elladine "Well, there's only one way to find out."
 
-    show aj at npc_exit
     # IF STATEMENT
     if s3_current_partner == "Harry":
-        show iona at npc_right
         iona "Let's go."
     elif s3_current_partner == "Camilo" or s3_current_partner == "Bill":
-        show genevieve at npc_right
         genevieve "Let's go."
 
-    show elladine at npc_exit
     if s3_current_partner == "Bill":
-        show iona at npc_left
         iona "Woo! I can't wait!"
     elif s3_current_partner == "Camilo" or s3_current_partner == "Harry":
-        show miki at npc_left
         miki "Woo! I can't wait!"
 
-    show miki at npc_exit
-    show genevieve at npc_exit
-    show iona at npc_exit
+    scene s3-lawn-day 
+    $ on_screen = []
 
     "Chattering and laughing, the Islanders head towards the challenge platform."
     "Before you can follow, [s3_current_partner] quietly takes you to one side."
 
+
     # IF STATEMENT
     if s3_current_partner == "Bill":
-        show bill at npc_center
         bill "Hey, [s3_mc_name]. Sorry to hang back like this."
         bill "I just wanted to have a quick chat with you in private before the challenge, if that's OK."
     elif s3_current_partner == "Camilo":
-        show camilo at npc_center
         camilo "Hey, [s3_mc_name]. Sorry to hang back like this."
         camilo "I just wanted to have a quick chat with you in private before the challenge, if that's OK."
     elif s3_current_partner == "Harry":
-        show harry at npc_center
         harry "Hey, [s3_mc_name]. Sorry to hang back like this."
         harry "I just wanted to have a quick chat with you in private before the challenge, if that's OK."
 
@@ -1399,9 +1224,6 @@ label s3e1p1:
         "We should go and meet the others at the challenge platform..."
         "Yep, let's go":
             s3_mc "I hope they haven't started without us!"
-            show bill at npc_exit
-            show camilo at npc_exit
-            show harry at npc_exit
 
         "Race you!":
             $ s3_mc_attr['Funny'] += 1
@@ -1409,13 +1231,10 @@ label s3e1p1:
             # IF STATEMENT
             if s3_current_partner == "Bill":
                 bill "Wait, wh..."
-                show bill at npc_exit
             elif s3_current_partner == "Camilo":
                 camilo "Wait, wh..."
-                show camilo at npc_exit
             elif s3_current_partner == "Harry":
                 harry "Wait, wh..."
-                show harry at npc_exit
             "You're already off and running."
             "Seconds later, you hear him laugh, then the sound of his bare feet on the grass as he gives chase."
 
@@ -1432,7 +1251,6 @@ label s3e1p1:
                 bill "To the challenge platform, m'lady?"
                 s3_mc " To the challenge platform at once!"
                 "He sets off, carrying you bridal-style across the lawn."
-                show bill at npc_exit
             elif s3_current_partner == "Camilo":
                 bill "Carry you?"
                 s3_mc "That's what I said."
@@ -1443,7 +1261,6 @@ label s3e1p1:
                 camilo "To the challenge platform, m'lady?"
                 s3_mc " To the challenge platform at once!"
                 "He sets off, carrying you bridal-style across the lawn."
-                show camilo at npc_exit
             elif s3_current_partner == "Harry":
                 harry "Carry you?"
                 s3_mc "That's what I said."
@@ -1456,9 +1273,9 @@ label s3e1p1:
                 harry "To the challenge platform, m'lady?"
                 s3_mc "To the challenge platform at once!"
                 "He sets off, carrying you bridal-style across the lawn."
-                show harry at npc_exit
 
-    scene edited_sandy_intro
+    scene edited_sandy_intro with dissolve
+    $ on_screen = []
 
     "It's only day 1, and [s3_mc_name] is already turning heads all over the Villa!"
     # IF STATEMENT
@@ -1468,20 +1285,26 @@ label s3e1p1:
         "The other girls will never catch up!"
     "She's coupled up with [s3_current_partner] for now, but who knows what could happen at this afternoon's challenge?"
 
-    show elladine at npc_center
     elladine "We've got to kiss the boy we think the clue is about."
+
     show elladine at npc_exit
+    pause 0.3
+    $ renpy.hide("elladine")
 
     # IF STATEMENT
     if s3_current_partner == "Bill":
         show genevieve at npc_center
         genevieve "I can't believe how big that is..."
         show genevieve at npc_exit
+        pause 0.3
+        $ renpy.hide("genevieve")
     elif s3_current_partner == "Camilo" or s3_current_partner == "Harry":
         show miki at npc_center
         miki "I can't believe how big that is..."
         show miki at npc_exit
-
+        pause 0.3
+        $ renpy.hide("miki")
+    
     # CHOICE
     menu:
         "Do you want to contine to next part or go back to the main menu?"
@@ -1492,8 +1315,6 @@ label s3e1p1:
 
 # LABELS FOR s3e1p1
 label s3e1p1_meet_miki:
-    show seb at npc_exit
-    show miki at npc_left
 
     miki "Hi everyone! It's so exciting to be here!"
 
@@ -1515,12 +1336,6 @@ label s3e1p1_meet_miki:
     miki "I don't know why I was worried."
     "Her eyes linger on Bill."
     miki "What's your name, handsome?"
-
-    show nicky at npc_exit
-    show harry at npc_exit
-    show camilo at npc_exit
-    show bill at npc_right
-
     bill "I'm Bill. Pleased to meet you, love."
     miki "You seem like a rugged, down-to-earth kind of guy, Bill."
     miki "And they say opposites attract."
@@ -1534,8 +1349,6 @@ label s3e1p1_meet_miki:
     return
 
 label s3e1p1_meet_iona:
-    show seb at npc_exit
-    show iona at npc_left
 
     "A new girl emerges from the Villa. Everyone falls silent."
     iona "Good morning, Love Island!"
@@ -1552,11 +1365,6 @@ label s3e1p1_meet_iona:
     -Apprentice pylon rigger\n
     -Spends all day making sparks fly{/i}"
 
-    show nicky at npc_exit
-    show bill at npc_exit
-    show harry at npc_exit
-    show camilo at npc_right
-
     camilo "You don't mess around, do you?"
     iona "I certainly don't, babe."
     iona "Is that going to be a problem?"
@@ -1570,8 +1378,6 @@ label s3e1p1_meet_iona:
     return
 
 label s3e1p1_meet_genevieve:
-    show seb at npc_exit
-    show genevieve at npc_left
     "The door opens one last time, and everyone turns to look as another girl struts out onto the lawn."
     genevieve " Hello, darlings."
     genevieve "How are we all doing?"
@@ -1591,10 +1397,6 @@ label s3e1p1_meet_genevieve:
     "She looks him over and smiles."
     genevieve "What's your name, sweetie?"
 
-    show nicky at npc_exit
-    show bill at npc_exit
-    show camilo at npc_exit
-    show harry at npc_right
 
     harry "Sweetie."
     harry "Er, I mean..."
@@ -1613,6 +1415,7 @@ label s3e1p1_meet_genevieve:
 #########################################################################
 label s3e1p2:
     scene edited_sandy_intro
+    $ on_screen = []
 
     "Last time on this brand spanking new season of Love Island..."
     "The Islander checked out what the Villa has to offer..."
@@ -1621,25 +1424,31 @@ label s3e1p2:
 
     # IF STATEMENT
     if s3_current_partner == "Bill":
-        show bill at npc_center
         bill "Obviously we've only really got a first impression to go on at the moment."
         bill "But I already feel like you're exactly my type on paper."
         show bill at npc_exit
+        pause 0.3
+        $ renpy.hide("bill")
     elif s3_current_partner == "Camilo":
-        show camilo at npc_center
         camilo "Obviously we've only really got a first impression to go on at the moment."
         camilo "But I already feel like you're exactly my type on paper."
         show camilo at npc_exit
+        pause 0.3
+        $ renpy.hide("camilo")
     elif s3_current_partner == "Harry":
-        show harry at npc_center
         harry "Obviously we've only really got a first impression to go on at the moment."
         harry "But I already feel like you're exactly my type on paper."
         show harry at npc_exit
+        pause 0.3
+        $ renpy.hide("harry")
 
     "Well, almost everyone."
     show aj at npc_center
     aj "Don't you think it's a bit early to say whether our couples are great or not?"
     show aj at npc_exit
+    pause 0.3
+    $ renpy.hide("aj")
+
     "It's early days, AJ, early days."
     "But you know what they say..."
     "The early bird catches the worm."
@@ -1651,30 +1460,43 @@ label s3e1p2:
             show bill at npc_center
             bill "Cor"
             show bill at npc_exit
+            pause 0.3
+            $ renpy.hide("bill")
         elif s3_current_partner == "Camilo":
             show camilo at npc_center
             camilo "Blimey"
             show camilo at npc_exit
+            pause 0.3
+            $ renpy.hide("camilo")
         elif s3_current_partner == "Harry":
             show harry at npc_center
             harry "Gosh"
             show harry at npc_exit
+            pause 0.3
+            $ renpy.hide("harry")
         "Well said, [s3_current_partner]."
 
     "Coming up..."
     "The Islander get hands-on with each other's excess baggage."
+    
     show aj at npc_center
     aj "What gave it away?"
     show aj at npc_exit
+    pause 0.3
+    $ renpy.hide("aj")
+
     "And one clue doesn't add up..."
+
     show bill at npc_center
     bill "I have no idea who this is about."
     show bill at npc_exit
+    pause 0.3
+    $ renpy.hide("bill")
 
     scene s3-platform-excess-baggage
+    $ on_screen = []
     "You and [s3_current_partner] make your way over to the platform where the other Islanders have already gathered."
 
-    show elladine at npc_center
     elladine "There you are..."
 
     # IF STATEMENT
@@ -1682,24 +1504,15 @@ label s3e1p2:
         "Elladine points at your lips."
         elladine "You've smudged your lipstick, hun. It's on your cheek."
         "You quickly wipe at your cheek. [s3_current_partner] laughs a little."
-        show elladine at npc_left
         if s3_current_partner == "Bill":
-            show bill at npc_right
             bill "Cheeky."
         elif s3_current_partner == "Camilo":
-            show camilo at npc_right
             camilo "Cheeky."
         elif s3_current_partner == "Harry":
-            show harry at npc_right
             harry "Cheeky."
 
     "Everyone is standing around some suitcase on a carousel."
-    show harry at npc_exit
-    show camilo at npc_exit
-    show bill at npc_right
     bill "Those spinny things make me feel dizzy at airports."
-    show bill at npc_exit
-    show harry at npc_right
     harry "I always want to lie on them and just go round and round."
     harry "They look kinda comfy and you're always exhausted by the time you get to them."
     elladine "I got a text."
@@ -1710,16 +1523,13 @@ label s3e1p2:
     elladine "The guy who matches the clue steps forward and we'll see if we snogged the right person."
     elladine "Then it'll be the guys' turn."
     
-    show harry at npc_exit
     # IF STATEMENT
     if s3_current_partner == "Harry":
-        show miki at npc_right
         miki "So, do we actually have to kiss who we think the clue is about?"
         miki "Or can we just use this as a way to kiss someone we think is hot?"
         elladine "Well, you wouldn't win the game..."
         miki "But you'd get to snog someone you like."
     elif s3_current_partner == "Camilo" or s3_current_partner == "Bill":
-        show genevieve at npc_right
         genevieve "So, do we actually have to kiss who we think the clue is about?"
         genevieve "Or can we just use this as a way to kiss someone we think is hot?"
         elladine "Well, you wouldn't win the game..."
@@ -1748,21 +1558,14 @@ label s3e1p2:
 
     thought "It would be funny if that came out on the first day!"
     "[s3_current_partner] coughs, looking at you."
-    show elladine at npc_exit
     # IF STATEMENT
     if s3_current_partner == "Bill":
-        show bill at npc_left
         bill "You alright, [s3_mc_name]?"
     elif s3_current_partner == "Camilo":
-        show camilo at npc_left
         camilo "You alright, [s3_mc_name]?"
     elif s3_current_partner == "Harry":
-        show harry at npc_left
         harry "You alright, [s3_mc_name]?"
 
-    show miki at npc_exit
-    show genevieve at npc_exit
-    show elladine at npc_right
     elladine "Yeah, you look a little farway."
     thought "Oops, I just got lost in thought."
     s3_mc "It's nothing."
@@ -1771,143 +1574,71 @@ label s3e1p2:
     menu:
         "I can't wait to..."
         "Find out the gossip about the boys":
-            show bill at npc_exit
-            show camilo at npc_exit
-            show harry at npc_exit
-            show aj at npc_left
             aj "Same, we've got to find out all the dirt."
         "Win this challenge!":
             elladine "There are no losers or winners in this challenge!"
             elladine "We're just getting to know each other"
             "You and Harry groan."
-            show bill at npc_exit
-            show camilo at npc_exit
-            show harry at npc_left
             harry "What's the point in that then?"
 
-            show elladine at npc_exit
             # IF STATEMENT
             if s3_current_partner == "Bill" or s3_current_partner == "Harry":
-                show iona at npc_right
                 iona "You might get a lot of kisses."
             elif s3_current_partner == "Camilo":
-                show genevieve at npc_right
                 genevieve "You might get a lot of kisses."
             harry "Oh, OK."
             harry "That doesn't sound too bad."
         "Just kiss some dudes":
-            show elladine at npc_exit
             # IF STATEMENT
             if s3_current_partner == "Bill":
-                show genevieve at npc_right
                 genevieve "I feel you hun."
                 genevieve "Can't wait to get some action in here!"
             elif s3_current_partner == "Harry" or s3_current_partner == "Camilo":
-                show miki at npc_right
                 miki "I feel you hun."
                 miki "Can't wait to get some action in here!"
 
     # IF STATEMENT
     if s3_current_partner == "Bill":
-        show iona at npc_exit
-        show elladine at npc_exit
-        show miki at npc_exit
-        show genevieve at npc_right
         genevieve "I'm just going to kiss whoever I think is the fittest."
-        show miki at npc_exit
-        show bill at npc_exit
-        show camilo at npc_exit
-        show harry at npc_exit
-        show aj at npc_exit
-        show elladine at npc_left
         elladine "Right, let's get started!"
         elladine "Iona, can you do the honours?"
         "Iona rushes to the conveyor belt and grabs a suitcase."
         "She wheels it over to the girls and quickly unzips it."
-        show genevieve at npc_exit
-        show iona at npc_right
         iona "OK, the clue is..."
         iona "'This boy once woke up spooning a badger...'"
         "The boys look at each other puzzled while the girls huddle closer together."
-        show iona at npc_exit
-        show aj at npc_right
         aj "That sounds adorable!"
         elladine "It sounds scary! Badgers will mess you up."
-        show elladine at npc_exit
-        show iona at npc_left
         iona "How do you even end up in that situation?"
-        show aj at npc_exit
-        show genevieve at npc_right
         genevieve "I bet it was a prank by his mates."
     elif s3_current_partner == "Camilo":
-        show iona at npc_exit
-        show elladine at npc_exit
-        show miki at npc_exit
-        show genevieve at npc_right
         genevieve "I'm just going to kiss whoever I think is the fittest."
-        show miki at npc_exit
-        show bill at npc_exit
-        show camilo at npc_exit
-        show harry at npc_exit
-        show aj at npc_exit
-        show elladine at npc_left
         elladine "Right, let's get started!"
         elladine "Miki, can you do the honours?"
         "Miki rushes to the conveyor belt and grabs a suitcase."
         "She wheels it over to the girls and quickly unzips it."
-        show genevieve at npc_exit
-        show miki at npc_right
         miki "OK, the clue is..."
         miki "'This boy once woke up spooning a badger...'"
         "The boys look at each other puzzled while the girls huddle closer together."
-        show miki at npc_exit
-        show aj at npc_right
         aj "That sounds adorable!"
         elladine "It sounds scary! Badgers will mess you up."
-        show aj at npc_exit
-        show genevieve at npc_right
         genevieve "How do you even end up in that situation?"
-        show elladine at npc_exit
-        show miki at npc_left
         miki "I bet it was a prank by his mates."
     elif s3_current_partner == "Harry":
-        show iona at npc_exit
-        show elladine at npc_exit
-        show genevieve at npc_exit
-        show miki at npc_right
         miki "I'm just going to kiss whoever I think is the fittest."
-        show miki at npc_exit
-        show bill at npc_exit
-        show camilo at npc_exit
-        show harry at npc_exit
-        show aj at npc_exit
-        show elladine at npc_left
         elladine "Right, let's get started!"
         elladine "Iona, can you do the honours?"
         "Iona rushes to the conveyor belt and grabs a suitcase."
         "She wheels it over to the girls and quickly unzips it."
-        show miki at npc_exit
-        show iona at npc_right
         iona "OK, the clue is..."
         iona "'This boy once woke up spooning a badger...'"
         "The boys look at each other puzzled while the girls huddle closer together."
-        show iona at npc_exit
-        show aj at npc_right
         aj "That sounds adorable!"
         elladine "It sounds scary! Badgers will mess you up."
-        show elladine at npc_exit
-        show iona at npc_left
         iona "How do you even end up in that situation?"
-        show aj at npc_exit
-        show miki at npc_right
         miki "I bet it was a prank by his mates."
 
-    show iona at npc_exit
-    show elladine at npc_left
     elladine "That's a terrible idea all round."
-    show miki at npc_exit
-    show genevieve at npc_exit
-    show aj at npc_right
     aj "But which one of these guys do you think it is?"
 
     # CHOICE
@@ -1924,20 +1655,14 @@ label s3e1p2:
         "Seb":
             $ s3e1p2_spooned_a_badger = "Seb"
 
-    show elladine at npc_exit
     # IF STATEMENT
     if s3_current_partner == "Bill" or s3_current_partner == "Camilo":
-        show genevieve at npc_left
         genevieve "I agree with [s3_mc_name]."
         genevieve "There's something about [s3e1p2_spooned_a_badger] that makes me imagine him waking up next to a badger."
     elif s3_current_partner == "Harry":
-        show miki at npc_left
         miki "I agree with [s3_mc_name]."
         miki "There's something about [s3e1p2_spooned_a_badger] that makes me imagine him waking up next to a badger."
     
-    show genevieve at npc_exit
-    show miki at npc_exit
-    show elladine at npc_left
     elladine "So, we've decided it's [s3e1p2_spooned_a_badger]?"
     s3_mc "I think so, yeah."
     aj "So who wants to go kiss him?"
@@ -1957,40 +1682,27 @@ label s3e1p2:
                 if s3_current_partner == "Bill" or s3_current_partner == "Camilo":
                     elladine "Genevieve, you should kiss [s3e1p2_spooned_a_badger]."
                     aj "Yeah, you've dealt with these types before."
-                    show aj at npc_exit
-                    show genevieve at npc_right
                     genevieve "Sure, sure."
                     "Genevieve kisses [s3e1p2_spooned_a_badger] on the lips."
                 else:
-                    show aj at npc_exit
-                    show elladine at npc_right
                     elladine "I'll take one for the team."
                     "She kisses him."
             "Go on then, it's only a game":
                 $ s3e1p2_challenge_kiss = True
                 s3_mc "I'll do it."
                 s3_mc "I'll kiss him."
-                show aj at npc_exit
                 # IF STATEMENT
                 if s3_current_partner == "Bill" or s3_current_partner == "Harry":
-                    show iona at npc_right
                     iona "Go on, [s3_mc_name]!"
-                    show iona at npc_exit
                 elif s3_current_partner == "Camilo":
-                    show genevieve at npc_right
                     genevieve "Go on, [s3_mc_name]!"
-                    show genevieve at npc_exit
                 "You wander over to [s3e1p2_spooned_a_badger]."
-                show elladine at npc_exit
                 # IF STATEMENT
                 if s3e1p2_spooned_a_badger == "Bill":
-                    show bill at npc_center
                     bill "Alright?"
                 elif s3e1p2_spooned_a_badger == "Camilo":
-                    show camilo at npc_center
                     camilo "Alright?"
                 elif s3e1p2_spooned_a_badger == "Harry":
-                    show harry at npc_center
                     harry "Alright?"
                 "You kiss [s3e1p2_spooned_a_badger] firmly on the lips."
                 "It's tender yet urgent."
@@ -2006,124 +1718,72 @@ label s3e1p2:
             "Do I have to stop at kissing him?":
                 $ s3e1p2_challenge_kiss = True
                 s3_mc "Let me at him."
-                show elladine at npc_exit
-                show aj at npc_exit
                 # IF STATEMENT
                 if s3e1p2_spooned_a_badger == "Bill":
-                    show bill at npc_center
                     "You stride over to [s3e1p2_spooned_a_badger] and kiss him hard on his lips. You grind your body against his."
                     bill "Woah!"
-                    show bill at npc_left
-                    show genevieve at npc_right
                     genevieve "Woop! Go girl."
                     "You finally pull away. He looks stunned as he wipes his brow."
                     bill "You're seriously a hot kisser."
                 elif s3e1p2_spooned_a_badger == "Camilo":
-                    show camilo at npc_center
                     "You stride over to [s3e1p2_spooned_a_badger] and kiss him hard on his lips. You grind your body against his."
                     camilo "Woah!"
-                    show camilo at npc_left
-                    show miki at npc_right
                     miki "Woop! Go girl."
                     "You finally pull away. He looks stunned as he wipes his brow."
                     camilo "You're seriously a hot kisser."
                 elif s3e1p2_spooned_a_badger == "Harry":
-                    show harry at npc_center
                     "You stride over to [s3e1p2_spooned_a_badger] and kiss him hard on his lips. You grind your body against his."
                     harry "Woah!"
-                    show harry at npc_left
-                    show miki at npc_right
                     miki "Woop! Go girl."
                     "You finally pull away. He looks stunned as he wipes his brow."
                     harry "You're seriously a hot kisser."
                 s3_mc "Thanks, babe."
                 "You stride back over to the girls."
-                show bill at npc_exit
-                show camilo at npc_exit
-                show harry at npc_exit
-                show aj at npc_left
                 aj "Go [s3_mc_name]!"
-                show miki at npc_exit
-                show genevieve at npc_exit
-                show elladine at npc_right
                 elladine "Now that's how you go from G to D."
 
-    show bill at npc_exit
-    show camilo at npc_exit
-    show harry at npc_exit
-    show elladine at npc_right
     elladine "Ok, so whoever woke up to a terrifying bed companion..."
     elladine "Please step forward!"
     "The boys all look at each other."
     "Nicky steps forward."
-    show genevieve at npc_left
     genevieve "Nicky!"
 
-    show elladine at npc_exit
     # IF STATEMENT
     if s3e1p2_spooned_a_badger == "Nicky":
-        show nicky at npc_right
         nicky "How'd you know it was me?"
     else:
-        show aj at npc_right
         aj "Argh, Nicky? I wouldn't have known."
-        show genevieve at npc_exit
-        show nicky at npc_left
         nicky "I mean, there's not much of a giveaway for that."
-        show aj at npc_exit
         # IF STATEMENT
         if s3e1p2_spooned_a_badger == "Bill":
-            show bill at npc_right
             bill "Why'd you think it was me?"
         elif s3e1p2_spooned_a_badger == "Camilo":
-            show camilo at npc_right
             camilo "Why'd you think it was me?"
         elif s3e1p2_spooned_a_badger == "Harry":
-            show harry at npc_right
             harry "Why'd you think it was me?"
         elif s3e1p2_spooned_a_badger == "Seb":
-            show seb at npc_right
             seb "Why'd you think it was me?"
-        show nicky at npc_exit
-        show aj at npc_left
         aj "I don't know! I could just see you spooning a badger is all."
 
-    show nicky at npc_exit
-    show camilo at npc_exit
-    show harry at npc_exit
-    show seb at npc_exit
-    show bill at npc_right
     bill "Mate, how'd you end up with a badger?"
-    show aj at npc_exit
-    show genevieve at npc_exit
-    show nicky at npc_left
     nicky "OK, so first off, it was a baby badger that had clearly got lost."
     nicky "It had been a really cold night, so it must have somehow got into my flat and found something warm to cuddle up to."
     nicky "Me."
-    show bill at npc_exit
-    show aj at npc_right
     aj "So what did you do?"
     nicky "Handed it over to a local animal charity who would try to reunite it with its parents."
     nicky "Though it didn't stop clinging to me until they arrived..."
-    show aj at npc_exit
-    show camilo at npc_right
     camilo "Cute!"
 
-    show nicky at npc_exit
     # IF STATEMENT
     if s3_current_partner == "Bill" or s3_current_partner == "Harry":
-        show iona at npc_left
         iona "Adorable, but moving on..."
         iona "[s3_mc_name], why don't you go and get the next suitcase?"
     elif s3_current_partner == "Camilo":
-        show miki at npc_left
         miki "Adorable, but moving on..."
         miki "[s3_mc_name], why don't you go and get the next suitcase?"
 
 
     "You head over to the carousel where suitcases are going round and round, and grab one."
-    show camilo at npc_exit
-    show aj at npc_right
     aj "Bring it over, [s3_mc_name]!"
     "You pop the case open. Inside is a label which says..."
 
@@ -2131,27 +1791,16 @@ label s3e1p2:
     if s3_current_partner == "Bill":
         s3_mc "'This boy got caught having sex in his mum's wardrobe.'"
         aj "Woah."
-        show iona at npc_exit
-        show miki at npc_exit
-        show genevieve at npc_left
         genevieve "Filthy."
     elif s3_current_partner == "Camilo":
-        show
         s3_mc "'This boy got caught having sex at work.'"
         aj "Woah."
-        show iona at npc_exit
-        show miki at npc_exit
-        show genevieve at npc_left
         genevieve "Filthy."
     elif s3_current_partner == "Harry":
         s3_mc "'This boy got caught having sex on a roof by someone flying a drone.'"
         aj "Woah."
-        show iona at npc_exit
         miki "Filthy."
     
-    show genevieve at npc_exit
-    show miki at npc_exit
-    show elladine at npc_left
     elladine "I reckon that's something Seb would do."
     aj "Or maybe it's [s3_current_partner]..."
 
@@ -2169,19 +1818,15 @@ label s3e1p2:
         "Seb":
             $ s3e1p2_caught_having_sex = "Seb"
 
-    show elladine at npc_exit
     # IF STATEMENT
     if s3e1p2_caught_having_sex == "Seb":
         if s3_current_partner == "Bill" or s3_current_partner == "Harry":
-            show iona at npc_left
             iona "OK, I'll go and kiss them."
-            show seb at npc_right
             "Iona saunters over plants a kiss on his lips."
             seb "Thank you for that."
             "Iona smiles."
             iona "Any day"
         elif s3_current_partner == "Camilo":
-            show genevieve at npc_left
             genevieve "OK, I'll go and kiss them."
             "Genevieve saunters over plants a kiss on his lips."
             seb "Thank you for that."
@@ -2189,14 +1834,12 @@ label s3e1p2:
             genevieve "Any day"
     elif s3e1p2_caught_having_sex == "Nicky":
         if s3_current_partner == "Bill" or s3_current_partner == "Harry":
-            show iona at npc_left
             iona "OK, I'll go and kiss them."
             "Iona saunters over plants a kiss on his lips."
             nicky "Thank you for that."
             "Iona smiles."
             iona "Any day"
         elif s3_current_partner == "Camilo":
-            show genevieve at npc_left
             genevieve "OK, I'll go and kiss them."
             "Genevieve saunters over plants a kiss on his lips."
             nicky "Thank you for that."
@@ -2426,7 +2069,7 @@ label s3e1p2:
         iona "[s3_mc_name], you can go and pick another one."
 
     "You run over to the suitcases and grab one."
-    aj "What's the clue, MC?"
+    aj "What's the clue, [s3_mc_name]?"
 
     # IF STATEMENT
     if s3_current_partner == "Bill":
@@ -2915,7 +2558,7 @@ label s3e1p2:
             bill "Fancy a round two?"
             # CHOICE
             menu:
-                "Do I want Bill to kiss me again?"
+                "Do I want [s3_current_partner] to kiss me again?"
                 "Yes!":
                     "He leans in and kisses you softly on the lips."
                     genevieve "[s3_mc_name] is getting all the action today!"
@@ -2923,7 +2566,7 @@ label s3e1p2:
                     bill "OK, suit yourself."
                     bill "I'll give AJ a quick kiss then."
                     "He kisses AJ on the cheek."
-                "Go on then, Bill":
+                "Go on then, [s3_current_partner]":
                     "He leans in and kisses you softly on the lips."
                     genevieve "[s3_mc_name] is getting all the action today!"
             iona "The answer was, of course..."
@@ -2934,7 +2577,6 @@ label s3e1p2:
             elladine "Such cuties."
             iona "OK..."
             iona "Next round."
-
             bill "Can I go again?"
             "The other boys cheer him on."
         elif s3_current_partner == "Harry":
@@ -2955,7 +2597,7 @@ label s3e1p2:
             harry "Fancy a round two?"
             # CHOICE
             menu:
-                "Do I want Bill to kiss me again?"
+                "Do I want Harry to kiss me again?"
                 "Yes!":
                     "He leans in and kisses you softly on the lips."
                     miki "[s3_mc_name] is getting all the action today!"
@@ -2963,7 +2605,7 @@ label s3e1p2:
                     harry "OK, suit yourself."
                     harry "I'll give AJ a quick kiss then."
                     "He kisses AJ on the cheek."
-                "Go on then, Bill":
+                "Go on then, Harry":
                     "He leans in and kisses you softly on the lips."
                     miki "[s3_mc_name] is getting all the action today!"
             iona "The answer was, of course..."
@@ -2993,7 +2635,7 @@ label s3e1p2:
             camilo "Fancy a round two?"
             # CHOICE
             menu:
-                "Do I want Bill to kiss me again?"
+                "Do I want Camilo to kiss me again?"
                 "Yes!":
                     "He leans in and kisses you softly on the lips."
                     miki "[s3_mc_name] is getting all the action today!"
@@ -3001,7 +2643,7 @@ label s3e1p2:
                     camilo "OK, suit yourself."
                     camilo "I'll give AJ a quick kiss then."
                     "He kisses AJ on the cheek."
-                "Go on then, Bill":
+                "Go on then, Camilo":
                     "He leans in and kisses you softly on the lips."
                     miki "[s3_mc_name] is getting all the action today!"
             genevieve "The answer was, of course..."
@@ -3092,7 +2734,7 @@ label s3e1p2:
         nicky "Yeah, hey. I hope you weren't stuck in there for long, babe."
         miki "Nah, just a few minutes."
     elif s3_current_partner == "Camilo":
-        Iona "Hey, you lot. I'm Iona."
+        iona "Hey, you lot. I'm Iona."
 
         # Profile shot of Iona
         "Iona\n
@@ -3102,7 +2744,7 @@ label s3e1p2:
 
         "She nods at Camilo."
         iona "Thanks for getting me out of there, Camilo."
-        "miki splutters in shock."
+        "Miki splutters in shock."
         miki "Wait... what? But..."
         genevieve "It's a new girl!"
         "Elladine and Genevieve run over to hug Iona."
@@ -3321,6 +2963,9 @@ label s3e1p2:
             thought "Nah, I'm not bothered."
             thought "I'll just get to know her with the others."
 
+    scene s3-poolside-day with dissolve
+    $ on_screen = []
+
     "You and the other Islanders are lounging by the pool."
     # IF STATEMENT
     if s3_current_outfit in s3_npc_preferred_outfits:
@@ -3435,6 +3080,7 @@ label s3e1p2:
             elif s3_current_partner == "Camilo" or s3_current_partner == "Harry":
                 miki "Yeah you've got to stand out."
             nicky "Yeah, authentically."
+
             if s3_current_partner == "Bill":
                 miki "It's also a bit of a specific thing to lie about..."
             elif s3_current_partner == "Camilo":
@@ -3452,12 +3098,12 @@ label s3e1p2:
         "She gestures to the Villa."
         miki "It's amazing, isn't it?"
     elif s3_current_partner == "Camilo":
-        genevieve "For real though Miki, you definitely made an entrance."
+        genevieve "For real though Iona, you definitely made an entrance."
         genevieve "Maybe we should all arrive in suitcases next time!"
         iona "Yeah, I thought it was a bit out there at first but it was actually really fun."
         iona "This place is bigger than I thought it would be!"
     elif s3_current_partner == "Harry":
-        iona "For real though Miki, you definitely made an entrance."
+        iona "For real though Genevieve, you definitely made an entrance."
         iona "Maybe we should all arrive in suitcases next time!"
         genevieve "It worked really well."
         genevieve "It's so cool to be finally here."
@@ -3524,6 +3170,10 @@ label s3e1p2:
         "Especially that Elladine and AJ. They're fire hazards."
     "I don't know how I'd actually stop them. I can't leave this shed."
     "Maybe if I shout loud enough."
+
+    scene edited_sandy_intro with dissolve
+    $ on_screen = []
+
     "Coming up..."
     "The Islanders get their graft on."
     if s3_current_partner == "Bill":
@@ -3542,6 +3192,8 @@ label s3e1p2:
         "And the power is in Miki's hands."
         genevieve "But, ultimately, I do have to make a choice and so..."
 
+    scene edited_sandy_intro
+
     # CHOICE
     menu:
         "Do you want to contine to next part or go back to the main menu?"
@@ -3553,6 +3205,9 @@ label s3e1p2:
     return
 
 label s3e1p2_talk_to_new_girl:
+    scene s3-platform-excess-baggage
+    $ on_screen = []
+
     thought "Yeah, I'll call her over for a chat."
     s3_mc "Hey [s3_3rd_girl]."
     "She peels away from the others and walks over to you."
@@ -3564,6 +3219,10 @@ label s3e1p2_talk_to_new_girl:
         miki "I'd love to."
         miki "Roof terrace? I've been dying to check it out."
         s3_mc "Great idea."
+        
+        scene s3-roof-day
+        $ on_screen = []
+
         "You and [s3_3rd_girl] sit beside each other on the roof."
         miki "Thanks for this."
         miki "Like, I was so worried coming in later."
@@ -3606,7 +3265,7 @@ label s3e1p2_talk_to_new_girl:
                 miki "I know, I know."
 
         miki "That's why I wanted to talk to you."
-        miki "Right now, if I had to couple up with someone, I'd for sure pick Camilo/Harry/Bill."
+        miki "Right now, if I had to couple up with someone, I'd for sure pick Bill."
         miki "I've got to choose someone so I wanted to be super upfront with you about it."
         miki "I know it's early days..."
         s3_mc "It's only been a few hours."
@@ -3641,6 +3300,10 @@ label s3e1p2_talk_to_new_girl:
         iona "I'd love to."
         iona "Roof terrace? I've been dying to check it out."
         s3_mc "Great idea."
+
+        scene s3-roof-day
+        $ on_screen = []
+
         "You and [s3_3rd_girl] sit beside each other on the roof."
         iona "Thanks for this."
         iona "Like, I was so worried coming in later."
@@ -3687,7 +3350,7 @@ label s3e1p2_talk_to_new_girl:
                 iona "I know, I know."
 
         iona "That's why I wanted to talk to you."
-        iona "Right now, if I had to couple up with someone, I'd for sure pick Camilo/Harry/Bill."
+        iona "Right now, if I had to couple up with someone, I'd for sure pick Camilo."
         iona "I've got to choose someone so I wanted to be super upfront with you about it."
         iona "I know it's early days..."
         s3_mc "It's only been a few hours."
@@ -3722,6 +3385,10 @@ label s3e1p2_talk_to_new_girl:
         genevieve "I'd love to."
         genevieve "Roof terrace? I've been dying to check it out."
         s3_mc "Great idea."
+
+        scene s3-roof-day
+        $ on_screen = []
+
         "You and [s3_3rd_girl] sit beside each other on the roof."
         genevieve "Thanks for this."
         genevieve "Like, I was so worried coming in later."
@@ -3768,7 +3435,7 @@ label s3e1p2_talk_to_new_girl:
                 genevieve "I know, I know."
 
         genevieve "That's why I wanted to talk to you."
-        genevieve "Right now, if I had to couple up with someone, I'd for sure pick Camilo/Harry/Bill."
+        genevieve "Right now, if I had to couple up with someone, I'd for sure pick Harry."
         genevieve "I've got to choose someone so I wanted to be super upfront with you about it."
         genevieve "I know it's early days..."
         s3_mc "It's only been a few hours."
@@ -3802,6 +3469,9 @@ label s3e1p2_talk_to_new_girl:
 ## Episode 1, Part 3
 #########################################################################
 label s3e1p3:
+    scene edited_sandy_intro
+    $ on_screen = []
+
     "Welcome back..."
     "To Love Island!"
     "In an absolutely shocking twist that literally no one could have predicted..."
@@ -3809,12 +3479,22 @@ label s3e1p3:
     if s3_current_partner == "Bill":
         miki "Hey, you lot. I'm Miki."
         miki "Thanks for getting me out of there."
+        show miki at npc_exit
+        pause 0.3
+        $ renpy.hide("miki")
     elif s3_current_partner == "Camilo":
         iona "Hey, you lot. I'm Iona."
         iona "Thanks for getting me out of there."
+        show iona at npc_exit
+        pause 0.3
+        $ renpy.hide("iona")
     elif s3_current_partner == "Harry":
         genevieve "Hey, you lot. I'm Genevieve."
         genevieve "Thanks for getting me out of there."
+        show harry at npc_exit
+        pause 0.3
+        $ renpy.hide("harry")
+
     "Ladies, hide your men, this one's coming for them..."
     "Though it'll be hard to hide them in a Villa covered in cameras..."
     "Maybe if they put the sheets over their heads and pretend to be ghosts?"
@@ -3822,16 +3502,35 @@ label s3e1p3:
     "I don't know. I've never played a game of Hide and Seek in my life."
     "Coming up!"
     "Bill gets cheesy..."
+    show bill at npc_center
     bill "I don't know about the rest of you, but I'm cream-crackered."
+    show bill at npc_exit
+    pause 0.3
+    $ renpy.hide("bill")
     if s3_current_partner == "Bill":
         "And Miki takes her pick..."
+        show miki at npc_center
         miki "The guy I'd like to couple up with is..."
+        show miki at npc_exit
+        pause 0.3
+        $ renpy.hide("miki")
     elif s3_current_partner == "Camilo":
         "And Iona takes her pick..."
+        show iona at npc_center
         iona "The guy I'd like to couple up with is..."
+        show iona at npc_exit
+        pause 0.3
+        $ renpy.hide("iona")
     elif s3_current_partner == "Harry":
         "And Genevieve takes her pick..."
+        show genevieve at npc_center
         genevieve "The guy I'd like to couple up with is..."
+        show genevieve at npc_exit
+        pause 0.3
+        $ renpy.hide("genevieve")
+
+    scene s3-dressing-room
+    $ on_screen = []
 
     "The dressing room is a flurry of activity as the girls ready themselves for [s3_3rd_girl]'s decision."
     # IF STATEMENT

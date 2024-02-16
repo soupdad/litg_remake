@@ -14,6 +14,8 @@
 
     
 
+    
+
 
 # TRANSFORMS
 transform little_hop:
@@ -77,19 +79,23 @@ transform npc_exit:
     easeout 0.2 xalign 1.75
 
 # New NPC spots, closer up, no spot for mc
-transform npc_left:
-    zoom 1.2
+transform move_left:
     anchor(0.5, 0.1)
+    easein 0.2 zoom 1.3 xalign 0.2
+
+transform npc_left:
+    zoom 1.3
+    xalign 1.75 yalign 0.15
     easein 0.2 xalign 0.2
 
 transform npc_right:
-    zoom 1.2
-    anchor(0.5, 0.1)
+    zoom 1.3
+    xalign 1.75 yalign 0.15
     easein 0.2 xalign 0.8
 
 transform npc_center:
-    zoom 1.5
-    anchor(0.5, -0.1)
+    zoom 1.6
+    xalign 1.75 yalign 0.25
     easein 0.2 xalign 0.5 yalign 0.1
 
 
